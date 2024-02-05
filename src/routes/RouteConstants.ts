@@ -1,6 +1,16 @@
 const pokemonBase = 'pokemon';
+const logBase = 'log';
+const profileView = 'profile';
 export const pokemonRoutes = {
   base: pokemonBase,
+};
+
+export const logRoutes = {
+  base: logBase,
+};
+
+export const profileRoutes = {
+  base: profileView,
 };
 
 export const authBase = 'auth';
@@ -9,4 +19,4 @@ export const authRoutes = {
   register: `/${authBase}/register`,
 };
 
-export const homeRoute = '/' + pokemonBase;
+export const homeRoute = '/' + logBase;

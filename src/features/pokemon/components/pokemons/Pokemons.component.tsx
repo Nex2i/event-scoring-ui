@@ -6,6 +6,7 @@ import { usePokemons } from '@/hooks/pokemon/usePokemons.hook';
 import { pokemonRoutes } from '@/routes/RouteConstants';
 import { Pokemon } from '@/types/models/pokemon/pokemon.type';
 import { useDeletePokemon } from '@/hooks/pokemon/useDeletePokemon.hook';
+import { useAuth } from '@/hooks/authentication/useAuth.hook';
 import * as Styled from '../../pokemon.styles';
 import { PokemonFormDialog } from '../pokemon/Pokemon.form.dialog';
 
@@ -14,6 +15,7 @@ interface PokemonsProps {}
 const defaultNewPokemon = {} as Pokemon;
 
 export const Pokemons: FC<PokemonsProps> = ({}) => {
+  const {} = useAuth();
   const [parent] = useAutoAnimate();
   const navigate = useNavigate();
   const [isFetching, setIsFetching] = useState(false);

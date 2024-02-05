@@ -1,8 +1,8 @@
-import { MaskedPattern } from 'imask';
+import { Definitions as MaskedDefinitions } from 'imask';
 
 export interface CustomMaskDefinition {
   mask: string | RegExp | Array<RegExp | string> | NumberConstructor | StringConstructor | DateConstructor;
-  definitions: MaskedPattern.Definitions;
+  definitions: MaskedDefinitions;
   thousandsSeparator?: string;
   min?: number;
   max?: number;

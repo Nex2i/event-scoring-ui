@@ -1,11 +1,12 @@
 import { IBaseModel } from '../base.model';
+import { ProjectModel } from '../project/project.model';
 
 export interface UserModel extends IBaseModel {
-  id: string;
-  name: string;
-  username: string;
-  nickname: string;
   email: string;
+  authId: string;
+  userName: string;
+  id: string;
+  token: string;
   picture: string;
-  o_auth_sub: string;
+  projects: ProjectModel[];
 }

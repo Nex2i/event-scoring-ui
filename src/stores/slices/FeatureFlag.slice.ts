@@ -16,6 +16,7 @@ export const featureFlagSlice = createSlice({
   reducers: {
     setFeatureFlags: (state, action: PayloadAction<FeatureFlagState>) => {
       state = action.payload;
+      return state;
     },
   },
 });

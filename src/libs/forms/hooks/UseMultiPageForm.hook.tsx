@@ -14,10 +14,10 @@ export type PageItem = {
 export function useMultiPageForm(pages: MultiPageForm[]) {
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const [pageIsValid, setPageIsValid] = useState<Record<number, boolean>>(
-    pages.reduce((acc, curr, index) => ({ ...acc, [index]: false }), {})
+    pages.reduce((acc, _curr, index) => ({ ...acc, [index]: false }), {})
   );
   const [pageIsTouched, setPageIsTouched] = useState<Record<number, boolean>>(
-    pages.reduce((acc, curr, index) => ({ ...acc, [index]: false }), {})
+    pages.reduce((acc, _curr, index) => ({ ...acc, [index]: false }), {})
   );
 
   function nextPage() {

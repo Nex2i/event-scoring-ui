@@ -60,6 +60,12 @@ import accordion, { AccordionSummary, AccordionDetails } from '@/assets/theme/co
 
 export const theme = createTheme({
   palette: { ...colors },
+  transitions: {
+    duration: {
+      enteringScreen: 500,
+      leavingScreen: 200,
+    },
+  },
   typography: { ...typography },
   boxShadows: { ...boxShadows },
   borders: { ...borders },

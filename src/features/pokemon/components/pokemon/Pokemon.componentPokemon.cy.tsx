@@ -1,9 +1,9 @@
-import { Pokemon } from './Pokemon.component';
-import { getComponent, partialStore } from '@/testing/shared';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { getComponent, partialStore } from '@/testing/shared';
 import { pokemonRoutes } from '@/routes/RouteConstants';
+import { Pokemon } from './Pokemon.component';
 
-function createPokemon<T extends {}>(store: partialStore = {}, props: T = {} as T) {
+function createPokemon<T extends object>(store: partialStore = {}, props: T = {} as T) {
   return (
     <MemoryRouter initialEntries={[`/${pokemonRoutes.base}/d7d8e752`]}>
       <Routes>

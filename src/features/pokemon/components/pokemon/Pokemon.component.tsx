@@ -27,7 +27,9 @@ export const Pokemon: FC<PokemonProps> = ({}) => {
   return (
     <div data-cy="pokemon-container">
       <Styled.Row>
-        <Typography variant="h1">{name}</Typography>
+        <Styled.DynamicTypography text={name} variant="h1">
+          {name}
+        </Styled.DynamicTypography>
         <Typography variant="h3">
           <Styled.EditIcon onClick={toggleEdit} data-cy="edit-btn" />
         </Typography>

@@ -13,7 +13,6 @@ export class PokemonApi extends BaseRepository implements IPokemonApi {
     return HttpClient.get(`${this.apiUrl}/api/pokemon/v1`);
   };
   getPokemonById = async (id: string): Promise<Pokemon> => {
-    console.log('id', id, `${this.apiUrl}/api/pokemon/v1/${id}`);
     return HttpClient.get(`${this.apiUrl}/api/pokemon/v1/${id}`);
   };
   editPokemon = async (id: string, data: EditPokemonRequest): Promise<Pokemon> => {

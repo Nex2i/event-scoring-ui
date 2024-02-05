@@ -15,6 +15,7 @@ export interface FormFilledInputProps extends FilledInputProps {
   type?: string;
   disabled?: boolean;
   required?: boolean;
+  rows?: number;
 }
 
 const defaultMask: CustomMaskDefinition = {
@@ -30,8 +31,11 @@ export const FormFilledInput: FC<FormFilledInputProps> = ({
   disabled,
   required,
   sx,
+  rows,
 }) => {
   const { name, label, tooltip } = fieldMapping;
+
+  console.log('rows', rows);
 
   return (
     <Styled.FormFilledInputContainer>
@@ -59,6 +63,8 @@ export const FormFilledInput: FC<FormFilledInputProps> = ({
                   ...(fieldMapping.customMaskDefinition ?? defaultMask),
                   onChange,
                 }}
+                rows={rows}
+                multiline={rows ? true : false}
                 id={'e2e-' + replaceDotsWithHyphens(name)}
                 endAdornment={
                   tooltip && (

@@ -1,42 +1,51 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
-import { useLogin } from '@/hooks/authentication/useLogin.hook';
-import { useLogout } from '@/hooks/authentication/useLogout.hook';
+import { isUserModelLocal, useAuth } from '@/hooks/authentication/useAuth.hook';
+import { ApiContext } from '@/apis/api.context';
+import { useAppDispatch } from '@/stores/store.hooks';
+import { setAuthentication } from '@/stores/slices/Authentication.slice';
 
 interface AuthCheckProviderProps {}
 
 export const AuthCheckProvider: FC<AuthCheckProviderProps> = ({}) => {
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const apis = useContext(ApiContext);
+  const dispatch = useAppDispatch();
+  const { isAuthenticated, user } = useAuth();
 
-  const [authId, setAuthId] = useState<string>();
-  const [isFetching, setIsFetching] = useState<boolean>(false);
-  const [logoutSession, setLogoutSession] = useState<boolean>(false);
-
-  useLogin(authId, setIsFetching);
-  useLogout(logoutSession, setIsFetching);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (isLoading) return;
-
-    if (isAuthenticated && user) {
-      setLogoutSession(false);
-      setAuthId(user.sub);
+    if (!isUserModelLocal(user)) {
+      apis.authentication
+        .getLoggedInUser()
+        .then((res) => {
+          dispatch(
+            setAuthentication({
+              id: res.id,
+              authId: res.authId,
+              token: res.token,
+              picture: res.picture,
+              email: res.email,
+              userName: res.userName,
+              projects: res.projects,
+            })
+          );
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      setIsLoading(false);
     }
+  }, []);
 
-    if (!isAuthenticated) {
-      setLogoutSession(true);
-    }
-  }, [isAuthenticated, isLoading, user]);
+  if (isLoading) return <LoadingComponent loadingText="Authenticating User" />;
 
-  if (isLoading || isFetching) return <LoadingComponent loadingText="Authenticating User" />;
+  if (!isAuthenticated) {
+    // LOGOUT REQUEST
+    return <Navigate to={'/auth'} />;
+  }
 
-  return isAuthenticated ? (
-    <div>
-      <Outlet />
-    </div>
-  ) : (
-    <Navigate to={'/auth'} />
-  );
+  return <Outlet />;
 };

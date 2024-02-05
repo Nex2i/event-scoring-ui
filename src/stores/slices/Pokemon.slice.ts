@@ -26,8 +26,8 @@ export const pokemonSlice = createSlice({
       state.pokemons = state.pokemons.filter((pokemon) => pokemon.id !== action.payload);
     },
     resetPokemon: (state) => {
-      state.pokemons = initialState.pokemons;
-      state.activePokemon = initialState.activePokemon;
+      state.pokemons = initialPokemonState.pokemons;
+      state.activePokemon = initialPokemonState.activePokemon;
     },
   },
 });
