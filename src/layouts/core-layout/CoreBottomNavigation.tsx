@@ -6,7 +6,6 @@ import ListAltIcon from '@mui/icons-material/ListAltOutlined';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CreateLogDrawer } from '@/features/log/components/CreateLogDrawer';
 import * as Styled from './Styles';
 
 export default function CoreBottomNavigation() {
@@ -43,7 +42,6 @@ export default function CoreBottomNavigation() {
   return (
     <>
       <Box sx={{ pb: 7 }} ref={ref} data-cy="core-bottom-navigation">
-        <CreateLogDrawer trigger={toggleCreateLogDrawer} onClose={setToggleCreateLogDrawer} />
         <CssBaseline />
         <Paper sx={{ position: 'fixed', bottom: 8, left: 0, right: 0 }} elevation={3}>
           <Styled.BottomNavigationContainer showLabels value={value} onChange={navigationActionClick}>
