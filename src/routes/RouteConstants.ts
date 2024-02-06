@@ -1,22 +1,22 @@
 const pokemonBase = 'pokemon';
-const logBase = 'log';
-const profileView = 'profile';
+const trackingBase = 'tracking';
+const authBase = 'auth';
+const publicMenuBase = 'public';
+
 export const pokemonRoutes = {
   base: pokemonBase,
 };
-
-export const logRoutes = {
-  base: logBase,
+export const trackingRoutes = {
+  base: trackingBase,
 };
-
-export const profileRoutes = {
-  base: profileView,
+export const publicMenuRoutes = {
+  base: publicMenuBase,
 };
-
-export const authBase = 'auth';
 export const authRoutes = {
+  base: authBase,
   login: `/${authBase}/login`,
   register: `/${authBase}/register`,
 };
 
-export const homeRoute = '/' + logBase;
+export const homeRoute = '/' + pokemonBase;
+export const noAuthHomeRoute = '/' + publicMenuRoutes.base;

@@ -5,6 +5,7 @@ import { isUserModelLocal, useAuth } from '@/hooks/authentication/useAuth.hook';
 import { ApiContext } from '@/apis/api.context';
 import { useAppDispatch } from '@/stores/store.hooks';
 import { setAuthentication } from '@/stores/slices/Authentication.slice';
+import { noAuthHomeRoute } from '@/routes/RouteConstants';
 
 interface AuthCheckProviderProps {}
 
@@ -44,7 +45,7 @@ export const AuthCheckProvider: FC<AuthCheckProviderProps> = ({}) => {
 
   if (!isAuthenticated) {
     // LOGOUT REQUEST
-    return <Navigate to={'/auth'} />;
+    return <Navigate to={noAuthHomeRoute} />;
   }
 
   return <Outlet />;

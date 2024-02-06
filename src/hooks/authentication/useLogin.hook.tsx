@@ -11,7 +11,7 @@ export enum loginActions {
   register = 'register',
 }
 
-type hookResponse = [loginActions | undefined, boolean, boolean];
+type hookResponse = { loginAction: loginActions | undefined; isAuthorizing: boolean; isAuthorized: boolean };
 
 export function useLogin(username: string, password: string): hookResponse {
   const [action, setAction] = useState<loginActions>();
@@ -100,5 +100,9 @@ export function useLogin(username: string, password: string): hookResponse {
     setAction(loginActions.register);
   }
 
-  return [action, isFetching, isAuthorized];
+  return {
+    loginAction: action,
+    isAuthorizing: isFetching,
+    isAuthorized: isAuthorized,
+  };
 }

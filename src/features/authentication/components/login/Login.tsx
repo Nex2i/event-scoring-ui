@@ -16,7 +16,7 @@ interface LoginProps {}
 export const Login: FC<LoginProps> = ({}) => {
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState<{ username: string; password: string }>({ username: '', password: '' });
-  const [_, isAuthorizing, isAuthorized] = useLogin(formValues.username, formValues.password);
+  const { isAuthorizing, isAuthorized } = useLogin(formValues.username, formValues.password);
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
@@ -29,12 +29,6 @@ export const Login: FC<LoginProps> = ({}) => {
     username: '',
     password: '',
   });
-
-  // Will implement with Google
-  // eslint-disable-next-line
-  const google = () => {
-    window.open('http://localhost:8085/api/auth/v1/open/passport/google', '_self');
-  };
 
   const redirectToRegister = () => {
     navigate(authRoutes.register);
