@@ -15,8 +15,6 @@ const DynamicTable = ({ roundData, onCellClick }: DynamicTableProps) => {
 
   if (!round) return <p>NO ACTIVE ROUND</p>;
 
-  console.log('target0', round.targets[0]);
-
   return (
     <div>
       <table>
