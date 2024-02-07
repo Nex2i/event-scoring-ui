@@ -25,11 +25,11 @@ export const Bullseye: FC<BullseyeProps> = ({ onClick }) => {
   }, []);
 
   const rings = [
-    { score: 10, color: 'white' },
-    { score: 8, color: 'black' },
+    { score: 2, color: 'white' },
+    { score: 4, color: 'black' },
     { score: 6, color: 'blue' },
-    { score: 4, color: 'red' },
-    { score: 2, color: 'yellow' },
+    { score: 8, color: 'red' },
+    { score: 10, color: 'yellow' },
   ];
 
   const maxRadius = size / 2;

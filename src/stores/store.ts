@@ -4,12 +4,14 @@ import featureFlagReducer from './slices/FeatureFlag.slice';
 import authenticationReducer from './slices/Authentication.slice';
 import snackBarReducer from './slices/SnackBar.slice';
 import pokemonReducer from './slices/Pokemon.slice';
+import trackerReducer from './slices/Tracker.slice';
 
 const rootReducer = combineReducers({
   featureFlag: featureFlagReducer,
   authentication: authenticationReducer,
   snackBar: snackBarReducer,
   pokemon: pokemonReducer,
+  tracker: trackerReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

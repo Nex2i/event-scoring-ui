@@ -25,6 +25,7 @@ export const CoreRow = styled(Box)<{ width?: string }>(({ width }) => ({
 export const CoreColumn = styled(Box)<{ width?: string }>(({ width }) => ({
   display: 'flex',
   flexDirection: 'column',
+  overflow: 'auto',
   width: width || 'auto',
 }));
 
@@ -35,6 +36,7 @@ export const CoreLayoutOutlet = styled(Box)`
   justify-content: flex-start;
   width: 100%;
   /* padding: 0 20px; */
+  overflow: auto;
   margin-top: 20px;
 `;
 
