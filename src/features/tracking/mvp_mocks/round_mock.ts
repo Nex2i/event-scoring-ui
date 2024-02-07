@@ -1,77 +1,183 @@
 import { Round } from '@/types/models/tracker/tracker.type';
 
 export const round_mock: Round = {
-  id: '1',
+  id: generateUniqueStringId(),
   name: 'My first round',
   targets: [
     {
-      id: '1',
+      id: generateUniqueStringId(),
       name: 'First target',
+      targetTotal: 0,
       shots: [
         {
-          id: '1',
-          score: 5,
+          id: generateUniqueStringId(),
+          score: null,
           timestamp: new Date(),
+          name: 'First shot',
         },
         {
-          id: '2',
-          score: 4,
+          id: generateUniqueStringId(),
+          score: null,
           timestamp: new Date(),
-        },
-        {
-          id: '3',
-          score: 3,
-          timestamp: new Date(),
-        },
-        {
-          id: '4',
-          score: 2,
-          timestamp: new Date(),
-        },
-        {
-          id: '5',
-          score: 1,
-          timestamp: new Date(),
+          name: 'Second shot',
         },
       ],
       startTime: new Date(),
       endTime: new Date(),
     },
     {
-      id: '2',
+      id: generateUniqueStringId(),
       name: 'Second target',
+      targetTotal: 0,
       shots: [
         {
-          id: '6',
-          score: 5,
+          id: generateUniqueStringId(),
+          score: null,
           timestamp: new Date(),
+          name: 'First shot',
         },
         {
-          id: '7',
-          score: 4,
+          id: generateUniqueStringId(),
+          score: null,
           timestamp: new Date(),
+          name: 'Second shot',
+        },
+      ],
+      startTime: new Date(),
+      endTime: new Date(),
+    },
+    {
+      id: generateUniqueStringId(),
+      name: 'Third target',
+      targetTotal: 0,
+      shots: [
+        {
+          id: generateUniqueStringId(),
+          score: null,
+          timestamp: new Date(),
+          name: 'First shot',
         },
         {
-          id: '8',
-          score: 3,
+          id: generateUniqueStringId(),
+          score: null,
           timestamp: new Date(),
+          name: 'Second shot',
+        },
+      ],
+      startTime: new Date(),
+      endTime: new Date(),
+    },
+    {
+      id: generateUniqueStringId(),
+      name: 'Fourth target',
+      targetTotal: 0,
+      shots: [
+        {
+          id: generateUniqueStringId(),
+          score: null,
+          timestamp: new Date(),
+          name: 'First shot',
         },
         {
-          id: '9',
-          score: 2,
+          id: generateUniqueStringId(),
+          score: null,
           timestamp: new Date(),
+          name: 'Second shot',
+        },
+      ],
+      startTime: new Date(),
+      endTime: new Date(),
+    },
+    {
+      id: generateUniqueStringId(),
+      name: 'Fith target',
+      targetTotal: 0,
+      shots: [
+        {
+          id: generateUniqueStringId(),
+          score: null,
+          timestamp: new Date(),
+          name: 'First shot',
         },
         {
-          id: '10',
-          score: 1,
+          id: generateUniqueStringId(),
+          score: null,
           timestamp: new Date(),
+          name: 'Second shot',
+        },
+      ],
+      startTime: new Date(),
+      endTime: new Date(),
+    },
+    {
+      id: generateUniqueStringId(),
+      name: 'Sixth target',
+      targetTotal: 0,
+      shots: [
+        {
+          id: generateUniqueStringId(),
+          score: null,
+          timestamp: new Date(),
+          name: 'First shot',
+        },
+        {
+          id: generateUniqueStringId(),
+          score: null,
+          timestamp: new Date(),
+          name: 'Second shot',
+        },
+      ],
+      startTime: new Date(),
+      endTime: new Date(),
+    },
+    {
+      id: generateUniqueStringId(),
+      name: 'Seventh target',
+      targetTotal: 0,
+      shots: [
+        {
+          id: generateUniqueStringId(),
+          score: null,
+          timestamp: new Date(),
+          name: 'First shot',
+        },
+        {
+          id: generateUniqueStringId(),
+          score: null,
+          timestamp: new Date(),
+          name: 'Second shot',
+        },
+      ],
+      startTime: new Date(),
+      endTime: new Date(),
+    },
+    {
+      id: generateUniqueStringId(),
+      name: 'Eighth target',
+      targetTotal: 0,
+      shots: [
+        {
+          id: generateUniqueStringId(),
+          score: null,
+          timestamp: new Date(),
+          name: 'First shot',
+        },
+        {
+          id: generateUniqueStringId(),
+          score: null,
+          timestamp: new Date(),
+          name: 'Second shot',
         },
       ],
       startTime: new Date(),
       endTime: new Date(),
     },
   ],
-  totalScore: 0,
+  roundTotal: 0,
   startTime: new Date(),
   endTime: new Date(),
 };
+
+function generateUniqueStringId() {
+  return Math.random().toString(36).substring(2);
+}

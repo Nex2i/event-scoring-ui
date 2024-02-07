@@ -3,6 +3,12 @@ import { useAppSelector } from '../store.hooks';
 import { TrackerState } from '../sliceTypes/TrackerState.type';
 import { Course, Round } from '@/types/models/tracker/tracker.type';
 
+type setShotPayload = {
+  targetId: string;
+  shotId: string;
+  shotScore: number;
+};
+
 export const initialTrackerState: TrackerState = {} as TrackerState;
 export const trackerSliceName = 'trackerSlice';
 export const trackerSlice = createSlice({
@@ -15,8 +21,14 @@ export const trackerSlice = createSlice({
     setActiveRound: (state, action: PayloadAction<Round>) => {
       state.ActiveRound = action.payload;
     },
-    updateRoundTotal: (state, action: PayloadAction<number>) => {
-      state.ActiveRound.totalScore += action.payload;
+    setShot: (state, action: PayloadAction<setShotPayload>) => {
+      const { targetId, shotScore, shotId } = action.payload;
+      const targetIndex = state.ActiveRound.targets.findIndex((target) => target.id === targetId);
+      const shotIndex = state.ActiveRound.targets[targetIndex].shots.findIndex((shot) => shot.id === shotId);
+      state.ActiveRound.targets[targetIndex].shots[shotIndex].score = shotScore;
+      state.ActiveRound.targets[targetIndex].shots[shotIndex].timestamp = new Date();
+      state.ActiveRound.targets[targetIndex].targetTotal += shotScore;
+      state.ActiveRound.roundTotal += shotScore;
     },
     resetTracker: (state) => {
       state.ActiveCourse = initialTrackerState.ActiveCourse;
@@ -27,6 +39,6 @@ export const trackerSlice = createSlice({
 
 export const trackerSelector = () => useAppSelector((store) => store.tracker);
 
-export const { setActiveCourse, setActiveRound, updateRoundTotal, resetTracker } = trackerSlice.actions;
+export const { setActiveCourse, setActiveRound, setShot, resetTracker } = trackerSlice.actions;
 
 export default trackerSlice.reducer;

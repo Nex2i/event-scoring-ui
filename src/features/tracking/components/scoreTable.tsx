@@ -1,28 +1,21 @@
-import { useState, FC } from 'react';
-
-type RowData = {
-  target: number;
-  firstArrow: string;
-  secondArrow: string;
-};
+import { Round } from '@/types/models/tracker/tracker.type';
+import { useState, useEffect } from 'react';
 
 type DynamicTableProps = {
-  numRows: number;
+  roundData: Round;
+  onCellClick: (targetId: string, shotId: string) => void;
 };
 
-export const ScoreTable: FC<DynamicTableProps> = ({ numRows }) => {
-  const [rows, setRows] = useState<Array<RowData>>(
-    Array.from({ length: numRows }, (_, index) => ({
-      target: index + 1,
-      firstArrow: '',
-      secondArrow: '',
-    }))
-  );
+const DynamicTable = ({ roundData, onCellClick }: DynamicTableProps) => {
+  const [round, setRound] = useState<Round>(roundData);
 
-  const handleInputChange = (rowIndex: number, column: 'firstArrow' | 'secondArrow', value: string) => {
-    const updatedRows = rows.map((row, index) => (index === rowIndex ? { ...row, [column]: value } : row));
-    setRows(updatedRows);
-  };
+  useEffect(() => {
+    setRound(roundData);
+  }, [roundData]);
+
+  if (!round) return <p>NO ACTIVE ROUND</p>;
+
+  console.log('target0', round.targets[0]);
 
   return (
     <div>
@@ -30,28 +23,18 @@ export const ScoreTable: FC<DynamicTableProps> = ({ numRows }) => {
         <thead>
           <tr>
             <th>Target</th>
-            <th>1st Arrow</th>
-            <th>2nd Arrow</th>
+            {round.targets.length > 0 && round.targets[0].shots.map((shot) => <th key={shot.id}>{shot.name}</th>)}
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, index) => (
-            <tr key={index}>
-              <td>{row.target}</td>
-              <td>
-                <input
-                  type="text"
-                  value={row.firstArrow}
-                  onChange={(e) => handleInputChange(index, 'firstArrow', e.target.value)}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={row.secondArrow}
-                  onChange={(e) => handleInputChange(index, 'secondArrow', e.target.value)}
-                />
-              </td>
+          {round.targets.map((target, targetIndex) => (
+            <tr key={target.id}>
+              <th>{target.name}</th>
+              {target.shots.map((shot, shotIndex) => (
+                <td key={shot.id} onClick={() => onCellClick(target.id, shot.id)} style={{ cursor: 'pointer' }}>
+                  {shot.score ? shot.score : '-'}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>
@@ -59,3 +42,5 @@ export const ScoreTable: FC<DynamicTableProps> = ({ numRows }) => {
     </div>
   );
 };
+
+export default DynamicTable;

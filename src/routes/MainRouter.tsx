@@ -10,8 +10,6 @@ export const MainRouter = () => {
 
   const element = useRoutes([...AuthenticatedRoutes, ...PublicRoutes]);
 
-  console.log(element);
-
   const httpInterceptor = new HttpInterceptor();
   httpInterceptor.initializeInterceptor();
 

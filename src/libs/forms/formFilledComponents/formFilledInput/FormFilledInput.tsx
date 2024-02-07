@@ -35,8 +35,6 @@ export const FormFilledInput: FC<FormFilledInputProps> = ({
 }) => {
   const { name, label, tooltip } = fieldMapping;
 
-  console.log('rows', rows);
-
   return (
     <Styled.FormFilledInputContainer>
       <FormControl className="form-filled-input-control" variant="filled">

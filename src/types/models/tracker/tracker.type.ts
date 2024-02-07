@@ -1,7 +1,8 @@
 export interface Shot {
   id: string;
-  score: number;
+  score: number | null;
   timestamp: Date;
+  name: string;
 }
 
 export interface Target {
@@ -10,13 +11,14 @@ export interface Target {
   shots: Shot[];
   startTime: Date;
   endTime: Date;
+  targetTotal: number;
 }
 
 export interface Round {
   id: string;
   name: string;
   targets: Target[];
-  totalScore: number;
+  roundTotal: number;
   startTime: Date;
   endTime: Date;
 }
