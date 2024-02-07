@@ -3,7 +3,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { homeRoute, publicMenuRoutes } from '@/routes/RouteConstants';
+import { noAuthHomeRoute } from '@/routes/RouteConstants';
 import { useAuth } from '@/hooks/authentication/useAuth.hook';
 import * as Styled from './Styles';
 
@@ -30,7 +30,7 @@ export const PublicAppBar: FC<coreNavbarProps> = ({}) => {
   };
 
   const navigateToHome = () => {
-    navigate(publicMenuRoutes.base);
+    navigate(noAuthHomeRoute);
   };
 
   return (
@@ -39,7 +39,7 @@ export const PublicAppBar: FC<coreNavbarProps> = ({}) => {
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ maxHeight: '40px' }}>
             <Styled.Row>
-              <button>
+              <button onClick={navigateToHome}>
                 <AdbIcon />
               </button>
             </Styled.Row>

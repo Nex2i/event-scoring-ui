@@ -3,10 +3,15 @@ import { default as MuiEditIcon } from '@mui/icons-material/Edit';
 import { default as MuiAddIcon } from '@mui/icons-material/AddCircle';
 import { default as MuiCancelIcon } from '@mui/icons-material/Cancel';
 import { default as MuiPanoramaFishEyeIcon } from '@mui/icons-material/PanoramaFishEye';
+import { FC } from 'react';
 
 interface dynamicTypographyProps {
   text: string;
   baseFontSize?: number;
+}
+
+interface fC {
+  children: React.ReactNode;
 }
 
 const calculateFontSize = (text: string, baseFontSize: number = 40, minFontSize: number = 12): number => {
@@ -40,6 +45,16 @@ const calculateFontSize = (text: string, baseFontSize: number = 40, minFontSize:
 export const DynamicTypography = styled(Typography)<dynamicTypographyProps>(({ text, baseFontSize }) => ({
   fontSize: calculateFontSize(text, baseFontSize),
 }));
+
+const TitleTypography = styled(Typography)(({}) => ({
+  margin: 0,
+}));
+
+export const Title: FC<fC> = ({ children }) => (
+  <TitleTypography variant="h2" align="center">
+    {children}
+  </TitleTypography>
+);
 
 export const Link = styled('a')(({}) => ({
   cursor: 'pointer',
