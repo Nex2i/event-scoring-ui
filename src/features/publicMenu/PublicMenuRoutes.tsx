@@ -2,7 +2,7 @@ import { Navigate, Route } from 'react-router-dom';
 
 import { trackingRoutes } from '@/routes/RouteConstants';
 import { PublicLayout } from '@/layouts/public-layout/PublicLayout';
-import { PublicHomePage } from './pages/publicHome.page';
+import { PublicHomePage } from './pages/PublicHome.page';
 
 export const PublicMenuRoutes = () => {
   return (
