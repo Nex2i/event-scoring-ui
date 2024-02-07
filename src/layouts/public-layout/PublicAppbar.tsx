@@ -42,6 +42,7 @@ export const PublicAppBar: FC<coreNavbarProps> = ({}) => {
               <button onClick={navigateToHome}>
                 <AdbIcon />
               </button>
+              <Styled.Title>Score Tracker</Styled.Title>
             </Styled.Row>
           </Toolbar>
         </Container>
