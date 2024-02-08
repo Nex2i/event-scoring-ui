@@ -51,7 +51,7 @@ const TitleTypography = styled(Typography)(({}) => ({
 }));
 
 export const Title: FC<fC> = ({ children }) => (
-  <TitleTypography variant="h2" align="center">
+  <TitleTypography variant="h4" align="center">
     {children}
   </TitleTypography>
 );
@@ -65,7 +65,7 @@ export const Row = styled(Box)<{ align?: string }>(({ theme, align }) => ({
   flexDirection: 'row',
   alignItems: 'center',
   width: '100%',
-  justifyContent: align ? align : 'center',
+  justifyContent: align ? align : 'auto',
   gap: theme.spacing(2),
 }));
 

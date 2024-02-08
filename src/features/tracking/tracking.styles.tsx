@@ -21,7 +21,7 @@ export const ScoreTableContainer = styled(Box)(({}) => ({
   justifyContent: 'center',
   alignItems: 'center',
   width: '98%',
-  marginBottom: '10vh',
+  marginBottom: '15vh',
   overflowY: 'scroll',
 }));
 
