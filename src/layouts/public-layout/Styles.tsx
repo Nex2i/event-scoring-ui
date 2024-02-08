@@ -35,6 +35,9 @@ export const CoreLayoutOutlet = styled(Box)`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  /* padding: 0 20px; */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   margin-top: 20px;
 `;
 

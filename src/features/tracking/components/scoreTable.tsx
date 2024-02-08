@@ -1,5 +1,6 @@
-import { Round } from '@/types/models/tracker/tracker.type';
 import { useState, useEffect } from 'react';
+import { Round } from '@/types/models/tracker/tracker.type';
+import * as Styled from '../tracking.styles';
 
 type DynamicTableProps = {
   roundData: Round;
@@ -16,28 +17,22 @@ const DynamicTable = ({ roundData, onCellClick }: DynamicTableProps) => {
   if (!round) return <p>NO ACTIVE ROUND</p>;
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Target</th>
-            {round.targets.length > 0 && round.targets[0].shots.map((shot) => <th key={shot.id}>{shot.name}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {round.targets.map((target, targetIndex) => (
-            <tr key={target.id}>
-              <th>{target.name}</th>
-              {target.shots.map((shot, shotIndex) => (
-                <td key={shot.id} onClick={() => onCellClick(target.id, shot.id)} style={{ cursor: 'pointer' }}>
-                  {shot.score ? shot.score : '-'}
-                </td>
-              ))}
-            </tr>
+    <Styled.Column>
+      <Styled.Row>
+        <p>Target</p>
+        {round.targets.length > 0 && round.targets[0].shots.map((shot) => <p key={shot.id}>{shot.name}</p>)}
+      </Styled.Row>
+      {round.targets.map((target, targetIndex) => (
+        <Styled.Row key={targetIndex}>
+          <p>{target.name}</p>
+          {target.shots.map((shot, shotIndex) => (
+            <p key={shotIndex} onClick={() => onCellClick(target.id, shot.id)} style={{ cursor: 'pointer' }}>
+              {shot.score ? shot.score : '-'}
+            </p>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </Styled.Row>
+      ))}
+    </Styled.Column>
   );
 };
 
