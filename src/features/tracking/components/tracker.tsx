@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from 'react';
-import * as Styled from '../tracking.styles';
-import { Bullseye } from './bullseye';
-import ScoreTable from './scoreTable';
 import { setActiveCourse, setActiveRound, setShot, trackerSelector } from '@/stores/slices/Tracker.slice';
 import { useAppDispatch } from '@/stores/store.hooks';
+import * as Styled from '../tracking.styles';
 import { course_mock } from '../mvp_mocks/course_mock';
 import { round_mock } from '../mvp_mocks/round_mock';
+import ScoreTable from './scoreTable';
+import { Bullseye } from './bullseye';
 
 interface TrackerProps {}
 
@@ -58,9 +58,11 @@ export const Tracker: FC<TrackerProps> = ({}) => {
 
   return (
     <Styled.Column>
-      <Styled.Row>
-        <p>{trackerSlice.ActiveCourse?.name}</p>
-        <p>{trackerSlice.ActiveRound?.name}</p>
+      <Styled.Row align="space-between">
+        <div>
+          <p>{trackerSlice.ActiveCourse?.name}</p>
+          <p>{trackerSlice.ActiveRound?.name}</p>
+        </div>
         <p>TOTAL SCORE: {trackerSlice.ActiveRound?.roundTotal}</p>
       </Styled.Row>
       <Bullseye onClick={handleBullseyeClick} />

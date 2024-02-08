@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { FC } from 'react';
-import * as Styled from '../publicMenu.styles';
 import { useNavigate } from 'react-router-dom';
+import * as Styled from '../publicMenu.styles';
 
 interface PublicHomePageProps {}
 const navigateItems = {

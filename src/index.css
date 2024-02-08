@@ -73,3 +73,10 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+hr {
+  border: none;
+  height: 4px;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  border-radius: 2px;
+}

@@ -33,5 +33,5 @@ export const ScoreCell = styled(Paper)<{ active?: boolean }>(({ theme, active })
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: active ? theme.palette.primary.main : theme.palette.common.white,
+  backgroundColor: active ? theme.palette.secondary.main : theme.palette.common.white,
 }));

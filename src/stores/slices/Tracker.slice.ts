@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Course, Round } from '@/types/models/tracker/tracker.type';
 import { useAppSelector } from '../store.hooks';
 import { TrackerState } from '../sliceTypes/TrackerState.type';
-import { Course, Round } from '@/types/models/tracker/tracker.type';
 
 type setShotPayload = {
   targetId: string;

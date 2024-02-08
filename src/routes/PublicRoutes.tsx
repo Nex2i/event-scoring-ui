@@ -1,8 +1,8 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 import { lazyImport } from '@/utils/lazyImport';
-import { authRoutes, noAuthHomeRoute, publicMenuRoutes, trackingRoutes } from './RouteConstants';
 import { TrackingRoutes } from '@/features/tracking/TrackingRoutes';
 import { PublicMenuRoutes } from '@/features/publicMenu/PublicMenuRoutes';
+import { authRoutes, noAuthHomeRoute, publicMenuRoutes, trackingRoutes } from './RouteConstants';
 
 const { AuthenticationRoutes } = lazyImport(
   () => import('@/features/authentication/AuthenticationRoutes'),

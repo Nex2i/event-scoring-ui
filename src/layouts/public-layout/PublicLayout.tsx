@@ -6,7 +6,6 @@ import { Typography } from '@mui/material';
 import { UserAgentContext } from '@/stores/contexts/userAgent.context.ts';
 import * as Styles from './Styles.tsx';
 import { PublicAppBar } from './PublicAppbar.tsx';
-import PublicBottomNavigation from './PublicBottomNavigation.tsx';
 
 interface coreLayoutProps {
   children: React.ReactNode;
