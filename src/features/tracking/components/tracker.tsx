@@ -58,11 +58,18 @@ export const Tracker: FC<TrackerProps> = ({}) => {
 
   return (
     <Styled.Column>
-      <p>{trackerSlice.ActiveCourse?.name}</p>
-      <p>{trackerSlice.ActiveRound?.name}</p>
-      <p>TOTAL SCORE: {trackerSlice.ActiveRound?.roundTotal}</p>
+      <Styled.Row>
+        <p>{trackerSlice.ActiveCourse?.name}</p>
+        <p>{trackerSlice.ActiveRound?.name}</p>
+        <p>TOTAL SCORE: {trackerSlice.ActiveRound?.roundTotal}</p>
+      </Styled.Row>
       <Bullseye onClick={handleBullseyeClick} />
-      <ScoreTable roundData={trackerSlice.ActiveRound} onCellClick={onCellClick} />
+      <ScoreTable
+        roundData={trackerSlice.ActiveRound}
+        onCellClick={onCellClick}
+        activeTargetId={activeTargetId!}
+        activeShotId={activeShotId!}
+      />
     </Styled.Column>
   );
 };

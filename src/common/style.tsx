@@ -60,10 +60,12 @@ export const Link = styled('a')(({}) => ({
   cursor: 'pointer',
 }));
 
-export const Row = styled(Box)(({ theme }) => ({
+export const Row = styled(Box)<{ align?: string }>(({ theme, align }) => ({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
+  width: '100%',
+  justifyContent: align ? align : 'center',
   gap: theme.spacing(2),
 }));
 
