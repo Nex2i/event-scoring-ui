@@ -1,19 +1,13 @@
-import { FormControl, InputLabel, MenuItem, NativeSelect, Select, SelectChangeEvent } from '@mui/material';
-import { ChangeEvent, ChangeEventHandler, FC } from 'react';
+import { FormControl, NativeSelect } from '@mui/material';
+import { ChangeEvent, FC } from 'react';
 
 interface BasicFilledSelectProps {
   value: string;
   onValueChange: (updatedValue: string) => void;
-  variant?: 'standard' | 'outlined' | 'filled';
   options: { value: string | number; displayName?: string }[];
 }
 
-export const BasicFilledSelect: FC<BasicFilledSelectProps> = ({
-  variant = 'standard',
-  value,
-  onValueChange,
-  options,
-}) => {
+export const BasicFilledSelect: FC<BasicFilledSelectProps> = ({ value, onValueChange, options }) => {
   const onChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onValueChange(event.target.value as string);
   };

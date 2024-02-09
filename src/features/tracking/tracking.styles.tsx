@@ -1,4 +1,4 @@
-import { Box, Paper, styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 
 export * from '@/common/style';
 

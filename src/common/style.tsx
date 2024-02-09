@@ -69,7 +69,7 @@ export const Row = styled(Box)<{ align?: string }>(({ theme, align }) => ({
   gap: theme.spacing(2),
 }));
 
-export const TrackerHeader = styled(Row)(({ theme }) => ({
+export const TrackerHeader = styled(Row)(({}) => ({
   position: 'sticky',
 }));
 

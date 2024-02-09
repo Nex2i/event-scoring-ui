@@ -1,14 +1,14 @@
 import { FC, useEffect, useState } from 'react';
+import { Typography } from '@mui/material';
 import { setActiveCourse, setActiveRound, setShot, trackerSelector } from '@/stores/slices/Tracker.slice';
 import { useAppDispatch } from '@/stores/store.hooks';
+import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
+import useStateSafe from '@/libs/react/SafeState.hook';
 import * as Styled from '../tracking.styles';
 import { course_mock } from '../mvp_mocks/course_mock';
 import { round_mock } from '../mvp_mocks/round_mock';
 import ScoreTable from './scoreTable';
 import { Bullseye } from './bullseye';
-import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
-import useStateSafe from '@/libs/react/SafeState.hook';
-import { Typography } from '@mui/material';
 
 interface TrackerProps {}
 

@@ -1,4 +1,4 @@
-import { Bullseye, Round, Target } from '@/types/models/tracker/tracker.type';
+import { Round, Target } from '@/types/models/tracker/tracker.type';
 
 const numberOfTargets = 8;
 const numberOfShotsPerTarget = 1;

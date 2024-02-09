@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BullseyeRing, Round } from '@/types/models/tracker/tracker.type';
-import * as Styled from '../tracking.styles';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
+import * as Styled from '../tracking.styles';
 
 type DynamicTableProps = {
   roundData: Round;

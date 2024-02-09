@@ -1,6 +1,6 @@
 import { FC, useRef, useEffect, useState } from 'react';
-import * as Styled from '../tracking.styles';
 import { trackerSelector } from '@/stores/slices/Tracker.slice';
+import * as Styled from '../tracking.styles';
 
 interface BullseyeProps {
   onClick: (value: number) => void;
