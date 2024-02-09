@@ -17,7 +17,7 @@ export const BullsEyeRing = styled('circle')(({}) => ({
 
 export const ScoreTableContainer = styled(Paper)(({ theme }) => ({
   marginTop: theme.spacing(2),
-  width: '95%',
+  minWidth: '95%',
   maxHeight: '45vh',
   overflow: 'auto',
   backgroundColor: theme.palette.grey[200],
