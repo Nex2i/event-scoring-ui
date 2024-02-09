@@ -1,4 +1,4 @@
-import { Box, styled } from '@mui/material';
+import { Box, Paper, styled } from '@mui/material';
 
 export * from '@/common/style';
 
@@ -15,11 +15,12 @@ export const BullsEyeRing = styled('circle')(({}) => ({
   WebkitTapHighlightColor: 'transparent',
 }));
 
-export const ScoreTableContainer = styled(Box)(({}) => ({
-  width: '100%',
-  marginBottom: '15vh',
-  maxHeight: '40vh',
+export const ScoreTableContainer = styled(Paper)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  width: '95%',
+  maxHeight: '45vh',
   overflow: 'auto',
+  backgroundColor: theme.palette.grey[200],
 }));
 
 export const ScoreCell = styled(Box)<{ active?: string }>(({ theme, active }) => ({
