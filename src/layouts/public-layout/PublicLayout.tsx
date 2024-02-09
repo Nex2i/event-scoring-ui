@@ -20,18 +20,9 @@ export const PublicLayout: FC<coreLayoutProps> = ({ children, title }) => {
   return (
     <Styles.CoreLayoutContainer sx={{ maxWidth: isMobile ? 'auto' : '500px' }}>
       <PublicAppBar />
-      <Styles.CoreColumn>
-        {title && (
-          <Styles.CoreRow width="80%">
-            <Typography align="left" variant="h2">
-              {title}
-            </Typography>
-          </Styles.CoreRow>
-        )}
-        <Styles.CoreLayoutOutlet ref={parent}>
-          <Routes>{children}</Routes>
-        </Styles.CoreLayoutOutlet>
-      </Styles.CoreColumn>
+      <Styles.CoreLayoutOutlet ref={parent}>
+        <Routes>{children}</Routes>
+      </Styles.CoreLayoutOutlet>
     </Styles.CoreLayoutContainer>
   );
 };

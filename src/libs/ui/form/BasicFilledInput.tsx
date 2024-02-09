@@ -26,18 +26,18 @@ export const BasicFilledInput: FC<BasicFilledInput> = ({
   };
 
   return (
-    <Styled.FormFilledInputContainer>
-      <TextField
-        sx={sx}
-        disabled={disabled}
-        value={value}
-        type={type}
-        rows={rows}
-        multiline={rows ? true : false}
-        onChange={(e) => handleInputChange(e.target.value)}
-        label={initialValue ?? ''}
-        variant="outlined"
-      />
-    </Styled.FormFilledInputContainer>
+    <TextField
+      sx={sx}
+      disabled={disabled}
+      value={value}
+      type={type}
+      rows={rows}
+      multiline={rows ? true : false}
+      onChange={(e) => handleInputChange(e.target.value)}
+      label={initialValue ?? ''}
+      // variant="outlined"
+      size="small"
+      fullWidth
+    />
   );
 };

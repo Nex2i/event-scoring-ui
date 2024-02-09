@@ -7,7 +7,6 @@ export const BullsEyeContainer = styled(Box)(({}) => ({
   justifyContent: 'center',
   alignItems: 'center',
   width: '60%',
-  padding: '10px',
 }));
 
 export const BullsEyeRing = styled('circle')(({}) => ({
@@ -17,15 +16,10 @@ export const BullsEyeRing = styled('circle')(({}) => ({
 }));
 
 export const ScoreTableContainer = styled(Box)(({}) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
   width: '100%',
   marginBottom: '15vh',
-  paddingTop: '10vh',
-  overflowY: 'auto',
-  maxHeight: '40vh',
+  maxHeight: '30vh',
+  overflow: 'auto',
 }));
 
 export const ScoreCell = styled(Box)<{ active?: string }>(({ theme, active }) => ({

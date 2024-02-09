@@ -6,8 +6,8 @@ interface TrackingHomePageProps {}
 
 export const TrackingHomePage: FC<TrackingHomePageProps> = ({}) => {
   return (
-    <Styled.Column>
-      <Tracker />
-    </Styled.Column>
+    // <Styled.Column>
+    <Tracker />
+    // </Styled.Column>
   );
 };

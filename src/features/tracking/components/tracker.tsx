@@ -74,13 +74,18 @@ export const Tracker: FC<TrackerProps> = ({}) => {
   if (trackerSlice.ActiveRound === undefined) return <p>Loading...</p>;
   return (
     <Styled.Column>
-      <Styled.TrackerHeader align="space-around">
-        <BasicFilledInput initialValue="Contestant Name" onValueChange={setContestantName} value={contestantName} />
-        <Typography variant="h6">
-          SCORE: <br /> {trackerSlice.ActiveRound?.roundTotal}
-        </Typography>
+      <Styled.TrackerHeader align="space-between">
+        <div style={{ width: '60%' }}>
+          <BasicFilledInput initialValue="Name" onValueChange={setContestantName} value={contestantName} />
+        </div>
+        <Styled.Row style={{ width: '30%' }}>
+          <p>SCORE:</p>
+          <Typography variant="h4">{trackerSlice.ActiveRound?.roundTotal}</Typography>
+        </Styled.Row>
       </Styled.TrackerHeader>
-      <Bullseye onClick={handleBullseyeClick} activeTargetId={activeTargetId} />
+      <>
+        <Bullseye onClick={handleBullseyeClick} activeTargetId={activeTargetId} />
+      </>
       <ScoreTable
         roundData={trackerSlice.ActiveRound}
         onCellChange={onCellChange}

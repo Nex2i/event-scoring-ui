@@ -69,8 +69,9 @@ export const Row = styled(Box)<{ align?: string }>(({ theme, align }) => ({
   gap: theme.spacing(2),
 }));
 
-export const TrackerHeader = styled(Row)(({}) => ({
-  position: 'sticky',
+export const TrackerHeader = styled(Row)(({ theme }) => ({
+  padding: `0 ${theme.spacing(2)}`,
+  width: '90%',
 }));
 
 export const Column = styled(Box)<{ align?: 'left' | 'center' | 'right' }>(({ align }) => ({
@@ -78,6 +79,7 @@ export const Column = styled(Box)<{ align?: 'left' | 'center' | 'right' }>(({ al
   flexDirection: 'column',
   alignItems: align || 'center',
   width: '100%',
+  overflow: 'hidden',
 }));
 
 export const EditIcon = styled(MuiEditIcon)(({}) => ({

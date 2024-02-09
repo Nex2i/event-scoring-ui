@@ -6,7 +6,6 @@ export const CoreLayoutContainer = styled(Box)`
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
   position: fixed;
   top: 0;
 `;
@@ -25,22 +24,19 @@ export const CoreRow = styled(Box)<{ width?: string }>(({ width }) => ({
 export const CoreColumn = styled(Box)<{ width?: string }>(({ width }) => ({
   display: 'flex',
   flexDirection: 'column',
-  overflow: 'auto',
   width: width || 'auto',
 }));
 
-export const CoreLayoutOutlet = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  /* padding: 0 20px; */
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  margin-top: 20px;
-`;
-
+export const CoreLayoutOutlet = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  width: '100%',
+  // height: '100vh',
+  // overflow: 'auto',
+  marginTop: theme.spacing(1),
+}));
 export const CoreCardContent = styled(Card)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
