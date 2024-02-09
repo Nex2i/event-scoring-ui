@@ -77,7 +77,7 @@ export const Tracker: FC<TrackerProps> = ({}) => {
       <Styled.TrackerHeader align="space-around">
         <BasicFilledInput initialValue="Contestant Name" onValueChange={setContestantName} value={contestantName} />
         <Typography variant="h6">
-          SCORE: <br /> {trackerSlice.ActiveRound?.roundTotal}
+          SCORES: <br /> {trackerSlice.ActiveRound?.roundTotal}
         </Typography>
       </Styled.TrackerHeader>
       <Bullseye onClick={handleBullseyeClick} activeTargetId={activeTargetId} />
