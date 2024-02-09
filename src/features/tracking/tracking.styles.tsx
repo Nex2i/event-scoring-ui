@@ -18,7 +18,7 @@ export const BullsEyeRing = styled('circle')(({}) => ({
 export const ScoreTableContainer = styled(Box)(({}) => ({
   width: '100%',
   marginBottom: '15vh',
-  maxHeight: '30vh',
+  maxHeight: '40vh',
   overflow: 'auto',
 }));
 
