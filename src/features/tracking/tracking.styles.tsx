@@ -21,10 +21,11 @@ export const ScoreTableContainer = styled(Box)(({}) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '98%',
+  width: '100%',
   marginBottom: '15vh',
+  paddingTop: '10vh',
   overflowY: 'auto',
-  maxHeight: '50vh',
+  maxHeight: '40vh',
 }));
 
 export const ScoreCell = styled(Box)<{ active?: string }>(({ theme, active }) => ({
