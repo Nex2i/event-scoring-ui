@@ -12,7 +12,7 @@ export default function CoreBottomNavigation() {
   const location = useLocation();
   const navigate = useNavigate();
   const [value, setValue] = useState('logs');
-  const [toggleCreateLogDrawer, setToggleCreateLogDrawer] = useState(false);
+  const [_, setToggleCreateLogDrawer] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
