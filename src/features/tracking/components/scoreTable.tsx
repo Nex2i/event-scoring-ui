@@ -29,33 +29,31 @@ const DynamicTable = ({ roundData, onCellChange, activeShotId, activeTargetId }:
 
   return (
     <Styled.ScoreTableContainer>
-      <Styled.Column>
-        <Styled.Row>
-          <Styled.ScoreCell>Target</Styled.ScoreCell>
-          {round.targets.length > 0 &&
-            round.targets[0].shots.map((shot) => <Styled.ScoreCell key={shot.id}>{shot.name}</Styled.ScoreCell>)}
+      <Styled.Row>
+        <Styled.ScoreCell>Target</Styled.ScoreCell>
+        {round.targets.length > 0 &&
+          round.targets[0].shots.map((shot) => <Styled.ScoreCell key={shot.id}>{shot.name}</Styled.ScoreCell>)}
+      </Styled.Row>
+      {round.targets.map((target, targetIndex) => (
+        <Styled.Row key={targetIndex}>
+          <Styled.ScoreCell>{target.name}</Styled.ScoreCell>
+          {target.shots.map((shot, shotIndex) => {
+            return (
+              <Styled.ScoreCell
+                key={shotIndex}
+                style={{ cursor: 'pointer' }}
+                active={(activeTargetId === target.id && activeShotId === shot.id).toString()}
+              >
+                <BasicFilledSelect
+                  value={shot.score ? shot.score.toString() : ''}
+                  onValueChange={(updatedValue: string) => handleCellValueChange(target.id, shot.id, updatedValue)}
+                  options={scoreCellOptions}
+                />
+              </Styled.ScoreCell>
+            );
+          })}
         </Styled.Row>
-        {round.targets.map((target, targetIndex) => (
-          <Styled.Row key={targetIndex}>
-            <Styled.ScoreCell>{target.name}</Styled.ScoreCell>
-            {target.shots.map((shot, shotIndex) => {
-              return (
-                <Styled.ScoreCell
-                  key={shotIndex}
-                  style={{ cursor: 'pointer' }}
-                  active={(activeTargetId === target.id && activeShotId === shot.id).toString()}
-                >
-                  <BasicFilledSelect
-                    value={shot.score ? shot.score.toString() : ''}
-                    onValueChange={(updatedValue: string) => handleCellValueChange(target.id, shot.id, updatedValue)}
-                    options={scoreCellOptions}
-                  />
-                </Styled.ScoreCell>
-              );
-            })}
-          </Styled.Row>
-        ))}
-      </Styled.Column>
+      ))}
     </Styled.ScoreTableContainer>
   );
 };

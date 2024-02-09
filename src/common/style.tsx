@@ -69,6 +69,10 @@ export const Row = styled(Box)<{ align?: string }>(({ theme, align }) => ({
   gap: theme.spacing(2),
 }));
 
+export const TrackerHeader = styled(Row)(({ theme }) => ({
+  position: 'sticky',
+}));
+
 export const Column = styled(Box)<{ align?: 'left' | 'center' | 'right' }>(({ align }) => ({
   display: 'flex',
   flexDirection: 'column',
