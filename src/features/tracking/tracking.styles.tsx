@@ -6,8 +6,8 @@ export const BullsEyeContainer = styled(Box)(({}) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '80%',
-  padding: '20px',
+  width: '70%',
+  padding: '10px',
 }));
 
 export const BullsEyeRing = styled('circle')(({}) => ({
@@ -25,13 +25,14 @@ export const ScoreTableContainer = styled(Box)(({}) => ({
   overflowY: 'scroll',
 }));
 
-export const ScoreCell = styled(Paper)<{ active?: boolean }>(({ theme, active }) => ({
+export const ScoreCell = styled(Box)<{ active?: string }>(({ theme, active }) => ({
   cursor: 'pointer',
-  width: '150px',
+  width: '100px',
   height: '50px',
   margin: theme.spacing(1),
+  borderRadius: theme.spacing(1),
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: active ? theme.palette.secondary.main : theme.palette.common.white,
+  backgroundColor: active === 'true' ? theme.palette.secondary.main : theme.palette.common.white,
 }));

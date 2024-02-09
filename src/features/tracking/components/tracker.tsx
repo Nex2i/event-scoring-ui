@@ -6,15 +6,20 @@ import { course_mock } from '../mvp_mocks/course_mock';
 import { round_mock } from '../mvp_mocks/round_mock';
 import ScoreTable from './scoreTable';
 import { Bullseye } from './bullseye';
+import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
+import useStateSafe from '@/libs/react/SafeState.hook';
+import { Typography } from '@mui/material';
 
 interface TrackerProps {}
 
 export const Tracker: FC<TrackerProps> = ({}) => {
+  const [contestantName, setContestantName] = useStateSafe('');
   const trackerSlice = trackerSelector();
 
   const [finishedLastRound, setFinishedLastRound] = useState<boolean>(false);
   const [activeTargetId, setActiveTargetId] = useState<string>();
   const [activeShotId, setActiveShotId] = useState<string>();
+  const [didScoreChange, setDidScoreChange] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -24,11 +29,19 @@ export const Tracker: FC<TrackerProps> = ({}) => {
     setActiveShotId(round_mock?.targets[0].shots[0].id);
   }, []);
 
+  useEffect(() => {
+    goToNextShot();
+  }, [didScoreChange]);
+
   const handleBullseyeClick = (shotScore: number) => {
     if (!activeTargetId || !activeShotId || finishedLastRound) return;
 
-    dispatch(setShot({ targetId: activeTargetId, shotScore, shotId: activeShotId }));
-    goToNextShot();
+    handleShotChange(activeTargetId, activeShotId, shotScore.toString());
+    setDidScoreChange(!didScoreChange);
+  };
+
+  const handleShotChange = (targetId: string, shotId: string, newValue: string) => {
+    dispatch(setShot({ targetId, shotScore: parseInt(newValue), shotId }));
   };
 
   const goToNextShot = () => {
@@ -51,24 +64,26 @@ export const Tracker: FC<TrackerProps> = ({}) => {
     setActiveShotId(trackerSlice.ActiveRound?.targets[targetIndex!].shots[shotIndex! + 1].id);
   };
 
-  const onCellClick = (targetId: string, shotId: string) => {
+  const onCellChange = (targetId: string, shotId: string, newValue: string) => {
     setActiveTargetId(targetId);
     setActiveShotId(shotId);
+    handleShotChange(targetId, shotId, newValue);
+    setDidScoreChange(!didScoreChange);
   };
 
+  if (trackerSlice.ActiveRound === undefined) return <p>Loading...</p>;
   return (
     <Styled.Column>
-      <Styled.Row align="space-between">
-        <div>
-          <p>{trackerSlice.ActiveCourse?.name}</p>
-          <p>{trackerSlice.ActiveRound?.name}</p>
-        </div>
-        <p>TOTAL SCORE: {trackerSlice.ActiveRound?.roundTotal}</p>
+      <Styled.Row align="space-around">
+        <BasicFilledInput initialValue="Contestant Name" onValueChange={setContestantName} value={contestantName} />
+        <Typography variant="h6">
+          SCORE: <br /> {trackerSlice.ActiveRound?.roundTotal}
+        </Typography>
       </Styled.Row>
-      <Bullseye onClick={handleBullseyeClick} />
+      <Bullseye onClick={handleBullseyeClick} activeTargetId={activeTargetId} />
       <ScoreTable
         roundData={trackerSlice.ActiveRound}
-        onCellClick={onCellClick}
+        onCellChange={onCellChange}
         activeTargetId={activeTargetId!}
         activeShotId={activeShotId!}
       />

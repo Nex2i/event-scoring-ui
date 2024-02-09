@@ -1,3 +1,4 @@
+import { Bullseye } from '../../../features/tracking/components/bullseye';
 export interface Shot {
   id: string;
   score: number | null;
@@ -12,6 +13,19 @@ export interface Target {
   startTime: Date;
   endTime: Date;
   targetTotal: number;
+  bullseye: Bullseye;
+}
+
+export interface Bullseye {
+  id: string;
+  name: string;
+  rings: BullseyeRing[];
+}
+
+export interface BullseyeRing {
+  id: string;
+  color: string;
+  score: number;
 }
 
 export interface Round {

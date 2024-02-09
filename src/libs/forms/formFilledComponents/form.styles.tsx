@@ -8,7 +8,7 @@ export const SharedErrorFormHelperText = styled(FormHelperText)`
 export const ErrorFormHelperText = styled(SharedErrorFormHelperText)``;
 
 export const FormFilledInputContainer = styled('div')`
-  width: 100%;
+  /* width: 100%; */
   .form-filled-input-control {
     min-width: 327.5px;
     width: 100%;

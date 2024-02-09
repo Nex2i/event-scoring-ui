@@ -18,7 +18,7 @@ export const PublicLayout: FC<coreLayoutProps> = ({ children, title }) => {
   const { isMobile } = useContext(UserAgentContext);
 
   return (
-    <Styles.CoreLayoutContainer>
+    <Styles.CoreLayoutContainer sx={{ maxWidth: isMobile ? 'auto' : '500px' }}>
       <PublicAppBar />
       <Styles.CoreColumn>
         {title && (

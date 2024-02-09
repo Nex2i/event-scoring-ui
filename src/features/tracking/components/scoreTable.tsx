@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Round } from '@/types/models/tracker/tracker.type';
+import { BullseyeRing, Round } from '@/types/models/tracker/tracker.type';
 import * as Styled from '../tracking.styles';
+import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
 
 type DynamicTableProps = {
   roundData: Round;
-  onCellClick: (targetId: string, shotId: string) => void;
+  onCellChange: (targetId: string, shotId: string, newValue: string) => void;
   activeTargetId: string;
   activeShotId: string;
 };
 
-const DynamicTable = ({ roundData, onCellClick, activeShotId, activeTargetId }: DynamicTableProps) => {
+const DynamicTable = ({ roundData, onCellChange, activeShotId, activeTargetId }: DynamicTableProps) => {
   const [round, setRound] = useState<Round>(roundData);
 
   useEffect(() => {
@@ -17,6 +18,14 @@ const DynamicTable = ({ roundData, onCellClick, activeShotId, activeTargetId }: 
   }, [roundData]);
 
   if (!round) return <p>NO ACTIVE ROUND</p>;
+
+  const scoreCellOptions = createOptionsFromTarget(
+    round.targets.find((target) => target.id === activeTargetId)?.bullseye.rings ?? []
+  );
+
+  const handleCellValueChange = (targetId: string, shotId: string, newValue: string) => {
+    onCellChange(targetId, shotId, newValue);
+  };
 
   return (
     <Styled.ScoreTableContainer>
@@ -29,16 +38,21 @@ const DynamicTable = ({ roundData, onCellClick, activeShotId, activeTargetId }: 
         {round.targets.map((target, targetIndex) => (
           <Styled.Row key={targetIndex}>
             <Styled.ScoreCell>{target.name}</Styled.ScoreCell>
-            {target.shots.map((shot, shotIndex) => (
-              <Styled.ScoreCell
-                key={shotIndex}
-                onClick={() => onCellClick(target.id, shot.id)}
-                style={{ cursor: 'pointer' }}
-                active={activeTargetId === target.id && activeShotId === shot.id}
-              >
-                {shot.score ? shot.score : '-'}
-              </Styled.ScoreCell>
-            ))}
+            {target.shots.map((shot, shotIndex) => {
+              return (
+                <Styled.ScoreCell
+                  key={shotIndex}
+                  style={{ cursor: 'pointer' }}
+                  active={(activeTargetId === target.id && activeShotId === shot.id).toString()}
+                >
+                  <BasicFilledSelect
+                    value={shot.score ? shot.score.toString() : ''}
+                    onValueChange={(updatedValue: string) => handleCellValueChange(target.id, shot.id, updatedValue)}
+                    options={scoreCellOptions}
+                  />
+                </Styled.ScoreCell>
+              );
+            })}
           </Styled.Row>
         ))}
       </Styled.Column>
@@ -47,3 +61,7 @@ const DynamicTable = ({ roundData, onCellClick, activeShotId, activeTargetId }: 
 };
 
 export default DynamicTable;
+
+function createOptionsFromTarget(target: BullseyeRing[]): { value: string | number; displayName?: string }[] {
+  return target.map((ring) => ({ value: ring.score, displayName: ring.score.toString() }));
+}

@@ -1,12 +1,16 @@
 import { FC, useRef, useEffect, useState } from 'react';
 import * as Styled from '../tracking.styles';
+import { trackerSelector } from '@/stores/slices/Tracker.slice';
 
 interface BullseyeProps {
   onClick: (value: number) => void;
+  activeTargetId?: string;
 }
 
 const strokeWidth = 2;
-export const Bullseye: FC<BullseyeProps> = ({ onClick }) => {
+export const Bullseye: FC<BullseyeProps> = ({ onClick, activeTargetId }) => {
+  const trackerSlice = trackerSelector();
+  const rings = trackerSlice.ActiveRound.targets.find((target) => target.id === activeTargetId)?.bullseye.rings ?? [];
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState(100); // Default size
 
@@ -23,14 +27,6 @@ export const Bullseye: FC<BullseyeProps> = ({ onClick }) => {
 
     return () => window.removeEventListener('resize', updateSize);
   }, []);
-
-  const rings = [
-    { score: 2, color: 'white' },
-    { score: 4, color: 'black' },
-    { score: 6, color: 'blue' },
-    { score: 8, color: 'red' },
-    { score: 10, color: 'yellow' },
-  ];
 
   const maxRadius = size / 2;
   const ringWidth = maxRadius / rings.length;
