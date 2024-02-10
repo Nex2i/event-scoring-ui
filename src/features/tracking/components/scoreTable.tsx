@@ -54,6 +54,7 @@ const DynamicTable = ({ roundData, onCellChange, activeShotId, activeTargetId }:
           })}
         </Styled.Row>
       ))}
+      <br />
     </Styled.ScoreTableContainer>
   );
 };
