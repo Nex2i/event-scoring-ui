@@ -11,7 +11,7 @@ for = "/*"
   X-Frame-Options = "DENY"
   X-Content-Type-Options = "nosniff"
   # Ensure HTML documents are not cached to always serve the latest version
-  Cache-Control = "no-cache, no-store, must-revalidate"
+  Cache-Control = "max-age=3600"
 
 # Caching policy for versioned assets
 [[headers]]
