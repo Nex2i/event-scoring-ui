@@ -41,7 +41,7 @@ export const PublicHomePage: FC<PublicHomePageProps> = ({}) => {
           onValueChange={setNumOfShotsPerTarget}
         />
       </Styled.Row>
-      <Button onClick={() => navigateTo(navigateItems.tracking)}>Start Tracking Here</Button>
+      <Button onClick={() => navigateTo(navigateItems.tracking)}>Start Round</Button>
       <br />
       <Button onClick={resetCache}>Reset Round</Button>
     </Styled.Column>
