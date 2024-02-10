@@ -1,18 +1,20 @@
 import { FC, useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
-import { setActiveCourse, setActiveRound, setShot, trackerSelector } from '@/stores/slices/Tracker.slice';
+import { setActiveRound, setShot, trackerSelector } from '@/stores/slices/Tracker.slice';
 import { useAppDispatch } from '@/stores/store.hooks';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
 import useStateSafe from '@/libs/react/SafeState.hook';
 import * as Styled from '../tracking.styles';
-import { course_mock } from '../mvp_mocks/course_mock';
-import { round_mock } from '../mvp_mocks/round_mock';
+import { generateRound } from '../mvp_mocks/round_mock';
 import ScoreTable from './scoreTable';
 import { Bullseye } from './bullseye';
 
-interface TrackerProps {}
+interface TrackerProps {
+  targets: string;
+  shotsPerTarget: string;
+}
 
-export const Tracker: FC<TrackerProps> = ({}) => {
+export const Tracker: FC<TrackerProps> = ({ targets, shotsPerTarget }) => {
   const [contestantName, setContestantName] = useStateSafe('');
   const trackerSlice = trackerSelector();
 
@@ -23,10 +25,10 @@ export const Tracker: FC<TrackerProps> = ({}) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setActiveCourse(course_mock));
-    dispatch(setActiveRound(round_mock));
-    setActiveTargetId(round_mock?.targets[0].id);
-    setActiveShotId(round_mock?.targets[0].shots[0].id);
+    const activeRound = generateRound(parseInt(targets), parseInt(shotsPerTarget));
+    dispatch(setActiveRound(activeRound));
+    setActiveTargetId(activeRound?.targets[0].id);
+    setActiveShotId(activeRound?.targets[0].shots[0].id);
   }, []);
 
   useEffect(() => {
