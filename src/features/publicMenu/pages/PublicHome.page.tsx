@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import * as Styled from '../publicMenu.styles';
 import useStateSafe from '@/libs/react/SafeState.hook';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
+import { useAppDispatch } from '@/stores/store.hooks';
+import { resetTracker } from '@/stores/slices/Tracker.slice';
 
 interface PublicHomePageProps {}
 const navigateItems = {
@@ -11,8 +13,13 @@ const navigateItems = {
 };
 
 export const PublicHomePage: FC<PublicHomePageProps> = ({}) => {
+  const dispatch = useAppDispatch();
   const [numOfTargets, setNumOfTargets] = useStateSafe('10');
   const [numOfShotsPerTarget, setNumOfShotsPerTarget] = useStateSafe('2');
+
+  const resetCache = () => {
+    dispatch(resetTracker());
+  };
 
   const navigate = useNavigate();
 
@@ -35,6 +42,8 @@ export const PublicHomePage: FC<PublicHomePageProps> = ({}) => {
         />
       </Styled.Row>
       <Button onClick={() => navigateTo(navigateItems.tracking)}>Start Tracking Here</Button>
+      <br />
+      <Button onClick={resetCache}>Reset Round</Button>
     </Styled.Column>
   );
 };

@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Course, Round } from '@/types/models/tracker/tracker.type';
 import { useAppSelector } from '../store.hooks';
 import { TrackerState } from '../sliceTypes/TrackerState.type';
+import localStorageRepository from '@/utils/localStorage.repository';
 
 type setShotPayload = {
   targetId: string;
@@ -20,6 +21,7 @@ export const trackerSlice = createSlice({
     },
     setActiveRound: (state, action: PayloadAction<Round>) => {
       state.ActiveRound = action.payload;
+      localStorageRepository.setActiveRound(action.payload);
     },
     setShot: (state, action: PayloadAction<setShotPayload>) => {
       const { targetId, shotScore, shotId } = action.payload;
@@ -29,10 +31,12 @@ export const trackerSlice = createSlice({
       state.ActiveRound.targets[targetIndex].shots[shotIndex].timestamp = new Date();
       state.ActiveRound.targets[targetIndex].targetTotal += shotScore;
       state.ActiveRound.roundTotal += shotScore;
+      localStorageRepository.setActiveRound(state.ActiveRound);
     },
     resetTracker: (state) => {
       state.ActiveCourse = initialTrackerState.ActiveCourse;
       state.ActiveRound = initialTrackerState.ActiveRound;
+      localStorageRepository.deleteActiveRound();
     },
   },
 });

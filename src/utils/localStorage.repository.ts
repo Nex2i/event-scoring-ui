@@ -1,3 +1,4 @@
+import { Round } from '@/types/models/tracker/tracker.type';
 import { getLocal, LocalKeys, removeLocal, setLocal } from './localStorage';
 
 class LocalStorageRepository {
@@ -14,6 +15,20 @@ class LocalStorageRepository {
   public deleteUserToken(): void {
     removeLocal(LocalKeys.ACTIVE_LOCATION);
     removeLocal(LocalKeys.USER_TOKEN);
+  }
+
+  public getActiveRound(): Round | null {
+    const activeRound = getLocal(LocalKeys.ACTIVE_ROUND);
+    if (activeRound) return JSON.parse(activeRound) as Round;
+    return null;
+  }
+
+  public setActiveRound(round: Round): void {
+    setLocal(LocalKeys.ACTIVE_ROUND, JSON.stringify(round));
+  }
+
+  public deleteActiveRound(): void {
+    removeLocal(LocalKeys.ACTIVE_ROUND);
   }
 
   public resetActiveLogoAndLocation(): void {

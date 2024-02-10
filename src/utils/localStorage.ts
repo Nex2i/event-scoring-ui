@@ -2,6 +2,7 @@ enum LocalKeys {
   USER_TOKEN = 'USER_TOKEN',
   ACTIVE_LOCATION = 'ACTIVE_LOCATION',
   ACTIVE_LOGO = 'ACTIVE_LOGO',
+  ACTIVE_ROUND = 'ACTIVE_ROUND',
 }
 
 const setLocal = (key: LocalKeys, value: string) => {

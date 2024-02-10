@@ -8,6 +8,7 @@ import * as Styled from '../tracking.styles';
 import { generateRound } from '../mvp_mocks/round_mock';
 import ScoreTable from './scoreTable';
 import { Bullseye } from './bullseye';
+import localStorageRepository from '@/utils/localStorage.repository';
 
 interface TrackerProps {
   targets: string;
@@ -17,6 +18,7 @@ interface TrackerProps {
 export const Tracker: FC<TrackerProps> = ({ targets, shotsPerTarget }) => {
   const [contestantName, setContestantName] = useStateSafe('');
   const trackerSlice = trackerSelector();
+  const cachedRound = localStorageRepository.getActiveRound();
 
   const [finishedLastRound, setFinishedLastRound] = useState<boolean>(false);
   const [activeTargetId, setActiveTargetId] = useState<string>();
@@ -25,7 +27,7 @@ export const Tracker: FC<TrackerProps> = ({ targets, shotsPerTarget }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const activeRound = generateRound(parseInt(targets), parseInt(shotsPerTarget));
+    const activeRound = cachedRound ? cachedRound : generateRound(parseInt(targets), parseInt(shotsPerTarget));
     dispatch(setActiveRound(activeRound));
     setActiveTargetId(activeRound?.targets[0].id);
     setActiveShotId(activeRound?.targets[0].shots[0].id);
