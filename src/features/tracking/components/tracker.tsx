@@ -82,7 +82,7 @@ export const Tracker: FC<TrackerProps> = ({ targets, shotsPerTarget }) => {
         <div style={{ width: '60%' }}>
           <BasicFilledInput initialValue="Name" onValueChange={setContestantName} value={contestantName} />
         </div>
-        <Styled.Row style={{ width: '30%' }}>
+        <Styled.Row style={{ width: '30%', userSelect: 'none' }}>
           <p>SCORE:</p>
           <Typography variant="h4">{trackerSlice.ActiveRound?.roundTotal}</Typography>
         </Styled.Row>

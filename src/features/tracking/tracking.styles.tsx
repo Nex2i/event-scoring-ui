@@ -24,7 +24,6 @@ export const ScoreTableContainer = styled(Paper)(({ theme }) => ({
 }));
 
 export const ScoreCell = styled(Box)<{ active?: string }>(({ theme, active }) => ({
-  cursor: 'pointer',
   width: '100px',
   height: '50px',
   margin: theme.spacing(1),
@@ -33,4 +32,7 @@ export const ScoreCell = styled(Box)<{ active?: string }>(({ theme, active }) =>
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: active === 'true' ? theme.palette.secondary.main : theme.palette.common.white,
+  WebkitUserSelect: 'none',
+  msUserSelect: 'none',
+  userSelect: 'none',
 }));
