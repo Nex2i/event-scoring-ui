@@ -1,7 +1,7 @@
 import { FC } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import * as Styled from '../tracking.styles';
 import { Tracker } from '../components/tracker';
-import { useSearchParams } from 'react-router-dom';
 
 interface TrackingHomePageProps {}
 

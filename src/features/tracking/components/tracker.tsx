@@ -4,11 +4,11 @@ import { setActiveRound, setShot, trackerSelector } from '@/stores/slices/Tracke
 import { useAppDispatch } from '@/stores/store.hooks';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
 import useStateSafe from '@/libs/react/SafeState.hook';
+import localStorageRepository from '@/utils/localStorage.repository';
 import * as Styled from '../tracking.styles';
 import { generateRound } from '../mvp_mocks/round_mock';
 import ScoreTable from './scoreTable';
 import { Bullseye } from './bullseye';
-import localStorageRepository from '@/utils/localStorage.repository';
 
 interface TrackerProps {
   targets: string;

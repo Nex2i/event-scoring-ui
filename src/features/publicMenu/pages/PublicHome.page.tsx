@@ -1,11 +1,11 @@
 import { Button } from '@mui/material';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as Styled from '../publicMenu.styles';
 import useStateSafe from '@/libs/react/SafeState.hook';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
 import { useAppDispatch } from '@/stores/store.hooks';
 import { resetTracker } from '@/stores/slices/Tracker.slice';
+import * as Styled from '../publicMenu.styles';
 
 interface PublicHomePageProps {}
 const navigateItems = {

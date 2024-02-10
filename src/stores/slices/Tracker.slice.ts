@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Course, Round } from '@/types/models/tracker/tracker.type';
+import localStorageRepository from '@/utils/localStorage.repository';
 import { useAppSelector } from '../store.hooks';
 import { TrackerState } from '../sliceTypes/TrackerState.type';
-import localStorageRepository from '@/utils/localStorage.repository';
 
 type setShotPayload = {
   targetId: string;
