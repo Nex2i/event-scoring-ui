@@ -3,8 +3,8 @@ import { Round, Target } from '@/types/models/tracker/tracker.type';
 const numberOfTargets = 8;
 const numberOfShotsPerTarget = 2;
 
-const generateRound = (): Round => {
-  const targets: Target[] = Array.from({ length: numberOfTargets }, (_, i) => {
+const generateRound = (targets: number = numberOfTargets, shots: number = numberOfShotsPerTarget): Round => {
+  const targetsBuilt: Target[] = Array.from({ length: targets }, (_, i) => {
     return {
       id: generateUniqueStringId(),
       name: `Target ${i + 1}`,
@@ -20,7 +20,7 @@ const generateRound = (): Round => {
           { score: 12, color: 'yellow', id: generateUniqueStringId() },
         ],
       },
-      shots: Array.from({ length: numberOfShotsPerTarget }, (_, i) => {
+      shots: Array.from({ length: shots }, (_, i) => {
         return {
           id: generateUniqueStringId(),
           score: null,
@@ -36,7 +36,7 @@ const generateRound = (): Round => {
   return {
     id: generateUniqueStringId(),
     name: 'My first round',
-    targets,
+    targets: targetsBuilt,
     roundTotal: 0,
     startTime: new Date(),
     endTime: new Date(),
