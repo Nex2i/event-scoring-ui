@@ -3,7 +3,6 @@
 from = "/*"
 to = "/index.html"
 status = 200
-force = true # Ensure that the redirect overrides any existing content
 
 # Default headers for all files
 [[headers]]
