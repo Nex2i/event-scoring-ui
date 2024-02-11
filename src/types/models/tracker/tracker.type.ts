@@ -1,4 +1,3 @@
-import { Bullseye } from '../../../features/tracking/components/bullseye';
 export interface Shot {
   id: string;
   score: number | null;
