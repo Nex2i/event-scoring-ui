@@ -27,6 +27,14 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+if ('caches' in window) {
+  caches.keys().then(function (cacheNames) {
+    cacheNames.forEach(function (cacheName) {
+      caches.delete(cacheName);
+    });
+  });
+}
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
