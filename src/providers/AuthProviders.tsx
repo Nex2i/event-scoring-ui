@@ -1,11 +1,11 @@
 import { FC, useContext, useEffect, useState } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { isUserModelLocal, useAuth } from '@/hooks/authentication/useAuth.hook';
 import { ApiContext } from '@/apis/api.context';
 import { useAppDispatch } from '@/stores/store.hooks';
 import { setAuthentication } from '@/stores/slices/Authentication.slice';
-import { noAuthHomeRoute } from '@/routes/RouteConstants';
+import { Redirect } from '@/routes/redirect';
 
 interface AuthCheckProviderProps {}
 
@@ -45,7 +45,7 @@ export const AuthCheckProvider: FC<AuthCheckProviderProps> = ({}) => {
 
   if (!isAuthenticated) {
     // LOGOUT REQUEST
-    return <Navigate to={noAuthHomeRoute} />;
+    return <Redirect />;
   }
 
   return <Outlet />;

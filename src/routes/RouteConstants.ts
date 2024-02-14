@@ -20,3 +20,4 @@ export const authRoutes = {
 
 export const homeRoute = '/' + pokemonBase;
 export const noAuthHomeRoute = '/' + publicMenuRoutes.base;
+export const desktopNoAuthHomeRoute = '/' + authRoutes.base;

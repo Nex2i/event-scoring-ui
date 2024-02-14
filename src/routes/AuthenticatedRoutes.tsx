@@ -2,7 +2,8 @@ import { Navigate, RouteObject } from 'react-router-dom';
 import { lazyImport } from '@/utils/lazyImport';
 
 import { AuthCheckProvider } from '@/providers/AuthProviders';
-import { noAuthHomeRoute, pokemonRoutes } from './RouteConstants';
+import { pokemonRoutes } from './RouteConstants';
+import { Redirect } from './redirect';
 const { PokemonRoutes } = lazyImport(() => import('@/features/pokemon/PokemonRoutes'), 'PokemonRoutes');
 
 export const AuthenticatedRoutes: RouteObject[] = [
@@ -16,7 +17,7 @@ export const AuthenticatedRoutes: RouteObject[] = [
       },
       {
         path: '*',
-        element: <Navigate to={noAuthHomeRoute} />,
+        element: <Redirect />,
       },
     ],
   },
