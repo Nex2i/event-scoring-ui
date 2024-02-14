@@ -32,7 +32,7 @@ export const PublicHomePage: FC<PublicHomePageProps> = ({}) => {
   };
   return (
     <Styled.Column>
-      <Styled.Title>Welcome!</Styled.Title>
+      <Styled.Title>Welcome! TEST</Styled.Title>
       <Styled.Row>
         <BasicFilledInput initialValue="Targets" value={numOfTargets} onValueChange={setNumOfTargets} />
         <BasicFilledInput
