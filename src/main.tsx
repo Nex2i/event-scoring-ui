@@ -13,6 +13,20 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { MainRouter } from './routes/MainRouter.js';
 
+if ('serviceWorker' in navigator) {
+  console.log('Service Worker registration failed: ', navigator);
+  navigator.serviceWorker
+    .getRegistrations()
+    .then(function (registrations) {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    })
+    .catch(function (err) {
+      console.log('Service Worker registration failed: ', err);
+    });
+}
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
