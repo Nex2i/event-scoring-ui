@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import * as path from 'path';
 import react from '@vitejs/plugin-react-swc';
+import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,7 +13,25 @@ export default defineConfig({
     port: 8080,
   },
 
-  plugins: [react()],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate', // Automatically check for updates
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'], // Cache these files
+        runtimeCaching: [
+          {
+            // Use NetworkFirst strategy for all requests
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              // Configure cache options here if needed
+            },
+          },
+        ],
+      },
+    }),
+  ],
 
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, './src') }],
