@@ -21,14 +21,10 @@ export function useRegister(userPayload: RegisterUserPayload): hookResponse {
 
   const dispatch = useAppDispatch();
 
-  function registerDataIsValid(): boolean {
-    return true;
-  }
-
   useEffect(() => {
     let isMounted = true;
 
-    if (!registerDataIsValid()) return;
+    if (userPayload.validate().length) return;
 
     setIsFetching(true);
 
@@ -37,18 +33,19 @@ export function useRegister(userPayload: RegisterUserPayload): hookResponse {
       .then((res) => {
         if (!isMounted) return;
 
+        const { user } = res;
+
         setAction(registerActions.login);
         setIsAuthorized(true);
 
         dispatch(
           setAuthentication({
-            id: res.id,
-            authId: res.authId,
-            token: res.token,
-            picture: res.picture,
-            email: res.email,
-            userName: res.userName,
-            projects: res.projects,
+            userId: user.userId,
+            companyId: user.companyId,
+            token: user.token,
+            phoneNumber: user.phoneNumber,
+            email: user.email,
+            userType: user.userType,
           })
         );
 

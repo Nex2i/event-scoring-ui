@@ -15,8 +15,8 @@ interface LoginProps {}
 
 export const Login: FC<LoginProps> = ({}) => {
   const navigate = useNavigate();
-  const [formValues, setFormValues] = useState<{ username: string; password: string }>({ username: '', password: '' });
-  const { isAuthorizing, isAuthorized } = useLogin(formValues.username, formValues.password);
+  const [formValues, setFormValues] = useState<{ email: string; password: string }>({ email: '', password: '' });
+  const { isAuthorizing, isAuthorized } = useLogin(formValues.email, formValues.password);
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const Login: FC<LoginProps> = ({}) => {
   }, [isAuthorized, isAuthenticated]);
 
   const { handleSubmit, control } = useLoginForm({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -48,7 +48,7 @@ export const Login: FC<LoginProps> = ({}) => {
     <div>
       <Styled.BaseForm onSubmit={onSubmitForm}>
         <Styled.FormTitle>Sign In</Styled.FormTitle>
-        <FormFilledInput fieldMapping={loginFormFields.username} control={control} />
+        <FormFilledInput fieldMapping={loginFormFields.email} control={control} />
         <FormFilledInput fieldMapping={loginFormFields.password} control={control} />
         {isAuthorizing && <LoadingComponent animateOnly={true} />}
         <Button onClick={onSubmitForm} data-cy="login-btn">

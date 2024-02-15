@@ -10,6 +10,13 @@ class registerFormMapping extends BaseFormSchema {
     name: 'username',
     label: 'Username',
     tooltip: 'Insert Username please',
+    validationSchema: z.string(),
+  };
+
+  companyName: FormFieldMapping = {
+    name: 'companyName',
+    label: 'Company Name',
+    tooltip: 'Insert Company Name please',
     validationSchema: z.string().min(1),
   };
 
@@ -98,7 +105,7 @@ class registerFormMapping extends BaseFormSchema {
   };
 
   public createEditSaveRequest(formData: RegisterFormSchema): RegisterUserPayload {
-    return {
+    return new RegisterUserPayload({
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
@@ -112,7 +119,7 @@ class registerFormMapping extends BaseFormSchema {
       zipCode: formData.zipCode,
       userName: formData.username,
       password: formData.password,
-    };
+    });
   }
 }
 

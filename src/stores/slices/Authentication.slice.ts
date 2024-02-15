@@ -18,6 +18,7 @@ export const authenticationSlice = createSlice({
   initialState: initialAuthenticationState,
   reducers: {
     setAuthentication: (state, action: PayloadAction<IAuthenticationState>) => {
+      console.log('setAuthentication', action.payload);
       localStorageRepository.setUserToken(action.payload.token);
       Object.assign(state, action.payload);
     },

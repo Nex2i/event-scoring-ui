@@ -17,28 +17,37 @@ export const AuthCheckProvider: FC<AuthCheckProviderProps> = ({}) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    let isMounted = true;
     if (!isUserModelLocal(user)) {
       apis.authentication
         .getLoggedInUser()
         .then((res) => {
+          if (!isMounted) return;
+
+          const { user } = res;
           dispatch(
             setAuthentication({
-              id: res.id,
-              authId: res.authId,
-              token: res.token,
-              picture: res.picture,
-              email: res.email,
-              userName: res.userName,
-              projects: res.projects,
+              userId: user.userId,
+              companyId: user.companyId,
+              token: user.token,
+              phoneNumber: user.phoneNumber,
+              email: user.email,
+              userType: user.userType,
             })
           );
         })
         .finally(() => {
+          if (!isMounted) return;
+
           setIsLoading(false);
         });
     } else {
       setIsLoading(false);
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   if (isLoading) return <LoadingComponent loadingText="Authenticating User" />;
