@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAuthenticationState } from '@/stores/sliceTypes/Authentication.type';
+import { IAuthenticationState, USER_TYPE } from '@/stores/sliceTypes/Authentication.type';
 import { useAppSelector } from '@/stores/store.hooks';
 import localStorageRepository from '@/utils/localStorage.repository';
 
 export const initialAuthenticationState: IAuthenticationState = {
-  email: '',
-  id: '',
+  userId: '',
+  phoneNumber: null,
   token: '',
-  picture: '',
-  userName: '',
-  projects: [],
+  email: '',
+  companyId: '',
+  userType: USER_TYPE.GUEST,
 };
 
 export const authenticationSlice = createSlice({
