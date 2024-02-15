@@ -1,4 +1,4 @@
-import { Navigate, RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 import { lazyImport } from '@/utils/lazyImport';
 import { TrackingRoutes } from '@/features/tracking/TrackingRoutes';
 import { PublicMenuRoutes } from '@/features/publicMenu/PublicMenuRoutes';

@@ -5,7 +5,6 @@ import localStorageRepository from '@/utils/localStorage.repository';
 
 export const initialAuthenticationState: IAuthenticationState = {
   email: '',
-  authId: '',
   id: '',
   token: '',
   picture: '',

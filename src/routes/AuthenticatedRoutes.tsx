@@ -1,4 +1,4 @@
-import { Navigate, RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 import { lazyImport } from '@/utils/lazyImport';
 
 import { AuthCheckProvider } from '@/providers/AuthProviders';

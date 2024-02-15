@@ -3,10 +3,6 @@ import HttpClient from '@/libs/http/http.client';
 import { UserModel } from '@/types/models/authentication/user.model';
 import { RegisterUserPayload } from './RegisterUserPayload';
 
-const strategies = {
-  bearer: 'bearer',
-} as const;
-
 interface IAuthenticationApi {
   login: (username: string, password: string) => Promise<{ user: UserModel }>;
   registerNewUser: (user: RegisterUserPayload) => Promise<{ user: UserModel }>;

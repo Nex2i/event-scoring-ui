@@ -1,6 +1,6 @@
-import { UserAgentContext } from '@/stores/contexts/userAgent.context';
 import { FC, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
+import { UserAgentContext } from '@/stores/contexts/userAgent.context';
 import { desktopNoAuthHomeRoute, noAuthHomeRoute } from './RouteConstants';
 
 interface redirectProps {}

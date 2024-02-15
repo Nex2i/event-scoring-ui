@@ -33,5 +33,5 @@ function isAuthValid(jwt: string): boolean {
 }
 
 export function isUserModelLocal(user: IAuthenticationState): boolean {
-  return !!user.token && !!user.picture && !!user.email;
+  return !!user.token && !!user.email;
 }
