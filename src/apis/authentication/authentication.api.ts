@@ -8,29 +8,28 @@ const strategies = {
 } as const;
 
 interface IAuthenticationApi {
-  login: (username: string, password: string) => Promise<UserModel>;
-  registerNewUser: (user: RegisterUserPayload) => Promise<UserModel>;
+  login: (username: string, password: string) => Promise<{ user: UserModel }>;
+  registerNewUser: (user: RegisterUserPayload) => Promise<{ user: UserModel }>;
   logout: () => Promise<void>;
 }
 
 export class AuthenticationApi extends BaseRepository implements IAuthenticationApi {
-  login = async (username: string, password: string): Promise<UserModel> => {
-    return HttpClient.post(`${this.apiUrl}/api/auth/v1/open/passport`, {
-      strategy: strategies.bearer,
-      strategyId: username,
+  login = async (email: string, password: string): Promise<{ user: UserModel }> => {
+    return HttpClient.post(`${this.apiUrl}/api/auth/login`, {
+      email,
       password,
     });
   };
 
-  getLoggedInUser = async (): Promise<UserModel> => {
-    return HttpClient.get(`${this.apiUrl}/api/auth/v1/protected/`);
+  getLoggedInUser = async (): Promise<{ user: UserModel }> => {
+    return HttpClient.get(`${this.apiUrl}/api/auth`);
   };
 
-  registerNewUser = async (user: RegisterUserPayload): Promise<UserModel> => {
-    return HttpClient.post(`${this.apiUrl}/api/auth/v1/open/user/bearer`, { ...user });
+  registerNewUser = async (user: RegisterUserPayload): Promise<{ user: UserModel }> => {
+    return HttpClient.post(`${this.apiUrl}/api/auth/register`, { ...user });
   };
 
   logout = async (): Promise<void> => {
-    return HttpClient.delete(`${this.apiUrl}/api/auth/v1/open/logout`);
+    return HttpClient.delete(`${this.apiUrl}/api/auth/logout`);
   };
 }

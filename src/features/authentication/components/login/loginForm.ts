@@ -5,10 +5,10 @@ import { BaseFormSchema, getSchemaFromClass } from '@/libs/forms/BaseFormSchema'
 import { FormFieldMapping } from '@/libs/forms/formMapping';
 
 class loginFormMapping extends BaseFormSchema {
-  username: FormFieldMapping = {
-    name: 'username',
-    label: 'Username',
-    tooltip: 'Insert Username please',
+  email: FormFieldMapping = {
+    name: 'email',
+    label: 'Email',
+    tooltip: 'Insert Email please',
     validationSchema: z.string().min(1),
   };
 
@@ -21,7 +21,7 @@ class loginFormMapping extends BaseFormSchema {
 
   public createEditSaveRequest(formData: LoginFormSchema) {
     return {
-      username: formData.username,
+      email: formData.email,
       password: formData.password,
     };
   }

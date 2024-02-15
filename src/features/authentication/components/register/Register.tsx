@@ -64,21 +64,17 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
         <Styled.FormTitle>Register</Styled.FormTitle>
         {currentPage === 0 && (
           <>
-            <FormFilledInput fieldMapping={registerFormFields.username} control={control} />
+            <FormFilledInput fieldMapping={registerFormFields.email} control={control} />
+            <FormFilledInput fieldMapping={registerFormFields.phoneNumber} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.password} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.confirmPassword} control={control} />
+            <FormFilledInput fieldMapping={registerFormFields.firstName} control={control} />
+            <FormFilledInput fieldMapping={registerFormFields.lastName} control={control} />
           </>
         )}
         {currentPage === 1 && (
           <>
-            <FormFilledInput fieldMapping={registerFormFields.firstName} control={control} />
-            <FormFilledInput fieldMapping={registerFormFields.lastName} control={control} />
-            <FormFilledInput fieldMapping={registerFormFields.email} control={control} />
-          </>
-        )}
-        {currentPage === 2 && (
-          <>
-            <FormFilledInput fieldMapping={registerFormFields.phoneNumber} control={control} />
+            <FormFilledInput fieldMapping={registerFormFields.companyName} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.streetAddress1} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.streetAddress2} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.city} control={control} />
@@ -87,12 +83,12 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
           </>
         )}
         {isAuthorizing ? <LoadingComponent animateOnly={true} /> : null}
-        {currentPage === 2 && (
+        {currentPage === 1 && (
           <Button onClick={onSubmitForm} data-cy="login-btn">
-            Register User
+            Register Company
           </Button>
         )}
-        {currentPage !== 2 && (
+        {currentPage !== 1 && (
           <Button onClick={nextPage} data-cy="login-btn">
             Next
           </Button>

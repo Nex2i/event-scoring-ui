@@ -13,7 +13,7 @@ export enum loginActions {
 
 type hookResponse = { loginAction: loginActions | undefined; isAuthorizing: boolean; isAuthorized: boolean };
 
-export function useLogin(username: string, password: string): hookResponse {
+export function useLogin(email: string, password: string): hookResponse {
   const [action, setAction] = useState<loginActions>();
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
   const [isFetching, setIsFetching] = useState<boolean>(false);
@@ -22,7 +22,7 @@ export function useLogin(username: string, password: string): hookResponse {
   const dispatch = useAppDispatch();
 
   function loginDataIsValid(): boolean {
-    return username && password ? true : false;
+    return email && password ? true : false;
   }
 
   useEffect(() => {
@@ -33,22 +33,23 @@ export function useLogin(username: string, password: string): hookResponse {
     setIsFetching(true);
 
     apis.authentication
-      .login(username, password)
+      .login(email, password)
       .then((res) => {
         if (!isMounted) return;
+
+        const { user } = res;
 
         setAction(loginActions.login);
         setIsAuthorized(true);
 
         dispatch(
           setAuthentication({
-            id: res.id,
-            authId: res.authId,
-            token: res.token,
-            picture: res.picture,
-            email: res.email,
-            userName: res.userName,
-            projects: res.projects,
+            userId: user.userId,
+            companyId: user.companyId,
+            token: user.token,
+            phoneNumber: user.phoneNumber,
+            email: user.email,
+            userType: user.userType,
           })
         );
 
@@ -87,7 +88,7 @@ export function useLogin(username: string, password: string): hookResponse {
     return () => {
       isMounted = false;
     };
-  }, [username, password]);
+  }, [email, password]);
 
   async function handleUserNotFound() {
     dispatch(

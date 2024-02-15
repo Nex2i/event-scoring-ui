@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host --force",
+    "dev": "npm install && vite --host --force",
     "build": "tsc && vite build",
     "build:prod": "eslint src --ext ts,tsx --report-unused-disable-directives && tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives",

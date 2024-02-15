@@ -18,10 +18,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate', // Automatically check for updates
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'], // Cache these files
         runtimeCaching: [
           {
-            // Use NetworkFirst strategy for all requests
             urlPattern: ({ request }) => request.mode === 'navigate',
             handler: 'NetworkFirst',
             options: {

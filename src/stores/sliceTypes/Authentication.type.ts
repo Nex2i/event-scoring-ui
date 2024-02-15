@@ -1,11 +1,13 @@
-import { ProjectModel } from '@/types/models/project/project.model';
-
 export interface IAuthenticationState {
-  email: string;
-  userName: string;
-  authId: string;
-  id: string;
+  userId: string;
+  phoneNumber: string | null;
   token: string;
-  picture: string;
-  projects: ProjectModel[];
+  email: string;
+  companyId: string;
+  userType: USER_TYPE;
+}
+
+export enum USER_TYPE {
+  GUEST,
+  ADMIN,
 }

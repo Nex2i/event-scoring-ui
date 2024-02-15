@@ -1,12 +1,11 @@
+import { USER_TYPE } from '@/stores/sliceTypes/Authentication.type';
 import { IBaseModel } from '../base.model';
-import { ProjectModel } from '../project/project.model';
 
 export interface UserModel extends IBaseModel {
-  email: string;
-  authId: string;
-  userName: string;
-  id: string;
+  userId: string;
+  phoneNumber: string | null;
   token: string;
-  picture: string;
-  projects: ProjectModel[];
+  email: string;
+  companyId: string;
+  userType: USER_TYPE;
 }
