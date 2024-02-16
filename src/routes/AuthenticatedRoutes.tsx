@@ -1,10 +1,9 @@
 import { RouteObject } from 'react-router-dom';
-import { lazyImport } from '@/utils/lazyImport';
 
 import { AuthCheckProvider } from '@/providers/AuthProviders';
-import { pokemonRoutes } from './RouteConstants';
+import { eventRoutes } from './RouteConstants';
 import { Redirect } from './redirect';
-const { PokemonRoutes } = lazyImport(() => import('@/features/pokemon/PokemonRoutes'), 'PokemonRoutes');
+import { EventRoutes } from '@/features/event/EventRoutes';
 
 export const AuthenticatedRoutes: RouteObject[] = [
   {
@@ -12,8 +11,8 @@ export const AuthenticatedRoutes: RouteObject[] = [
     element: <AuthCheckProvider />,
     children: [
       {
-        path: pokemonRoutes.base + '/*',
-        element: <PokemonRoutes />,
+        path: eventRoutes.base + '/*',
+        element: <EventRoutes />,
       },
       {
         path: '*',

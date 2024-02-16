@@ -31,7 +31,7 @@ export const CoreColumn = styled(Box)<{ width?: string }>(({ width }) => ({
 export const CoreLayoutOutlet = styled(Box)`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
   padding: 0 20px;
