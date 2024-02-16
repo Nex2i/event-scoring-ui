@@ -64,7 +64,7 @@ export const Row = styled(Box)<{ align?: string }>(({ theme, align }) => ({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  width: '100%',
+  maxWidth: '100%',
   justifyContent: align ? align : 'auto',
   gap: theme.spacing(2),
 }));

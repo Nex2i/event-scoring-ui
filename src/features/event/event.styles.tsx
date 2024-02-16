@@ -15,9 +15,9 @@ const BaseEventCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-export const EventCube = styled(BaseEventCard)(({ theme }) => ({}));
+export const EventCube = styled(BaseEventCard)(({}) => ({}));
 
-export const NewEventCube = styled(BaseEventCard)(({ theme }) => ({
+export const NewEventCube = styled(BaseEventCard)(({}) => ({
   justifyContent: 'center',
   alignItems: 'center',
   marginLeft: '0',
@@ -31,7 +31,7 @@ export const NewEventIcon = styled(AddIcon)(({ theme }) => ({
   color: theme.palette.grey[500],
 }));
 
-export const EventsContainer = styled(Box)(({ theme }) => ({
+export const EventsContainer = styled(Box)(({}) => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'flex-start',
