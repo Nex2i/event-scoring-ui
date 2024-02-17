@@ -10,8 +10,10 @@ import QRCodeStyling, {
   Options,
 } from 'qr-code-styling-new';
 import { FC, useEffect, useRef, useState } from 'react';
+import * as Styled from '@/common/style';
 
 import siteLogo from '@/assets/event-score.png';
+import { useNavigate } from 'react-router-dom';
 
 interface QrCodeProps {
   url: string;
@@ -50,6 +52,7 @@ export const QrCode: FC<QrCodeProps> = ({ url, qrName }) => {
       type: 'dot' as CornerDotType,
     },
   } as Options;
+
   const [qrCode] = useState<QRCodeStyling>(new QRCodeStyling(options));
   const ref = useRef<HTMLDivElement>(null);
 
@@ -72,10 +75,17 @@ export const QrCode: FC<QrCodeProps> = ({ url, qrName }) => {
     });
   };
 
+  const previewQrCode = () => {
+    window.open(url, '_blank');
+  };
+
   return (
     <div>
       <div ref={ref} />
-      <Button onClick={onDownloadClick}>Download</Button>
+      <Styled.SpreadRow>
+        <Button onClick={onDownloadClick}>Download</Button>
+        <Button onClick={previewQrCode}>Preview</Button>
+      </Styled.SpreadRow>
     </div>
   );
 };
