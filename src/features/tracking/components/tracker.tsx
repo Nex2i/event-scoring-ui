@@ -95,7 +95,7 @@ export const Tracker: FC<TrackerProps> = ({ targets, shotsPerTarget }) => {
           <Typography variant="h4">{trackerSlice.ActiveRound?.roundTotal}</Typography>
         </Styled.Row>
       </Styled.TrackerHeader>
-      <Bullseye onClick={handleBullseyeClick} activeTargetId={activeTargetId} />
+      <Bullseye onClick={handleBullseyeClick} activeTargetId={activeTargetId} rings={[]} />
       <ScoreTable
         roundData={trackerSlice.ActiveRound}
         onCellChange={onCellChange}
