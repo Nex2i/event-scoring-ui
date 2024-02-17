@@ -24,7 +24,7 @@ export interface Bullseye {
 export interface BullseyeRing {
   id: string;
   color: string;
-  score: number;
+  value: number;
 }
 
 export interface Round {

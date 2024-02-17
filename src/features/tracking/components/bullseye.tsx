@@ -51,7 +51,7 @@ export const Bullseye: FC<BullseyeProps> = ({ onClick, activeTargetId, rings }) 
             fill={ring.color}
             stroke="black"
             strokeWidth={strokeWidth}
-            onClick={() => handleRingClick(ring.score)}
+            onClick={() => handleRingClick(ring.value)}
           />
         ))}
       </svg>

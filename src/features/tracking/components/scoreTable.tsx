@@ -73,5 +73,5 @@ export default DynamicTable;
 function createOptionsFromTarget(
   target: BullseyeRing[]
 ): { value: string | number; displayName?: string }[] {
-  return target.map((ring) => ({ value: ring.score, displayName: ring.score.toString() }));
+  return target.map((ring) => ({ value: ring.value, displayName: ring.value.toString() }));
 }
