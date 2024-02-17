@@ -19,7 +19,7 @@ export const SingleEventPage: FC<SingleEventPageProps> = ({}) => {
   if (isFetching) return <LoadingComponent loadingText="Fetching Event" />;
   if (!event) return <p>Error: No event found</p>;
 
-  const qrCodeUrl = `${apiUrl}/qr/event/${id}`;
+  const qrCodeUrl = `${apiUrl}/api/qr/event/${id}`;
   const qrCodeName = buildEventQrName(event);
   return (
     <Styled.StartRow align="flex-start">
