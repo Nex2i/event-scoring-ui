@@ -98,7 +98,7 @@ function mapFormToCourse(form: NewEventFormSchema, eventId: string): CourseModel
       name: `Target ${i + 1}`,
       distance: 20,
       targetTypeId: defaultTargetTypeId,
-      Shots: shotPreset,
+      shots: shotPreset,
     });
   }
 

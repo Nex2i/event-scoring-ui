@@ -13,5 +13,5 @@ export interface TargetModelCreate {
   name: string;
   distance: number;
   targetTypeId: string;
-  Shots: ShotModelCreate[];
+  shots: ShotModelCreate[];
 }
