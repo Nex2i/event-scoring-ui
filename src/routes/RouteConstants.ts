@@ -3,12 +3,16 @@ const trackingBase = 'tracking';
 const eventBase = 'event';
 const authBase = 'auth';
 const publicMenuBase = 'public';
+const publicEventBase = 'public/event';
 
 export const pokemonRoutes = {
   base: pokemonBase,
 };
 export const trackingRoutes = {
   base: trackingBase,
+};
+export const publicEventRoutes = {
+  base: publicEventBase,
 };
 export const eventRoutes = {
   base: eventBase,
