@@ -1,6 +1,6 @@
+import { useContext, useEffect, useState } from 'react';
 import { ApiContext } from '@/apis/api.context';
 import { Bullseye } from '@/types/models/tracker/tracker.type';
-import { useContext, useEffect, useState } from 'react';
 
 interface hookResponse {
   isFetching: boolean;

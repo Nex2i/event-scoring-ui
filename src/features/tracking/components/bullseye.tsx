@@ -1,7 +1,6 @@
 import { FC, useRef, useEffect, useState } from 'react';
-import { trackerSelector } from '@/stores/slices/Tracker.slice';
-import * as Styled from '../tracking.styles';
 import { BullseyeRing } from '@/types/models/tracker/tracker.type';
+import * as Styled from '../tracking.styles';
 
 interface BullseyeProps {
   onClick: (value: number) => void;
@@ -10,7 +9,7 @@ interface BullseyeProps {
 }
 
 const strokeWidth = 2;
-export const Bullseye: FC<BullseyeProps> = ({ onClick, activeTargetId, rings }) => {
+export const Bullseye: FC<BullseyeProps> = ({ onClick, rings }) => {
   if (!rings) return <p>Getting Target Rings</p>;
 
   const containerRef = useRef<HTMLDivElement>(null);
