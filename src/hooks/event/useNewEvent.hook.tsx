@@ -13,7 +13,7 @@ interface hookResponse {
   newEvent: unknown;
 }
 
-const defaultTargetTypeId = '06ccfdd3-40c2-457e-99d5-3bb9235f3221';
+const { VITE_DEFAULT_TARGET_TYPE_ID } = import.meta.env;
 
 export const useNewEventHook = ({ event }: { event?: NewEventFormSchema }): hookResponse => {
   const { user } = useAuth();
@@ -94,7 +94,7 @@ function mapFormToCourse(form: NewEventFormSchema, eventId: string): CourseModel
     course.targets.push({
       name: `Target ${i + 1}`,
       distance: 20,
-      targetTypeId: defaultTargetTypeId,
+      targetTypeId: VITE_DEFAULT_TARGET_TYPE_ID,
       shots: shotPreset,
     });
   }
