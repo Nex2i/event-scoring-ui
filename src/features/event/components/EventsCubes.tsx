@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEventsHook } from '@/hooks/event/useEvents.hook';
 import { eventRoutes } from '@/routes/RouteConstants';
-import * as Styled from '../event.styles';
 import { formatDate } from '@/shared/formatDate';
+import * as Styled from '../event.styles';
 
 interface EventsCubesProps {}
 

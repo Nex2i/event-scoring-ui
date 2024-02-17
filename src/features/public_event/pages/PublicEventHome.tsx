@@ -1,9 +1,9 @@
-import { EventModel } from '@/types/models/event/event.model';
 import { Button, Typography } from '@mui/material';
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { EventModel } from '@/types/models/event/event.model';
 import { formatDate } from '@/shared/formatDate';
 import { publicEventRoutes } from '@/routes/RouteConstants';
-import { useNavigate } from 'react-router-dom';
 
 interface PublicEventHomeProps {
   event: EventModel;
