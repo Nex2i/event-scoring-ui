@@ -5,7 +5,7 @@ import { FormControl } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Control, Controller } from 'react-hook-form';
-import { DesktopDatePicker, DesktopDateTimePicker } from '@mui/x-date-pickers';
+import { DesktopDatePicker } from '@mui/x-date-pickers';
 import * as Styled from './formFilledComponents/form.styles';
 
 import { FormFieldMapping } from './formMapping';

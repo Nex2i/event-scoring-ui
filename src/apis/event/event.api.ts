@@ -13,7 +13,7 @@ export class EventApi extends BaseRepository {
 
   createEvent = async (event: EventModelCreate): Promise<{ event: EventModel }> => {
     console.log('event', event);
-    return HttpClient.post(`${this.apiUrl}/api/event/`, event);
+    return HttpClient.post(`${this.apiUrl}/api/event`, event);
   };
 
   updateEvent = async (_eventId: string, _event: any) => {

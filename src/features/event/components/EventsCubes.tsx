@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import { useEventsHook } from '@/hooks/event/useEvents.hook';
 import { eventRoutes } from '@/routes/RouteConstants';
 import * as Styled from '../event.styles';
+import { formatDate } from '../shared/formatDate';
 
 interface EventsCubesProps {}
 
@@ -33,7 +33,3 @@ export const EventsCubes: FC<EventsCubesProps> = ({}) => {
     </>
   );
 };
-
-function formatDate(date: Date) {
-  return dayjs(date).format('MMM D');
-}

@@ -7,7 +7,7 @@ export interface EventModel extends IBaseModel {
   name: string;
   startDate: Date;
   endDate: Date;
-  courses?: CourseModel[];
+  Courses?: CourseModel[];
 }
 
 export interface EventModelCreate {

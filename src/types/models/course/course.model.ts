@@ -5,7 +5,7 @@ export interface CourseModel extends IBaseModel {
   id: string;
   name: string;
   eventId: string;
-  targets: TargetModel[];
+  Targets: TargetModel[];
 }
 
 export interface CourseModelCreate {

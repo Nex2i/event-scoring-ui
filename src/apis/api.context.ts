@@ -11,7 +11,10 @@ interface Apis {
   event: EventApi;
   course: CourseApi;
   logs: LogApi;
+  apiUrl: string;
 }
+
+const { VITE_ENV } = import.meta.env;
 
 export const initializedApis: Apis = {
   pokemon: new PokemonApi(),
@@ -19,6 +22,7 @@ export const initializedApis: Apis = {
   logs: new LogApi(),
   event: new EventApi(),
   course: new CourseApi(),
+  apiUrl: import.meta.env[`VITE_API_BASE_URL_${VITE_ENV}`],
 };
 
 export const ApiContext = createContext<Apis>(initializedApis);
