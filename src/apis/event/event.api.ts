@@ -3,12 +3,12 @@ import { BaseRepository } from '../base.repository';
 import { EventModel, EventModelCreate } from '@/types/models/event/event.model';
 
 export class EventApi extends BaseRepository {
-  getEvents = async () => {
-    return HttpClient.get(`${this.apiUrl}/api/event/`);
+  getEventsByCompanyId = async (companyId: string): Promise<{ events: EventModel[] }> => {
+    return HttpClient.get(`${this.apiUrl}/api/event?companyId=${companyId}`);
   };
 
-  getEvent = async (_eventId: EventModel) => {
-    return HttpClient.get(`${this.apiUrl}/api/event/`);
+  getEvent = async (eventId: string): Promise<{ event: EventModel }> => {
+    return HttpClient.get(`${this.apiUrl}/api/event/${eventId}`);
   };
 
   createEvent = async (event: EventModelCreate): Promise<{ event: EventModel }> => {

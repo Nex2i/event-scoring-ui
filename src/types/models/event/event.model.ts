@@ -1,4 +1,5 @@
 import { IBaseModel } from '../base.model';
+import { CourseModel } from '../course/course.model';
 
 export interface EventModel extends IBaseModel {
   id: string;
@@ -6,6 +7,7 @@ export interface EventModel extends IBaseModel {
   name: string;
   startDate: Date;
   endDate: Date;
+  courses?: CourseModel[];
 }
 
 export interface EventModelCreate {
