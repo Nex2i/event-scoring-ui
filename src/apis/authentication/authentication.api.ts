@@ -11,6 +11,7 @@ interface IAuthenticationApi {
 
 export class AuthenticationApi extends BaseRepository implements IAuthenticationApi {
   login = async (email: string, password: string): Promise<{ user: UserModel }> => {
+    console.log('this.apiUrl', this.apiUrl, `${this.apiUrl}/api/auth/login`);
     return HttpClient.post(`${this.apiUrl}/api/auth/login`, {
       email,
       password,
