@@ -2,9 +2,9 @@ import { RouteObject } from 'react-router-dom';
 import { lazyImport } from '@/utils/lazyImport';
 import { TrackingRoutes } from '@/features/tracking/TrackingRoutes';
 import { PublicMenuRoutes } from '@/features/publicMenu/PublicMenuRoutes';
+import { PublicEventRoutes } from '@/features/public_event/PublicEventRoutes';
 import { authRoutes, publicEventRoutes, publicMenuRoutes, trackingRoutes } from './RouteConstants';
 import { Redirect } from './redirect';
-import { PublicEventRoutes } from '@/features/public_event/PublicEventRoutes';
 
 const { AuthenticationRoutes } = lazyImport(
   () => import('@/features/authentication/AuthenticationRoutes'),

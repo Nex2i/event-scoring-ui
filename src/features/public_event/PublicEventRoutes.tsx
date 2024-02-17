@@ -1,10 +1,10 @@
-import { PublicLayout } from '@/layouts/public-layout/PublicLayout';
-import { publicEventRoutes } from '@/routes/RouteConstants';
 import { FC } from 'react';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
-import { PublicEventHome } from './pages/PublicEventHome';
+import { publicEventRoutes } from '@/routes/RouteConstants';
+import { PublicLayout } from '@/layouts/public-layout/PublicLayout';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { useEventHook } from '@/hooks/event/useEvent.hook';
+import { PublicEventHome } from './pages/PublicEventHome';
 import { PublicTarget } from './pages/PublicTarget';
 
 interface PublicEventRoutesProps {}
