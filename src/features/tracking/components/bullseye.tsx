@@ -1,18 +1,17 @@
 import { FC, useRef, useEffect, useState } from 'react';
 import { trackerSelector } from '@/stores/slices/Tracker.slice';
 import * as Styled from '../tracking.styles';
+import { BullseyeRing } from '@/types/models/tracker/tracker.type';
 
 interface BullseyeProps {
   onClick: (value: number) => void;
   activeTargetId?: string;
+  rings: BullseyeRing[];
 }
 
 const strokeWidth = 2;
-export const Bullseye: FC<BullseyeProps> = ({ onClick, activeTargetId }) => {
-  const trackerSlice = trackerSelector();
-  const rings =
-    trackerSlice.ActiveRound.targets.find((target) => target.id === activeTargetId)?.bullseye
-      .rings ?? [];
+export const Bullseye: FC<BullseyeProps> = ({ onClick, activeTargetId, rings }) => {
+  if (!rings) return <p>Getting Target Rings</p>;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState(100); // Default size

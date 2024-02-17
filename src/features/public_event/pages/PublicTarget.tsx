@@ -12,7 +12,7 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
   const bullseyeClick = (shotScore: number) => {};
   return (
     <div>
-      <Bullseye onClick={bullseyeClick} activeTargetId={targetId} />
+      <Bullseye onClick={bullseyeClick} activeTargetId={targetId} rings={[]} />
       PublicTarget: {courseId} {targetId}
     </div>
   );
