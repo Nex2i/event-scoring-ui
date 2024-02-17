@@ -6,7 +6,7 @@ import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { QrCode } from '@/components/qr/QrCode';
 import { ApiContext } from '@/apis/api.context';
 import { EventModel } from '@/types/models/event/event.model';
-import { formatDate } from '../shared/formatDate';
+import { formatDate } from '@/shared/formatDate';
 import * as Styled from '../event.styles';
 
 interface SingleEventPageProps {}
