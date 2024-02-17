@@ -49,7 +49,6 @@ export const useNewEventHook = ({ event }: { event?: NewEventFormSchema }): hook
 
     createNewEventAndCourse()
       .then((course) => {
-        console.log('course', course);
         if (isMounted && course) {
           navigate(`/event/${course.course.eventId}`);
         }
@@ -72,7 +71,6 @@ export const useNewEventHook = ({ event }: { event?: NewEventFormSchema }): hook
 };
 
 function mapFormToEvent(form: NewEventFormSchema, companyId: string): EventModelCreate {
-  console.log('map event form', form);
   return {
     companyId,
     name: form.eventName,
@@ -82,7 +80,6 @@ function mapFormToEvent(form: NewEventFormSchema, companyId: string): EventModel
 }
 
 function mapFormToCourse(form: NewEventFormSchema, eventId: string): CourseModelCreate {
-  console.log('map course form', form);
   const course = {
     eventId,
     name: form.courseName,

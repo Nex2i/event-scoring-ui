@@ -34,7 +34,6 @@ export const NewEventDialog: FC<NewEventDialogProps> = ({ isOpen, handleClose })
 
   const handleValidForm = (formData: FieldValues) => {
     const formInfo = newEventFormFields.createEditSaveRequest(formData);
-    console.log('formInfo', formInfo);
     setFormValues(formInfo);
   };
 
