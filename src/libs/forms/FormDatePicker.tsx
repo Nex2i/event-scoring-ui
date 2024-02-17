@@ -5,7 +5,7 @@ import { FormControl } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Control, Controller } from 'react-hook-form';
-import { DesktopDateTimePicker } from '@mui/x-date-pickers';
+import { DesktopDatePicker, DesktopDateTimePicker } from '@mui/x-date-pickers';
 import * as Styled from './formFilledComponents/form.styles';
 
 import { FormFieldMapping } from './formMapping';
@@ -32,7 +32,7 @@ export const FormDatePicker: FC<FormDatePickerProps> = ({
           defaultValue={initialValue ?? ''}
           render={({ field: { onChange, value }, fieldState }) => (
             <>
-              <DesktopDateTimePicker
+              <DesktopDatePicker
                 defaultValue={dayjs(initialValue)}
                 label={fieldMapping.label}
                 value={value}
