@@ -16,19 +16,20 @@ export const generateRound = (
         id: generateUniqueStringId(),
         name: 'Bullseye',
         rings: [
-          { score: 0, color: 'white', id: generateUniqueStringId() },
-          { score: 5, color: 'black', id: generateUniqueStringId() },
-          { score: 8, color: 'blue', id: generateUniqueStringId() },
-          { score: 10, color: 'red', id: generateUniqueStringId() },
-          { score: 12, color: 'yellow', id: generateUniqueStringId() },
+          { value: 0, color: 'white', id: generateUniqueStringId() },
+          { value: 5, color: 'black', id: generateUniqueStringId() },
+          { value: 8, color: 'blue', id: generateUniqueStringId() },
+          { value: 10, color: 'red', id: generateUniqueStringId() },
+          { value: 12, color: 'yellow', id: generateUniqueStringId() },
         ],
       },
       shots: Array.from({ length: shots }, (_, i) => {
         return {
           id: generateUniqueStringId(),
-          score: null,
+          value: null,
           timestamp: new Date(),
           name: `Shot ${i + 1}`,
+          score: null, // Add the 'score' property here
         };
       }),
       startTime: new Date(),
