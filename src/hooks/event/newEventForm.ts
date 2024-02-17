@@ -9,7 +9,7 @@ class newEventFormMapping extends BaseFormSchema {
     name: 'eventName',
     label: 'Event Name',
     tooltip: 'Event Name',
-    validationSchema: z.string().min(1).max(15),
+    validationSchema: z.string().min(1).max(50),
   };
   startDate: FormFieldMapping = {
     name: 'startDate',
@@ -29,7 +29,7 @@ class newEventFormMapping extends BaseFormSchema {
     name: 'courseName',
     label: 'Course Name',
     tooltip: 'Course Name',
-    validationSchema: z.string().min(1).max(15),
+    validationSchema: z.string().min(1).max(50),
   };
 
   numberOfTargets: FormFieldMapping = {
