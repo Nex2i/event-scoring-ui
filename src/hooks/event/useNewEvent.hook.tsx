@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { ApiContext } from '@/apis/api.context';
 import { EventModelCreate } from '@/types/models/event/event.model';
 import { CourseModelCreate } from '@/types/models/course/course.model';
-import { TargetModel } from '@/types/models/target/target.model';
-import { ShotModel } from '@/types/models/shot/shot.model';
+import { TargetModelCreate } from '@/types/models/target/target.model';
+import { ShotModelCreate } from '@/types/models/shot/shot.model';
 import { useAuth } from '../authentication/useAuth.hook';
 import { NewEventFormSchema } from './newEventForm';
 
@@ -86,10 +86,10 @@ function mapFormToCourse(form: NewEventFormSchema, eventId: string): CourseModel
   const course = {
     eventId,
     name: form.courseName,
-    targets: [] as TargetModel[],
+    targets: [] as TargetModelCreate[],
   };
 
-  const shotPreset = [] as ShotModel[];
+  const shotPreset = [] as ShotModelCreate[];
   for (let i = 0; i < form.numberOfShotsPerTarget; i++) {
     shotPreset.push({});
   }
@@ -98,7 +98,7 @@ function mapFormToCourse(form: NewEventFormSchema, eventId: string): CourseModel
       name: `Target ${i + 1}`,
       distance: 20,
       targetTypeId: defaultTargetTypeId,
-      shots: shotPreset,
+      Shots: shotPreset,
     });
   }
 

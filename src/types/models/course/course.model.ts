@@ -1,5 +1,5 @@
 import { IBaseModel } from '../base.model';
-import { TargetModel } from '../target/target.model';
+import { TargetModel, TargetModelCreate } from '../target/target.model';
 
 export interface CourseModel extends IBaseModel {
   id: string;
@@ -11,5 +11,5 @@ export interface CourseModel extends IBaseModel {
 export interface CourseModelCreate {
   name: string;
   eventId: string;
-  targets: TargetModel[];
+  targets: TargetModelCreate[];
 }
