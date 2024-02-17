@@ -7,7 +7,8 @@ const axiosBase = axios.create({
   withCredentials: true,
 });
 
-export const defaultErrorMessage = 'There was an error making a request. Please contact support about this issue';
+export const defaultErrorMessage =
+  'There was an error making a request. Please contact support about this issue';
 
 interface AxiosError<T = any, D = any> extends Error {
   config: AxiosRequestConfig<D>;
@@ -46,7 +47,9 @@ const handleAxiosRequest = <T>(axiosRequest: () => Promise<AxiosResponse<T>>): P
     .catch((axiosError) => mapToHttpClientErrorResponse(axiosError));
 };
 
-const mapToHttpClientErrorResponse = <HttpClientError>(axiosError: AxiosError): Promise<HttpClientError> => {
+const mapToHttpClientErrorResponse = <HttpClientError>(
+  axiosError: AxiosError
+): Promise<HttpClientError> => {
   return Promise.reject({
     content: axiosError.response?.data,
     message: getErrorMessage(axiosError),

@@ -27,7 +27,9 @@ export const Tracker: FC<TrackerProps> = ({ targets, shotsPerTarget }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const activeRound = cachedRound ? cachedRound : generateRound(parseInt(targets), parseInt(shotsPerTarget));
+    const activeRound = cachedRound
+      ? cachedRound
+      : generateRound(parseInt(targets), parseInt(shotsPerTarget));
     dispatch(setActiveRound(activeRound));
     setActiveTargetId(activeRound?.targets[0].id);
     setActiveShotId(activeRound?.targets[0].shots[0].id);
@@ -51,7 +53,9 @@ export const Tracker: FC<TrackerProps> = ({ targets, shotsPerTarget }) => {
   const goToNextShot = () => {
     if (!activeTargetId || !activeShotId) return;
 
-    const targetIndex = trackerSlice.ActiveRound?.targets.findIndex((target) => target.id === activeTargetId);
+    const targetIndex = trackerSlice.ActiveRound?.targets.findIndex(
+      (target) => target.id === activeTargetId
+    );
     const shotIndex = trackerSlice.ActiveRound?.targets[targetIndex!].shots.findIndex(
       (shot) => shot.id === activeShotId
     );
@@ -80,7 +84,11 @@ export const Tracker: FC<TrackerProps> = ({ targets, shotsPerTarget }) => {
     <Styled.Column>
       <Styled.TrackerHeader align="space-between">
         <div style={{ width: '60%' }}>
-          <BasicFilledInput initialValue="Name" onValueChange={setContestantName} value={contestantName} />
+          <BasicFilledInput
+            initialValue="Name"
+            onValueChange={setContestantName}
+            value={contestantName}
+          />
         </div>
         <Styled.Row style={{ width: '30%', userSelect: 'none' }}>
           <p>SCORE:</p>

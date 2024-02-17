@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
-import * as Styled from '../event.styles';
 import { useEventsHook } from '@/hooks/event/useEvents.hook';
 import { eventRoutes } from '@/routes/RouteConstants';
+import * as Styled from '../event.styles';
 
 interface EventsCubesProps {}
 

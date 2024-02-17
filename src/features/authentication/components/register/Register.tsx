@@ -78,7 +78,11 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
             <FormFilledInput fieldMapping={registerFormFields.streetAddress1} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.streetAddress2} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.city} control={control} />
-            <FormFilledSelect options={stateOptions} fieldMapping={registerFormFields.state} control={control} />
+            <FormFilledSelect
+              options={stateOptions}
+              fieldMapping={registerFormFields.state}
+              control={control}
+            />
             <FormFilledInput fieldMapping={registerFormFields.zipCode} control={control} />
           </>
         )}

@@ -1,6 +1,10 @@
 import { BaseRepository } from '@/apis/base.repository';
 import HttpClient from '@/libs/http/http.client';
-import { CreatePokemonRequest, EditPokemonRequest, Pokemon } from '@/types/models/pokemon/pokemon.type';
+import {
+  CreatePokemonRequest,
+  EditPokemonRequest,
+  Pokemon,
+} from '@/types/models/pokemon/pokemon.type';
 
 interface IPokemonApi {
   getAllPokemon: () => Promise<Pokemon[]>;

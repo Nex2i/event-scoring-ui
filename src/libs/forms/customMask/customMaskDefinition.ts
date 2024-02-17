@@ -1,7 +1,13 @@
 import { Definitions as MaskedDefinitions } from 'imask';
 
 export interface CustomMaskDefinition {
-  mask: string | RegExp | Array<RegExp | string> | NumberConstructor | StringConstructor | DateConstructor;
+  mask:
+    | string
+    | RegExp
+    | Array<RegExp | string>
+    | NumberConstructor
+    | StringConstructor
+    | DateConstructor;
   definitions: MaskedDefinitions;
   thousandsSeparator?: string;
   min?: number;

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import * as Styled from '../event.styles';
 import { Typography } from '@mui/material';
+import * as Styled from '../event.styles';
 import { NewEventDialog } from './NewEventDialog';
 
 interface NewEventCubeProps {}

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { useAuth } from '../authentication/useAuth.hook';
 import { ApiContext } from '@/apis/api.context';
 import { EventModel } from '@/types/models/event/event.model';
+import { useAuth } from '../authentication/useAuth.hook';
 
 interface hookResponse {
   isFetching: boolean;

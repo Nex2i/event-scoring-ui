@@ -3,7 +3,10 @@ import { Round, Target } from '@/types/models/tracker/tracker.type';
 const numberOfTargets = 8;
 const numberOfShotsPerTarget = 2;
 
-export const generateRound = (targets: number = numberOfTargets, shots: number = numberOfShotsPerTarget): Round => {
+export const generateRound = (
+  targets: number = numberOfTargets,
+  shots: number = numberOfShotsPerTarget
+): Round => {
   const targetsBuilt: Target[] = Array.from({ length: targets }, (_, i) => {
     return {
       id: generateUniqueStringId(),

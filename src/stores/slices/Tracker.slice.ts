@@ -26,7 +26,9 @@ export const trackerSlice = createSlice({
     setShot: (state, action: PayloadAction<setShotPayload>) => {
       const { targetId, shotScore, shotId } = action.payload;
       const targetIndex = state.ActiveRound.targets.findIndex((target) => target.id === targetId);
-      const shotIndex = state.ActiveRound.targets[targetIndex].shots.findIndex((shot) => shot.id === shotId);
+      const shotIndex = state.ActiveRound.targets[targetIndex].shots.findIndex(
+        (shot) => shot.id === shotId
+      );
       state.ActiveRound.targets[targetIndex].shots[shotIndex].score = shotScore;
       state.ActiveRound.targets[targetIndex].shots[shotIndex].timestamp = new Date();
       state.ActiveRound.targets[targetIndex].targetTotal += shotScore;

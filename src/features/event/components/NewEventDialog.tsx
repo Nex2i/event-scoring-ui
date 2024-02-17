@@ -2,7 +2,6 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/
 import { FC, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 
-import * as Styled from '../event.styles';
 import {
   NewEventFormSchema,
   newEventFormFields,
@@ -13,6 +12,7 @@ import { FormDatePicker } from '@/libs/forms/FormDatePicker';
 import { NumberInputForm } from '@/libs/forms/NumberInputForm';
 import { useNewEventHook } from '@/hooks/event/useNewEvent.hook';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
+import * as Styled from '../event.styles';
 
 interface NewEventDialogProps {
   isOpen: boolean;

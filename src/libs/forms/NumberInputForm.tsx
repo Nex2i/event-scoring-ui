@@ -11,7 +11,12 @@ interface NumberInputFormProps {
   disabled?: boolean;
 }
 
-export const NumberInputForm: FC<NumberInputFormProps> = ({ fieldMapping, control, initialValue, disabled }) => {
+export const NumberInputForm: FC<NumberInputFormProps> = ({
+  fieldMapping,
+  control,
+  initialValue,
+  disabled,
+}) => {
   return (
     <FormControl className="form-filled-input-control" variant="filled">
       <Controller

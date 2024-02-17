@@ -14,7 +14,11 @@ interface fC {
   children: React.ReactNode;
 }
 
-const calculateFontSize = (text: string, baseFontSize: number = 40, minFontSize: number = 12): number => {
+const calculateFontSize = (
+  text: string,
+  baseFontSize: number = 40,
+  minFontSize: number = 12
+): number => {
   const length = text.length;
 
   // Set thresholds for text length
@@ -42,9 +46,11 @@ const calculateFontSize = (text: string, baseFontSize: number = 40, minFontSize:
   return fontSize;
 };
 
-export const DynamicTypography = styled(Typography)<dynamicTypographyProps>(({ text, baseFontSize }) => ({
-  fontSize: calculateFontSize(text, baseFontSize),
-}));
+export const DynamicTypography = styled(Typography)<dynamicTypographyProps>(
+  ({ text, baseFontSize }) => ({
+    fontSize: calculateFontSize(text, baseFontSize),
+  })
+);
 
 const TitleTypography = styled(Typography)(({}) => ({
   margin: 0,

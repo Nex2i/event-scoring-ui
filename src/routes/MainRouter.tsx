@@ -16,7 +16,11 @@ export const MainRouter = () => {
   return (
     <>
       {element}
-      <SnackBarComponent open={snackbarProps.open} message={snackbarProps.message} severity={snackbarProps.severity} />
+      <SnackBarComponent
+        open={snackbarProps.open}
+        message={snackbarProps.message}
+        severity={snackbarProps.severity}
+      />
     </>
   );
 };

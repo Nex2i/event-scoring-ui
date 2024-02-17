@@ -1,8 +1,8 @@
-import { CoreLayout } from '@/layouts/core-layout/CoreLayout';
 import { FC } from 'react';
 import { Navigate, Route } from 'react-router-dom';
-import { EventsHomePage } from './pages/EventsHome.page';
+import { CoreLayout } from '@/layouts/core-layout/CoreLayout';
 import { eventRoutes } from '@/routes/RouteConstants';
+import { EventsHomePage } from './pages/EventsHome.page';
 import { SingleEventPage } from './pages/SingleEvent.page';
 
 interface EventRoutesProps {}

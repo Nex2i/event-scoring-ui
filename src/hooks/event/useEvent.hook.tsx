@@ -1,6 +1,6 @@
+import { useContext, useEffect, useState } from 'react';
 import { ApiContext } from '@/apis/api.context';
 import { EventModel } from '@/types/models/event/event.model';
-import { useContext, useEffect, useState } from 'react';
 
 interface hookResponse {
   isFetching: boolean;

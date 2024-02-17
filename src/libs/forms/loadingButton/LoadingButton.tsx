@@ -14,7 +14,15 @@ export interface LoadingButtonProps extends ButtonProps {
 }
 
 const LoadingButton = forwardRef<HTMLButtonElement, LoadingButtonProps>((props, ref) => {
-  const { children, variant = 'contained', disabled = false, loading = false, onClick, className, name } = props;
+  const {
+    children,
+    variant = 'contained',
+    disabled = false,
+    loading = false,
+    onClick,
+    className,
+    name,
+  } = props;
 
   return (
     <Styled.LoadingButton

@@ -6,10 +6,9 @@ import { FormFieldMapping } from '@/libs/forms/formMapping';
 import { pokemonTypeValueMap } from '@/types/models/pokemon/pokemon.type';
 import { allowedCharactersRegex } from '@/utils/form-regex';
 
-const pokemonTypeValueEnum: [string, ...string[]] = pokemonTypeValueMap.map((type) => type.value as string) as [
-  string,
-  ...string[],
-];
+const pokemonTypeValueEnum: [string, ...string[]] = pokemonTypeValueMap.map(
+  (type) => type.value as string
+) as [string, ...string[]];
 class pokemonFormMapping extends BaseFormSchema {
   pokemonType: FormFieldMapping = {
     name: 'pokemonType',

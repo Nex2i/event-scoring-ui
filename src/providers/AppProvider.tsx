@@ -16,7 +16,13 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       fallback={
         <div
           id="fallback-loader"
-          style={{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          style={{
+            width: '100vw',
+            height: '100vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         >
           <CircularProgress />
         </div>

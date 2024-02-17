@@ -10,7 +10,12 @@ type DynamicTableProps = {
   activeShotId: string;
 };
 
-const DynamicTable = ({ roundData, onCellChange, activeShotId, activeTargetId }: DynamicTableProps) => {
+const DynamicTable = ({
+  roundData,
+  onCellChange,
+  activeShotId,
+  activeTargetId,
+}: DynamicTableProps) => {
   const [round, setRound] = useState<Round>(roundData);
 
   useEffect(() => {
@@ -32,7 +37,9 @@ const DynamicTable = ({ roundData, onCellChange, activeShotId, activeTargetId }:
       <Styled.Row>
         <Styled.ScoreCell>Target</Styled.ScoreCell>
         {round.targets.length > 0 &&
-          round.targets[0].shots.map((shot) => <Styled.ScoreCell key={shot.id}>{shot.name}</Styled.ScoreCell>)}
+          round.targets[0].shots.map((shot) => (
+            <Styled.ScoreCell key={shot.id}>{shot.name}</Styled.ScoreCell>
+          ))}
       </Styled.Row>
       {round.targets.map((target, targetIndex) => (
         <Styled.Row key={targetIndex}>
@@ -46,7 +53,9 @@ const DynamicTable = ({ roundData, onCellChange, activeShotId, activeTargetId }:
               >
                 <BasicFilledSelect
                   value={shot.score ? shot.score.toString() : ''}
-                  onValueChange={(updatedValue: string) => handleCellValueChange(target.id, shot.id, updatedValue)}
+                  onValueChange={(updatedValue: string) =>
+                    handleCellValueChange(target.id, shot.id, updatedValue)
+                  }
                   options={scoreCellOptions}
                 />
               </Styled.ScoreCell>
@@ -61,6 +70,8 @@ const DynamicTable = ({ roundData, onCellChange, activeShotId, activeTargetId }:
 
 export default DynamicTable;
 
-function createOptionsFromTarget(target: BullseyeRing[]): { value: string | number; displayName?: string }[] {
+function createOptionsFromTarget(
+  target: BullseyeRing[]
+): { value: string | number; displayName?: string }[] {
   return target.map((ring) => ({ value: ring.score, displayName: ring.score.toString() }));
 }

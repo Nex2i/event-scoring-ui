@@ -2,7 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { ApiContext } from '@/apis/api.context';
 import { useAppDispatch } from '@/stores/store.hooks';
 import { setSnackbarProps } from '@/stores/slices/SnackBar.slice';
-import { EditPokemonRequest, CreatePokemonRequest, Pokemon } from '@/types/models/pokemon/pokemon.type';
+import {
+  EditPokemonRequest,
+  CreatePokemonRequest,
+  Pokemon,
+} from '@/types/models/pokemon/pokemon.type';
 import { addNewPokemon, setActivePokemon } from '@/stores/slices/Pokemon.slice';
 
 export function usePokemonRequest(

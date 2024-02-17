@@ -10,7 +10,9 @@ interface BullseyeProps {
 const strokeWidth = 2;
 export const Bullseye: FC<BullseyeProps> = ({ onClick, activeTargetId }) => {
   const trackerSlice = trackerSelector();
-  const rings = trackerSlice.ActiveRound.targets.find((target) => target.id === activeTargetId)?.bullseye.rings ?? [];
+  const rings =
+    trackerSlice.ActiveRound.targets.find((target) => target.id === activeTargetId)?.bullseye
+      .rings ?? [];
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState(100); // Default size

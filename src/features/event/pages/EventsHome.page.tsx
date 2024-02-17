@@ -1,7 +1,7 @@
 import { FC } from 'react';
+import { Box } from '@mui/material';
 import * as Styled from '../event.styles';
 import { NewEventCube } from '../components/NewEventCube';
-import { Box } from '@mui/material';
 import { EventsCubes } from '../components/EventsCubes';
 
 interface EventsHomePageProps {}

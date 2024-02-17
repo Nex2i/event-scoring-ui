@@ -11,7 +11,11 @@ export enum loginActions {
   register = 'register',
 }
 
-type hookResponse = { loginAction: loginActions | undefined; isAuthorizing: boolean; isAuthorized: boolean };
+type hookResponse = {
+  loginAction: loginActions | undefined;
+  isAuthorizing: boolean;
+  isAuthorized: boolean;
+};
 
 export function useLogin(email: string, password: string): hookResponse {
   const [action, setAction] = useState<loginActions>();

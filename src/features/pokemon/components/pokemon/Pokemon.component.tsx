@@ -36,7 +36,9 @@ export const Pokemon: FC<PokemonProps> = ({}) => {
       </Styled.Row>
 
       <Styled.TypeChip label={type} type={type} />
-      {isEditOpen && <PokemonFormDialog pokemon={pokemon} isOpen={isEditOpen} handleClose={toggleEdit} />}
+      {isEditOpen && (
+        <PokemonFormDialog pokemon={pokemon} isOpen={isEditOpen} handleClose={toggleEdit} />
+      )}
     </div>
   );
 };

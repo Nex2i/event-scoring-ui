@@ -7,7 +7,11 @@ interface BasicFilledSelectProps {
   options: { value: string | number; displayName?: string }[];
 }
 
-export const BasicFilledSelect: FC<BasicFilledSelectProps> = ({ value, onValueChange, options }) => {
+export const BasicFilledSelect: FC<BasicFilledSelectProps> = ({
+  value,
+  onValueChange,
+  options,
+}) => {
   const onChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onValueChange(event.target.value as string);
   };

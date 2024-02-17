@@ -1,7 +1,10 @@
 import { Control, Controller } from 'react-hook-form';
 import { Checkbox, FormControl, FormControlLabel } from '@mui/material';
 import * as Styled from '../form.styles';
-import { CheckBoxToValueTransformer, ValueToCheckBoxTransformer } from './FormFilledCheckBoxTransformers';
+import {
+  CheckBoxToValueTransformer,
+  ValueToCheckBoxTransformer,
+} from './FormFilledCheckBoxTransformers';
 
 interface FormFilledCheckboxProps<T> {
   name: string;

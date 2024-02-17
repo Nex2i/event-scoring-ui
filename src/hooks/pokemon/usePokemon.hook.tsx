@@ -5,7 +5,10 @@ import { useAppDispatch } from '@/stores/store.hooks';
 import { Pokemon } from '@/types/models/pokemon/pokemon.type';
 import { pokemonSelector, setActivePokemon } from '@/stores/slices/Pokemon.slice';
 
-export function usePokemonHook(pokemonId: string, setIsFetching: (fetching: boolean) => void): Pokemon | undefined {
+export function usePokemonHook(
+  pokemonId: string,
+  setIsFetching: (fetching: boolean) => void
+): Pokemon | undefined {
   const apis = useContext(ApiContext);
   const pokemonSlice = pokemonSelector();
   const dispatch = useAppDispatch();

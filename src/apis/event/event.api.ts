@@ -1,6 +1,6 @@
 import HttpClient from '@/libs/http/http.client';
-import { BaseRepository } from '../base.repository';
 import { EventModel, EventModelCreate } from '@/types/models/event/event.model';
+import { BaseRepository } from '../base.repository';
 
 export class EventApi extends BaseRepository {
   getEventsByCompanyId = async (companyId: string): Promise<{ events: EventModel[] }> => {

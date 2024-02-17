@@ -72,7 +72,11 @@ export const Pokemons: FC<PokemonsProps> = ({}) => {
         </ul>
       )}
       {isNewFormOpen && (
-        <PokemonFormDialog pokemon={defaultNewPokemon} isOpen={isNewFormOpen} handleClose={toggleEdit} />
+        <PokemonFormDialog
+          pokemon={defaultNewPokemon}
+          isOpen={isNewFormOpen}
+          handleClose={toggleEdit}
+        />
       )}
     </div>
   );

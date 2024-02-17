@@ -1,13 +1,12 @@
-import { ApiContext } from '@/apis/api.context';
-import { useAppDispatch } from '@/stores/store.hooks';
-import { EventModelCreate } from '@/types/models/event/event.model';
 import { useContext, useEffect, useState } from 'react';
-import { NewEventFormSchema } from './newEventForm';
+import { useNavigate } from 'react-router-dom';
+import { ApiContext } from '@/apis/api.context';
+import { EventModelCreate } from '@/types/models/event/event.model';
 import { CourseModelCreate } from '@/types/models/course/course.model';
-import { useAuth } from '../authentication/useAuth.hook';
 import { TargetModel } from '@/types/models/target/target.model';
 import { ShotModel } from '@/types/models/shot/shot.model';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../authentication/useAuth.hook';
+import { NewEventFormSchema } from './newEventForm';
 
 interface hookResponse {
   isFetching: boolean;

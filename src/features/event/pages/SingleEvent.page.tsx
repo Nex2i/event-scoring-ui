@@ -1,7 +1,7 @@
-import { LoadingComponent } from '@/components/loading/Loading.Component';
-import { useEventHook } from '@/hooks/event/useEvent.hook';
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
+import { LoadingComponent } from '@/components/loading/Loading.Component';
+import { useEventHook } from '@/hooks/event/useEvent.hook';
 
 interface SingleEventPageProps {}
 

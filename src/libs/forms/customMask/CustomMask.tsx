@@ -18,7 +18,16 @@ const CustomMask = React.forwardRef<HTMLElement, CustomProps>((props, ref) => {
     onChange({ target: { name: props.name, value } });
   };
 
-  return <IMaskInput {...other} inputRef={typedRef} onAccept={onAccept} unmask overwrite={overwrite} radix="." />;
+  return (
+    <IMaskInput
+      {...other}
+      inputRef={typedRef}
+      onAccept={onAccept}
+      unmask
+      overwrite={overwrite}
+      radix="."
+    />
+  );
 });
 
 export default CustomMask;

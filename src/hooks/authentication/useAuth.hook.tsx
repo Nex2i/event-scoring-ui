@@ -5,7 +5,12 @@ import { authenticationSelector, removeAuthentication } from '@/stores/slices/Au
 import { useAppDispatch } from '@/stores/store.hooks';
 import { ApiContext } from '@/apis/api.context';
 
-type hookResponse = { user: IAuthenticationState; error: any; isAuthenticated: boolean; logout: () => Promise<void> };
+type hookResponse = {
+  user: IAuthenticationState;
+  error: any;
+  isAuthenticated: boolean;
+  logout: () => Promise<void>;
+};
 export function useAuth(): hookResponse {
   const navigate = useNavigate();
   const apis = useContext(ApiContext);
