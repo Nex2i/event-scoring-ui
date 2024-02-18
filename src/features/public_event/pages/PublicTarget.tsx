@@ -1,13 +1,18 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Bullseye } from '@/features/tracking/components/bullseye';
 import { EventModel } from '@/types/models/event/event.model';
 import { useTargetTypeHook } from '@/hooks/target/useTargetType.hook';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { TargetModel } from '@/types/models/target/target.model';
-import { publicEventSelector } from '@/stores/slices/PublicEvent.slice';
+import {
+  publicEventSelector,
+  recordScore,
+  setActiveShotId,
+} from '@/stores/slices/PublicEvent.slice';
 import { NextTargetButton } from '../components/NextTargetButton';
 import { TargetShots } from '../components/TargetShots';
+import { useAppDispatch } from '@/stores/store.hooks';
 
 interface PublicTargetProps {
   event: EventModel;
@@ -16,11 +21,38 @@ interface PublicTargetProps {
 export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
   const { targetId, courseId } = useParams() as { targetId: string; courseId: string };
   const { isFetching, bullseye } = useTargetTypeHook({ targetId });
+  const dispatch = useAppDispatch();
   const target = getTargetFromEvent(event, courseId, targetId);
-  const { totalScore } = publicEventSelector().userCourseData ?? { totalScore: 0 };
+  const { userCourseData, activeShotId } = publicEventSelector();
+  const { totalScore } = userCourseData ?? { totalScore: 0 };
+
+  useEffect(() => {
+    if (target) {
+      dispatch(setActiveShotId(target.Shots[0].id));
+    }
+  }, [targetId]);
 
   const bullseyeClick = (shotScore: number) => {
-    console.log('bullseyeClick', shotScore);
+    if (!activeShotId || !target) return;
+
+    const currentShotIndex = target.Shots.findIndex((shot) => shot.id === activeShotId);
+    if (currentShotIndex === -1) return;
+
+    dispatch(
+      recordScore({
+        courseId: courseId,
+        targetId: targetId,
+        shotId: activeShotId,
+        score: shotScore,
+      })
+    );
+
+    const isLastShot = currentShotIndex === target.Shots.length - 1;
+    if (isLastShot) return;
+
+    const nextShotId = target.Shots[currentShotIndex + 1].id;
+
+    dispatch(setActiveShotId(nextShotId));
   };
 
   if (isFetching) return <LoadingComponent />;

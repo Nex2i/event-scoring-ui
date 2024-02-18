@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { EventModel } from '@/types/models/event/event.model';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import * as Styled from '../publicEvent.styles';
+import { clearAll } from '@/utils/localStorage';
 
 interface NextTargetButtonProps {
   event: EventModel;
@@ -65,7 +66,11 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
   };
   return (
     <Styled.AroundRow>
-      {!isFirstTarget && <Button onClick={goToPreviousTarget}>Back</Button>}
+      {isFirstTarget ? (
+        <Button onClick={clearCache}>Reset</Button>
+      ) : (
+        <Button onClick={goToPreviousTarget}>Back</Button>
+      )}
       {isLastTarget ? (
         <Button onClick={goToNextTarget}>Submit Score</Button>
       ) : (
@@ -74,3 +79,8 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
     </Styled.AroundRow>
   );
 };
+
+function clearCache() {
+  clearAll();
+  location.reload();
+}

@@ -3,9 +3,9 @@ import { UserCourseDataModel } from '@/types/models/userInteraction/userCourseDa
 
 export class PublicEventState {
   activeEvent?: EventModel;
+  activeShotId?: string;
   userCourseData?: UserCourseDataModel;
   totalTargetScore: number = 0;
-  activeShotId: string = '';
 }
 
 export interface RecordShotPayload {

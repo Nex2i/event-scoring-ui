@@ -22,4 +22,4 @@ const getLocal = (key: LocalKeys | string) => {
   return localStorage.getItem(key);
 };
 
-export { LocalKeys, setLocal, removeLocal, getLocal };
+export { LocalKeys, setLocal, removeLocal, getLocal, clearAll };

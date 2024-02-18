@@ -25,12 +25,15 @@ export const publicEventSlice = createSlice({
       const firstCourseId = action.payload.Courses?.[0].id;
       state.userCourseData = createInitialCourse(firstCourseId);
     },
+    setActiveShotId: (state, action: PayloadAction<string>) => {
+      state.activeShotId = action.payload;
+    },
   },
 });
 
 export const publicEventSelector = () => useAppSelector((store) => store.publicEvent);
 
-export const { recordScore, initializeEvent } = publicEventSlice.actions;
+export const { recordScore, initializeEvent, setActiveShotId } = publicEventSlice.actions;
 
 export default publicEventSlice.reducer;
 

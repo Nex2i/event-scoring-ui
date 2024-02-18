@@ -3,7 +3,11 @@ import { TargetModel } from '@/types/models/target/target.model';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
 import { BullseyeRing } from '@/types/models/tracker/tracker.type';
 import { useAppDispatch } from '@/stores/store.hooks';
-import { publicEventSelector, recordScore } from '@/stores/slices/PublicEvent.slice';
+import {
+  publicEventSelector,
+  recordScore,
+  setActiveShotId,
+} from '@/stores/slices/PublicEvent.slice';
 import * as Styled from '../publicEvent.styles';
 import { UserCourseDataModel } from '@/types/models/userInteraction/userCourseData.model';
 
@@ -13,9 +17,8 @@ interface TargetShotsProps {
 }
 
 export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
-  const [activeShotId, setActiveShotId] = useState(target.Shots[0].id);
   const dispatch = useAppDispatch();
-  const { userCourseData } = publicEventSelector();
+  const { userCourseData, activeShotId } = publicEventSelector();
 
   const scoreCellOptions = shotValueOptions(rings);
 
@@ -37,7 +40,7 @@ export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
 
     const nextShotId = target.Shots[currentShotIndex + 1].id;
 
-    setActiveShotId(nextShotId);
+    dispatch(setActiveShotId(nextShotId));
   };
 
   return target.Shots.map((shot, shotIndex) => {
