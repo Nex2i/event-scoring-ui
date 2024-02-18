@@ -5,9 +5,9 @@ import { EventModel } from '@/types/models/event/event.model';
 import { useTargetTypeHook } from '@/hooks/target/useTargetType.hook';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { TargetModel } from '@/types/models/target/target.model';
+import { publicEventSelector } from '@/stores/slices/PublicEvent.slice';
 import { NextTargetButton } from '../components/NextTargetButton';
 import { TargetShots } from '../components/TargetShots';
-import { publicEventSelector } from '@/stores/slices/PublicEvent.slice';
 
 interface PublicTargetProps {
   event: EventModel;

@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { useAppSelector } from '../store.hooks';
-import { PublicEventState, RecordShotPayload } from '../sliceTypes/PublicEventState.type';
 import { EventModel } from '@/types/models/event/event.model';
 import {
   UserCourseDataModel,
   UserShotDataModel,
   UserTargetDataModel,
 } from '@/types/models/userInteraction/userCourseData.model';
+import { useAppSelector } from '../store.hooks';
+import { PublicEventState, RecordShotPayload } from '../sliceTypes/PublicEventState.type';
 
 export const initialPublicEventState = {} as PublicEventState;
 

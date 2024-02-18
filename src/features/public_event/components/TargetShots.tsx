@@ -2,9 +2,9 @@ import { FC, useState } from 'react';
 import { TargetModel } from '@/types/models/target/target.model';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
 import { BullseyeRing } from '@/types/models/tracker/tracker.type';
-import * as Styled from '../publicEvent.styles';
 import { useAppDispatch } from '@/stores/store.hooks';
 import { recordScore } from '@/stores/slices/PublicEvent.slice';
+import * as Styled from '../publicEvent.styles';
 
 interface TargetShotsProps {
   target: TargetModel;

@@ -3,10 +3,10 @@ import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { useGuestAuth } from '@/hooks/authentication/useGuestAuth.hook';
+import { usePublicEventHook } from '@/hooks/event/usePublicEvent.hook';
 import { PublicEventHome } from './pages/PublicEventHome';
 import { PublicTarget } from './pages/PublicTarget';
 import * as Styled from './publicEvent.styles';
-import { usePublicEventHook } from '@/hooks/event/usePublicEvent.hook';
 
 interface PublicEventRoutesProps {}
 
