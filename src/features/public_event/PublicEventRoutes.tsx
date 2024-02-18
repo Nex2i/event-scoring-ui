@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
+import * as Styled from './publicEvent.styles';
 import { publicEventRoutes } from '@/routes/RouteConstants';
-import { PublicLayout } from '@/layouts/public-layout/PublicLayout';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { useEventHook } from '@/hooks/event/useEvent.hook';
 import { PublicEventHome } from './pages/PublicEventHome';
@@ -12,10 +12,12 @@ interface PublicEventRoutesProps {}
 
 export const PublicEventRoutes: FC<PublicEventRoutesProps> = ({}) => {
   return (
-    <PublicLayout>
-      <Route path="/:id/*" element={<PublicEventRoutesWrapper />} />
-      <Route path={'*'} element={<Navigate to={'/' + publicEventRoutes.base} />} />
-    </PublicLayout>
+    <Styled.CoreLayoutOutlet>
+      <Routes>
+        <Route path="/:id/*" element={<PublicEventRoutesWrapper />} />
+        <Route path={'*'} element={<Navigate to={'/' + publicEventRoutes.base} />} />
+      </Routes>
+    </Styled.CoreLayoutOutlet>
   );
 };
 

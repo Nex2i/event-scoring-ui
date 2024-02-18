@@ -13,7 +13,6 @@ import { FC, useEffect, useRef, useState } from 'react';
 import * as Styled from '@/common/style';
 
 import siteLogo from '@/assets/event-score.png';
-import { useNavigate } from 'react-router-dom';
 
 interface QrCodeProps {
   url: string;

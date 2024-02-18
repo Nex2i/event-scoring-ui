@@ -16,12 +16,6 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   const startCourse = () => {
     const firstCourseId = event.Courses?.[0].id;
     const firstTargetId = event.Courses?.[0].Targets[0].id;
-    console.log('firstCourseId', firstCourseId);
-    console.log('firstTargetId', firstTargetId);
-    console.log(
-      'event.id',
-      `${publicEventRoutes.base}/${event.id}/${firstCourseId}/${firstTargetId}`
-    );
     navigate(`/${publicEventRoutes.base}/${event.id}/${firstCourseId}/${firstTargetId}`);
   };
 

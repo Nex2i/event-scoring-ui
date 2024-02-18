@@ -8,9 +8,13 @@ interface redirectProps {}
 export const Redirect: FC<redirectProps> = ({}) => {
   const { isMobile } = useContext(UserAgentContext);
 
-  if (isMobile) {
-    return <Navigate to={noAuthHomeRoute} />;
-  } else {
-    return <Navigate to={desktopNoAuthHomeRoute} />;
-  }
+  // if (isMobile) {
+  //   return <Navigate to={noAuthHomeRoute} />;
+  // } else {
+  //   return <Navigate to={desktopNoAuthHomeRoute} />;
+  // }
+
+  console.log('Redirecting to noAuthHomeRoute', window);
+
+  return <></>;
 };

@@ -26,17 +26,6 @@ export const CoreColumn = styled(Box)<{ width?: string }>(({ width }) => ({
   flexDirection: 'column',
   width: width || 'auto',
 }));
-
-export const CoreLayoutOutlet = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  width: '100%',
-  // height: '100vh',
-  // overflow: 'auto',
-  marginTop: theme.spacing(1),
-}));
 export const CoreCardContent = styled(Card)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',

@@ -148,3 +148,12 @@ export const ScrollableContainer = styled(Box)<{ maxHeight?: string }>(({ maxHei
   height: '100%',
   maxHeight: maxHeight || '50vh',
 }));
+
+export const CoreLayoutOutlet = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  width: '100%',
+  marginTop: theme.spacing(1),
+}));

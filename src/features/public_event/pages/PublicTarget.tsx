@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Bullseye as BullseyeType } from '@/types/models/tracker/tracker.type';
 import { Bullseye } from '@/features/tracking/components/bullseye';
 import { EventModel } from '@/types/models/event/event.model';
@@ -8,6 +8,8 @@ import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { TargetModel } from '@/types/models/target/target.model';
 import * as Styled from '../publicEvent.styles';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
+import { Button } from '@mui/material';
+import { publicEventRoutes } from '@/routes/RouteConstants';
 
 interface PublicTargetProps {
   event: EventModel;
@@ -15,6 +17,8 @@ interface PublicTargetProps {
 
 export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
   const [activeShotId, setActiveShotId] = useState();
+  const [isLastTarget, setIsLastTarget] = useState(false);
+  const navigate = useNavigate();
   const { targetId, courseId } = useParams() as { targetId: string; courseId: string };
   const { isFetching, bullseye } = useTargetTypeHook({ targetId });
   const target = getTargetFromEvent(event, courseId, targetId);
@@ -24,6 +28,30 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
   };
 
   const recordShot = (shotId: string, newValue: string) => {};
+
+  const goToNextTarget = () => {
+    if (!event.Courses) return;
+
+    const currentCourseIndex = event.Courses?.findIndex((course) => course.id === courseId) ?? -1;
+    const currentTargetIndex = event.Courses?.[currentCourseIndex]?.Targets.findIndex(
+      (target) => target.id === targetId
+    );
+
+    const isLastTarget =
+      currentTargetIndex === event.Courses[currentCourseIndex].Targets.length - 1;
+    if (isLastTarget) {
+      console.log('Current target is the last target in the list');
+      setIsLastTarget(true);
+      return; // Exit the function if no further navigation is needed
+    }
+
+    const nextTargetId = event.Courses[currentCourseIndex].Targets[currentTargetIndex + 1]?.id;
+    if (nextTargetId) {
+      navigate(`/${publicEventRoutes.base}/${event.id}/${courseId}/${nextTargetId}`);
+    } else {
+      console.log('No next target found');
+    }
+  };
 
   if (isFetching) return <LoadingComponent />;
   if (!target) return <p>Could Not Find Target</p>;
@@ -51,6 +79,11 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
           </Styled.ScoreCell>
         );
       })}
+      {isLastTarget ? (
+        <Button onClick={goToNextTarget}>Submit Score</Button>
+      ) : (
+        <Button onClick={goToNextTarget}>Next Target</Button>
+      )}
     </div>
   );
 };
