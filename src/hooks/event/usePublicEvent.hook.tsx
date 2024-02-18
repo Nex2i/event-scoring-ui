@@ -3,6 +3,7 @@ import { ApiContext } from '@/apis/api.context';
 import { EventModel } from '@/types/models/event/event.model';
 import { useAppDispatch } from '@/stores/store.hooks';
 import { initializeEvent, publicEventSelector } from '@/stores/slices/PublicEvent.slice';
+import localStorageRepository from '@/utils/localStorage.repository';
 
 interface hookResponse {
   isFetching: boolean;
@@ -19,6 +20,13 @@ export const usePublicEventHook = (eventId: string): hookResponse => {
     let isMounted = true;
 
     setIsFetching(true);
+
+    const cachedEvent = localStorageRepository.getActivePublicEvent(eventId);
+    if (cachedEvent) {
+      dispatch(initializeEvent(cachedEvent));
+      setIsFetching(false);
+      return;
+    }
 
     if (eventSlice.activeEvent) {
       setIsFetching(false);

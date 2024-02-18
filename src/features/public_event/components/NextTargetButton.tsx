@@ -53,7 +53,7 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
 
     if (isLastTarget) {
       setIsLastTarget(true);
-      return; // Exit
+      return;
     }
 
     const nextTargetId = event.Courses[currentCourseIndex].Targets[currentTargetIndex + 1]?.id;

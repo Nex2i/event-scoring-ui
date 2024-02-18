@@ -1,4 +1,5 @@
 import { Round } from '@/types/models/tracker/tracker.type';
+import { EventModel } from '@/types/models/event/event.model';
 import { getLocal, LocalKeys, removeLocal, setLocal } from './localStorage';
 
 class LocalStorageRepository {
@@ -25,6 +26,16 @@ class LocalStorageRepository {
 
   public setActiveRound(round: Round): void {
     setLocal(LocalKeys.ACTIVE_ROUND, JSON.stringify(round));
+  }
+
+  setActivePublicEvent(event: EventModel): void {
+    setLocal(event.id, JSON.stringify(event));
+  }
+
+  getActivePublicEvent(eventId: string): EventModel | null {
+    const event = getLocal(eventId);
+    if (event) return JSON.parse(event) as EventModel;
+    return null;
   }
 
   public deleteActiveRound(): void {

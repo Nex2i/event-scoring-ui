@@ -3,9 +3,10 @@ enum LocalKeys {
   ACTIVE_LOCATION = 'ACTIVE_LOCATION',
   ACTIVE_LOGO = 'ACTIVE_LOGO',
   ACTIVE_ROUND = 'ACTIVE_ROUND',
+  ACTIVE_PUBLIC_EVENT = 'ACTIVE_PUBLIC_EVENT',
 }
 
-const setLocal = (key: LocalKeys, value: string) => {
+const setLocal = (key: LocalKeys | string, value: string) => {
   localStorage.setItem(key, value);
 };
 
@@ -13,7 +14,11 @@ const removeLocal = (key: LocalKeys) => {
   localStorage.removeItem(key);
 };
 
-const getLocal = (key: LocalKeys) => {
+const clearAll = () => {
+  localStorage.clear();
+};
+
+const getLocal = (key: LocalKeys | string) => {
   return localStorage.getItem(key);
 };
 
