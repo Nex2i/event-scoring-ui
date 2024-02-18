@@ -6,6 +6,7 @@ import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { useEventHook } from '@/hooks/event/useEvent.hook';
 import { PublicEventHome } from './pages/PublicEventHome';
 import { PublicTarget } from './pages/PublicTarget';
+import { useGuestAuth } from '@/hooks/authentication/useGuestAuth.hook';
 
 interface PublicEventRoutesProps {}
 
@@ -20,9 +21,10 @@ export const PublicEventRoutes: FC<PublicEventRoutesProps> = ({}) => {
 
 export const PublicEventRoutesWrapper: FC = ({}) => {
   const { id } = useParams() as { id: string };
+  const { isFetching: isAuthFetching } = useGuestAuth(id);
   const { isFetching, event } = useEventHook(id);
 
-  if (isFetching) {
+  if (isFetching || isAuthFetching) {
     return <LoadingComponent />;
   }
   if (!event) {

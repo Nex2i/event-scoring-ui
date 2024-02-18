@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAuthenticationState, USER_TYPE } from '@/stores/sliceTypes/Authentication.type';
+import {
+  IAuthenticationState,
+  IGuestAuthentication,
+  USER_TYPE,
+} from '@/stores/sliceTypes/Authentication.type';
 import { useAppSelector } from '@/stores/store.hooks';
 import localStorageRepository from '@/utils/localStorage.repository';
 
@@ -17,6 +21,10 @@ export const authenticationSlice = createSlice({
   initialState: initialAuthenticationState,
   reducers: {
     setAuthentication: (state, action: PayloadAction<IAuthenticationState>) => {
+      localStorageRepository.setUserToken(action.payload.token);
+      Object.assign(state, action.payload);
+    },
+    setGuestAuthentication: (state, action: PayloadAction<IGuestAuthentication>) => {
       localStorageRepository.setUserToken(action.payload.token);
       Object.assign(state, action.payload);
     },

@@ -7,6 +7,12 @@ export interface IAuthenticationState {
   userType: USER_TYPE;
 }
 
+export interface IGuestAuthentication {
+  token: string;
+  companyId: string;
+  userType: USER_TYPE;
+}
+
 export enum USER_TYPE {
   GUEST,
   ADMIN,
