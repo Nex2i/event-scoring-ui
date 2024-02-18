@@ -1,11 +1,12 @@
 import { Button } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { EventModel } from '@/types/models/event/event.model';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import { clearAll } from '@/utils/localStorage';
 import { publicEventSelector } from '@/stores/slices/PublicEvent.slice';
 import * as Styled from '../publicEvent.styles';
+import { ApiContext } from '@/apis/api.context';
 
 interface NextTargetButtonProps {
   event: EventModel;
@@ -17,6 +18,7 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
   const [isLastTarget, setIsLastTarget] = useState(false);
   const [isFirstTarget, setIsFirstTarget] = useState(true);
   const { userCourseData } = publicEventSelector();
+  const { userRecordApi } = useContext(ApiContext);
 
   useEffect(() => {
     if (!event.Courses) return;
@@ -67,8 +69,17 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
     }
   };
 
-  const submitScore = () => {
-    console.log('submit score', userCourseData);
+  const submitScore = async () => {
+    if (!userCourseData) return;
+
+    await userRecordApi
+      .submitCourse(userCourseData)
+      .then(() => {
+        navigate(`/${publicEventRoutes.base}/${event.id}?submitted=true`);
+      })
+      .catch((error) => {
+        console.error('Error submitting score', error);
+      });
   };
   return (
     <Styled.AroundRow>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { EventModel } from '@/types/models/event/event.model';
 import { formatDate } from '@/shared/formatDate';
 import { publicEventRoutes } from '@/routes/RouteConstants';
+import { useQuery } from '@/libs/routing/useQuery.hook';
 
 interface PublicEventHomeProps {
   event: EventModel;
@@ -11,6 +12,7 @@ interface PublicEventHomeProps {
 
 export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   const navigate = useNavigate();
+  const [isSubmitted] = useQuery(['submitted']);
   const { totalTargets, averageShotsPerTarget } = calculateTargetsAndShots(event);
 
   const startCourse = () => {
@@ -31,7 +33,14 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
       <br />
       <br />
       <br />
-      <Button onClick={startCourse}>START</Button>
+      {isSubmitted === 'true' ? (
+        <>
+          <Typography variant="h6">You have already submitted your scores</Typography>
+          <Button onClick={startCourse}>Go Again</Button>
+        </>
+      ) : (
+        <Button onClick={startCourse}>START</Button>
+      )}
     </div>
   );
 };
