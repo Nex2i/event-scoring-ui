@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
-import { useEventHook } from '@/hooks/event/useEvent.hook';
 import { useGuestAuth } from '@/hooks/authentication/useGuestAuth.hook';
 import { PublicEventHome } from './pages/PublicEventHome';
 import { PublicTarget } from './pages/PublicTarget';
 import * as Styled from './publicEvent.styles';
+import { usePublicEventHook } from '@/hooks/event/usePublicEvent.hook';
 
 interface PublicEventRoutesProps {}
 
@@ -24,7 +24,7 @@ export const PublicEventRoutes: FC<PublicEventRoutesProps> = ({}) => {
 export const PublicEventRoutesWrapper: FC = ({}) => {
   const { id } = useParams() as { id: string };
   const { isFetching: isAuthFetching } = useGuestAuth(id);
-  const { isFetching, event } = useEventHook(id);
+  const { isFetching, event } = usePublicEventHook(id);
 
   if (isFetching || isAuthFetching) {
     return <LoadingComponent />;

@@ -3,6 +3,7 @@ import { ShotModel, ShotModelCreate } from '../shot/shot.model';
 
 export interface TargetModel extends IBaseModel {
   id: string;
+  courseId: string;
   name: string;
   distance: number;
   targetTypeId: string;
