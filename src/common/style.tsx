@@ -84,6 +84,10 @@ export const SpreadRow = styled(Row)(({}) => ({
   justifyContent: 'space-between',
 }));
 
+export const AroundRow = styled(Row)(({}) => ({
+  justifyContent: 'space-around',
+}));
+
 export const TrackerHeader = styled(Row)(({ theme }) => ({
   padding: `0 ${theme.spacing(2)}`,
   width: '90%',
