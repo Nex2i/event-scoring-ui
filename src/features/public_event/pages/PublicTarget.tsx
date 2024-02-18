@@ -1,15 +1,13 @@
 import { FC, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Bullseye as BullseyeType } from '@/types/models/tracker/tracker.type';
 import { Bullseye } from '@/features/tracking/components/bullseye';
 import { EventModel } from '@/types/models/event/event.model';
 import { useTargetTypeHook } from '@/hooks/target/useTargetType.hook';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { TargetModel } from '@/types/models/target/target.model';
-import * as Styled from '../publicEvent.styles';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
-import { Button } from '@mui/material';
-import { publicEventRoutes } from '@/routes/RouteConstants';
+import * as Styled from '../publicEvent.styles';
 import { NextTargetButton } from '../components/NextTargetButton';
 
 interface PublicTargetProps {
@@ -17,7 +15,7 @@ interface PublicTargetProps {
 }
 
 export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
-  const [activeShotId, setActiveShotId] = useState();
+  const [activeShotId, _setActiveShotId] = useState();
   const { targetId, courseId } = useParams() as { targetId: string; courseId: string };
   const { isFetching, bullseye } = useTargetTypeHook({ targetId });
   const target = getTargetFromEvent(event, courseId, targetId);
@@ -26,7 +24,7 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
     console.log('bullseyeClick', shotScore);
   };
 
-  const recordShot = (shotId: string, newValue: string) => {};
+  const recordShot = (_shotId: string, _newValue: string) => {};
 
   if (isFetching) return <LoadingComponent />;
   if (!target) return <p>Could Not Find Target</p>;

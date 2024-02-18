@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
-import * as Styled from './publicEvent.styles';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { useEventHook } from '@/hooks/event/useEvent.hook';
+import { useGuestAuth } from '@/hooks/authentication/useGuestAuth.hook';
 import { PublicEventHome } from './pages/PublicEventHome';
 import { PublicTarget } from './pages/PublicTarget';
-import { useGuestAuth } from '@/hooks/authentication/useGuestAuth.hook';
+import * as Styled from './publicEvent.styles';
 
 interface PublicEventRoutesProps {}
 

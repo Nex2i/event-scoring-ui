@@ -1,8 +1,8 @@
-import { publicEventRoutes } from '@/routes/RouteConstants';
-import { EventModel } from '@/types/models/event/event.model';
 import { Button } from '@mui/material';
 import { FC, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { EventModel } from '@/types/models/event/event.model';
+import { publicEventRoutes } from '@/routes/RouteConstants';
 
 interface NextTargetButtonProps {
   event: EventModel;

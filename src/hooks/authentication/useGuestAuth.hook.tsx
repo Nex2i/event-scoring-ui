@@ -1,8 +1,8 @@
+import { useContext, useEffect, useState } from 'react';
 import { ApiContext } from '@/apis/api.context';
-import { authenticationSelector, setAuthentication } from '@/stores/slices/Authentication.slice';
+import { setAuthentication } from '@/stores/slices/Authentication.slice';
 import { useAppDispatch } from '@/stores/store.hooks';
 import localStorageRepository from '@/utils/localStorage.repository';
-import { useContext, useEffect, useState } from 'react';
 
 interface hookResponse {
   isFetching: boolean;
