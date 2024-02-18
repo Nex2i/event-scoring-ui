@@ -1,6 +1,7 @@
 import { Round } from '@/types/models/tracker/tracker.type';
 import { EventModel } from '@/types/models/event/event.model';
 import { getLocal, LocalKeys, removeLocal, setLocal } from './localStorage';
+import { UserCourseDataModel } from '@/types/models/userInteraction/userCourseData.model';
 
 class LocalStorageRepository {
   public getUserToken(): string | null {
@@ -28,8 +29,18 @@ class LocalStorageRepository {
     setLocal(LocalKeys.ACTIVE_ROUND, JSON.stringify(round));
   }
 
-  setActivePublicEvent(event: EventModel): void {
+  public setActivePublicEvent(event: EventModel): void {
     setLocal(event.id, JSON.stringify(event));
+  }
+
+  public setUserCourseData(userCourseData: UserCourseDataModel): void {
+    setLocal(userCourseData.courseId, JSON.stringify(userCourseData));
+  }
+
+  public getUserCourseData(courseId: string): UserCourseDataModel | null {
+    const courseData = getLocal(courseId);
+    if (courseData) return JSON.parse(courseData) as UserCourseDataModel;
+    return null;
   }
 
   getActivePublicEvent(eventId: string): EventModel | null {

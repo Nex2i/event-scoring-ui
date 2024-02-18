@@ -35,7 +35,6 @@ export const { recordScore, initializeEvent } = publicEventSlice.actions;
 export default publicEventSlice.reducer;
 
 function calculateTotalScore(targets: UserTargetDataModel[]) {
-  console.log('targets', targets);
   return targets.reduce((acc, target) => acc + target.totalScore, 0);
 }
 
@@ -48,11 +47,20 @@ function createInitialCourse(courseId?: string): UserCourseDataModel {
     throw new Error('No courseId');
   }
 
-  return {
+  const cachedUserCourseData = localStorageRepository.getUserCourseData(courseId);
+  if (cachedUserCourseData) {
+    return cachedUserCourseData;
+  }
+
+  const userCourseData: UserCourseDataModel = {
     courseId: courseId,
     totalScore: 0,
     targets: [],
   };
+
+  localStorageRepository.setUserCourseData(userCourseData);
+
+  return userCourseData;
 }
 
 function recordUserScore(state: PublicEventState, action: PayloadAction<RecordShotPayload>) {
@@ -78,6 +86,7 @@ function recordUserScore(state: PublicEventState, action: PayloadAction<RecordSh
       shots: [{ shotId, score, time: new Date() }],
     });
     state.userCourseData.totalScore = calculateTotalScore(state.userCourseData.targets);
+
     return;
   }
 
@@ -99,4 +108,6 @@ function recordUserScore(state: PublicEventState, action: PayloadAction<RecordSh
     state.userCourseData.targets[targetIndex].shots
   );
   state.userCourseData.totalScore = calculateTotalScore(state.userCourseData.targets);
+
+  localStorageRepository.setUserCourseData(state.userCourseData);
 }

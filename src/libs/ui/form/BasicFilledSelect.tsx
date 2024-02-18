@@ -2,7 +2,7 @@ import { FormControl, NativeSelect } from '@mui/material';
 import { ChangeEvent, FC } from 'react';
 
 interface BasicFilledSelectProps {
-  value: string;
+  value: string | null;
   onValueChange: (updatedValue: string) => void;
   options: { value: string | number; displayName?: string }[];
 }
@@ -23,12 +23,12 @@ export const BasicFilledSelect: FC<BasicFilledSelectProps> = ({
           name: 'score',
           id: 'uncontrolled-native',
         }}
-        value={value}
+        value={value ? value : '0'}
         onChange={onChange}
         fullWidth
       >
-        {options.map((option) => (
-          <option value={option.value} key={option.value}>
+        {options.map((option, i) => (
+          <option value={option.value ? option.value : '0'} key={i}>
             {option.value ? option.value : '-'}
           </option>
         ))}

@@ -3,8 +3,9 @@ import { TargetModel } from '@/types/models/target/target.model';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
 import { BullseyeRing } from '@/types/models/tracker/tracker.type';
 import { useAppDispatch } from '@/stores/store.hooks';
-import { recordScore } from '@/stores/slices/PublicEvent.slice';
+import { publicEventSelector, recordScore } from '@/stores/slices/PublicEvent.slice';
 import * as Styled from '../publicEvent.styles';
+import { UserCourseDataModel } from '@/types/models/userInteraction/userCourseData.model';
 
 interface TargetShotsProps {
   target: TargetModel;
@@ -14,17 +15,13 @@ interface TargetShotsProps {
 export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
   const [activeShotId, setActiveShotId] = useState(target.Shots[0].id);
   const dispatch = useAppDispatch();
+  const { userCourseData } = publicEventSelector();
 
   const scoreCellOptions = shotValueOptions(rings);
 
   const recordShot = (shotId: string, newValue: string) => {
     const currentShotIndex = target.Shots.findIndex((shot) => shot.id === shotId);
     if (currentShotIndex === -1) return;
-
-    const isLastShot = currentShotIndex === target.Shots.length - 1;
-    if (isLastShot) return;
-
-    const nextShotId = target.Shots[currentShotIndex + 1].id;
 
     dispatch(
       recordScore({
@@ -34,6 +31,11 @@ export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
         score: parseInt(newValue),
       })
     );
+
+    const isLastShot = currentShotIndex === target.Shots.length - 1;
+    if (isLastShot) return;
+
+    const nextShotId = target.Shots[currentShotIndex + 1].id;
 
     setActiveShotId(nextShotId);
   };
@@ -46,7 +48,7 @@ export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
         active={(activeShotId === shot.id).toString()}
       >
         <BasicFilledSelect
-          value={shot.value ? shot.value.toString() : ''}
+          value={getUserValue(target.id, shot.id, userCourseData)}
           onValueChange={(updatedValue: string) => recordShot(shot.id, updatedValue)}
           options={scoreCellOptions}
         />
@@ -54,6 +56,19 @@ export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
     );
   });
 };
+
+function getUserValue(
+  targetId: string,
+  shotId: string,
+  userCourseData?: UserCourseDataModel
+): string | null {
+  if (!userCourseData) return null;
+  const target = userCourseData.targets.find((target) => target.targetId === targetId) ?? 0;
+  if (!target) return null;
+
+  const shot = target.shots.find((shot) => shot.shotId === shotId);
+  return shot?.score.toString() ?? null;
+}
 
 function shotValueOptions(rings?: BullseyeRing[]): { value: string }[] {
   if (!rings) return [];
