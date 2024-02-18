@@ -3,18 +3,20 @@ import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { EventModel } from '@/types/models/event/event.model';
 import { publicEventRoutes } from '@/routes/RouteConstants';
-import * as Styled from '../publicEvent.styles';
 import { clearAll } from '@/utils/localStorage';
+import { publicEventSelector } from '@/stores/slices/PublicEvent.slice';
+import * as Styled from '../publicEvent.styles';
 
 interface NextTargetButtonProps {
   event: EventModel;
 }
 
 export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
-  const [isLastTarget, setIsLastTarget] = useState(false);
-  const [isFirstTarget, setIsFirstTarget] = useState(true);
   const navigate = useNavigate();
   const { targetId, courseId } = useParams() as { targetId: string; courseId: string };
+  const [isLastTarget, setIsLastTarget] = useState(false);
+  const [isFirstTarget, setIsFirstTarget] = useState(true);
+  const { userCourseData } = publicEventSelector();
 
   useEffect(() => {
     if (!event.Courses) return;
@@ -64,6 +66,10 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
       console.error('No next target found');
     }
   };
+
+  const submitScore = () => {
+    console.log('submit score', userCourseData);
+  };
   return (
     <Styled.AroundRow>
       {isFirstTarget ? (
@@ -72,7 +78,7 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
         <Button onClick={goToPreviousTarget}>Back</Button>
       )}
       {isLastTarget ? (
-        <Button onClick={goToNextTarget}>Submit Score</Button>
+        <Button onClick={submitScore}>Submit Score</Button>
       ) : (
         <Button onClick={goToNextTarget}>Next Target</Button>
       )}

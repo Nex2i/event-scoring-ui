@@ -10,9 +10,9 @@ import {
   recordScore,
   setActiveShotId,
 } from '@/stores/slices/PublicEvent.slice';
+import { useAppDispatch } from '@/stores/store.hooks';
 import { NextTargetButton } from '../components/NextTargetButton';
 import { TargetShots } from '../components/TargetShots';
-import { useAppDispatch } from '@/stores/store.hooks';
 
 interface PublicTargetProps {
   event: EventModel;

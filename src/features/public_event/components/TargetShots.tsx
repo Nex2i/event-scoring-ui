@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { TargetModel } from '@/types/models/target/target.model';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
 import { BullseyeRing } from '@/types/models/tracker/tracker.type';
@@ -8,8 +8,8 @@ import {
   recordScore,
   setActiveShotId,
 } from '@/stores/slices/PublicEvent.slice';
-import * as Styled from '../publicEvent.styles';
 import { UserCourseDataModel } from '@/types/models/userInteraction/userCourseData.model';
+import * as Styled from '../publicEvent.styles';
 
 interface TargetShotsProps {
   target: TargetModel;
