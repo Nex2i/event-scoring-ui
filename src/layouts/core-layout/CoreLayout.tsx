@@ -33,7 +33,7 @@ export const CoreLayout: FC<coreLayoutProps> = ({ children, title }) => {
           <Routes>{children}</Routes>
         </Styles.CoreLayoutOutlet>
       </Styles.CoreColumn>
-      {isMobile && <CoreBottomNavigation />}
+      {/* {isMobile && <CoreBottomNavigation />} */}
     </Styles.CoreLayoutContainer>
   );
 };

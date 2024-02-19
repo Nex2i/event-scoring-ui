@@ -72,6 +72,7 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
       )}
       <Styled.StartRow width="100%">
         <Typography>Target Distance: {target.distance}</Typography>
+        {/* <Typography>Shots: {target.Shots.length}</Typography> */}
       </Styled.StartRow>
       <TargetShots target={target} rings={bullseye?.rings} />
       <NextTargetButton event={event} />
