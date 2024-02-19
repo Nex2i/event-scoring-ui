@@ -44,25 +44,29 @@ export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
     dispatch(setActiveShotId(nextShotId));
   };
 
-  return target.Shots.map((shot, shotIndex) => {
-    return (
-      <Styled.AroundRow width="100%" key={shotIndex}>
-        <Styled.ScoreCell>
-          <Typography>Shot {shotIndex + 1}</Typography>
-        </Styled.ScoreCell>
-        <Styled.ScoreCell
-          style={{ cursor: 'pointer' }}
-          active={(activeShotId === shot.id).toString()}
-        >
-          <BasicFilledSelect
-            value={getUserValue(target.id, shot.id, userCourseData)}
-            onValueChange={(updatedValue: string) => recordShot(shot.id, updatedValue)}
-            options={scoreCellOptions}
-          />
-        </Styled.ScoreCell>
-      </Styled.AroundRow>
-    );
-  });
+  return (
+    <Styled.ScrollableContainer>
+      {target.Shots.map((shot, shotIndex) => {
+        return (
+          <Styled.AroundRow width="100%" key={shotIndex}>
+            <Styled.ScoreCell>
+              <Typography>Shot {shotIndex + 1}</Typography>
+            </Styled.ScoreCell>
+            <Styled.ScoreCell
+              style={{ cursor: 'pointer' }}
+              active={(activeShotId === shot.id).toString()}
+            >
+              <BasicFilledSelect
+                value={getUserValue(target.id, shot.id, userCourseData)}
+                onValueChange={(updatedValue: string) => recordShot(shot.id, updatedValue)}
+                options={scoreCellOptions}
+              />
+            </Styled.ScoreCell>
+          </Styled.AroundRow>
+        );
+      })}
+    </Styled.ScrollableContainer>
+  );
 };
 
 function getUserValue(
