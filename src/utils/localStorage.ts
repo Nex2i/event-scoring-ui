@@ -4,6 +4,7 @@ enum LocalKeys {
   ACTIVE_LOGO = 'ACTIVE_LOGO',
   ACTIVE_ROUND = 'ACTIVE_ROUND',
   ACTIVE_PUBLIC_EVENT = 'ACTIVE_PUBLIC_EVENT',
+  PUBLIC_EVENT_USERNAME = 'PUBLIC_EVENT_USERNAME',
 }
 
 const setLocal = (key: LocalKeys | string, value: string) => {

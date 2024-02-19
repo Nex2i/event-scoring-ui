@@ -33,8 +33,18 @@ class LocalStorageRepository {
     setLocal(event.id, JSON.stringify(event));
   }
 
+  public setPublicEventUsername(username: string): void {
+    setLocal(LocalKeys.PUBLIC_EVENT_USERNAME, username);
+  }
+
   public setUserCourseData(userCourseData: UserCourseDataModel): void {
     setLocal(userCourseData.courseId, JSON.stringify(userCourseData));
+  }
+
+  public getPublicEventUsername(): string | null {
+    const username = getLocal(LocalKeys.PUBLIC_EVENT_USERNAME);
+    if (username) return username;
+    return null;
   }
 
   public getUserCourseData(courseId: string): UserCourseDataModel | null {

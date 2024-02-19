@@ -6,6 +6,7 @@ export class PublicEventState {
   activeShotId?: string;
   userCourseData?: UserCourseDataModel;
   totalTargetScore: number = 0;
+  username: string = '';
 }
 
 export interface RecordShotPayload {

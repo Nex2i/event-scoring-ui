@@ -1,10 +1,14 @@
 import { Button, Typography } from '@mui/material';
-import { FC } from 'react';
+import { debounce } from 'lodash';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EventModel } from '@/types/models/event/event.model';
 import { formatDate } from '@/shared/formatDate';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import { useQuery } from '@/libs/routing/useQuery.hook';
+import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
+import { useDispatch } from 'react-redux';
+import { publicEventSelector, setUsername } from '@/stores/slices/PublicEvent.slice';
 
 interface PublicEventHomeProps {
   event: EventModel;
@@ -12,6 +16,9 @@ interface PublicEventHomeProps {
 
 export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { username } = publicEventSelector();
+
   const [isSubmitted] = useQuery(['submitted']);
   const { totalTargets, averageShotsPerTarget } = calculateTargetsAndShots(event);
 
@@ -20,6 +27,27 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
     const firstTargetId = event.Courses?.[0].Targets[0].id;
     navigate(`/${publicEventRoutes.base}/${event.id}/${firstCourseId}/${firstTargetId}`);
   };
+
+  const debouncedChangeHandler = useCallback(
+    debounce((nextValue: string) => {
+      if (nextValue.length >= 15) {
+        return;
+      }
+      return dispatch(setUsername(nextValue));
+    }, 50),
+    []
+  );
+
+  const updateUsername = (usernameValue: string) => {
+    // Call the debounced function with the latest value
+    debouncedChangeHandler(usernameValue);
+  };
+
+  useEffect(() => {
+    return () => {
+      debouncedChangeHandler.cancel();
+    };
+  }, [debouncedChangeHandler]);
 
   return (
     <div>
@@ -32,6 +60,7 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
       <br />
       <br />
       <br />
+      <BasicFilledInput initialValue="Username" onValueChange={updateUsername} value={username} />
       <br />
       {isSubmitted === 'true' ? (
         <>

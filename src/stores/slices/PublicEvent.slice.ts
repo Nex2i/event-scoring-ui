@@ -9,7 +9,9 @@ import localStorageRepository from '@/utils/localStorage.repository';
 import { useAppSelector } from '../store.hooks';
 import { PublicEventState, RecordShotPayload } from '../sliceTypes/PublicEventState.type';
 
-export const initialPublicEventState = {} as PublicEventState;
+export const initialPublicEventState = {
+  username: localStorageRepository.getPublicEventUsername() || '',
+} as PublicEventState;
 
 export const publicEventSliceName = 'publicEventSlice';
 
@@ -28,12 +30,17 @@ export const publicEventSlice = createSlice({
     setActiveShotId: (state, action: PayloadAction<string>) => {
       state.activeShotId = action.payload;
     },
+    setUsername: (state, action: PayloadAction<string>) => {
+      state.username = action.payload;
+      localStorageRepository.setPublicEventUsername(action.payload);
+    },
   },
 });
 
 export const publicEventSelector = () => useAppSelector((store) => store.publicEvent);
 
-export const { recordScore, initializeEvent, setActiveShotId } = publicEventSlice.actions;
+export const { recordScore, initializeEvent, setActiveShotId, setUsername } =
+  publicEventSlice.actions;
 
 export default publicEventSlice.reducer;
 
@@ -58,6 +65,7 @@ function createInitialCourse(courseId?: string): UserCourseDataModel {
   const userCourseData: UserCourseDataModel = {
     courseId: courseId,
     totalScore: 0,
+    username: '',
     targets: [],
   };
 

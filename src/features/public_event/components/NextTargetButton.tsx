@@ -17,7 +17,7 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
   const { targetId, courseId } = useParams() as { targetId: string; courseId: string };
   const [isLastTarget, setIsLastTarget] = useState(false);
   const [isFirstTarget, setIsFirstTarget] = useState(true);
-  const { userCourseData } = publicEventSelector();
+  const { userCourseData, username } = publicEventSelector();
   const { userRecordApi } = useContext(ApiContext);
 
   useEffect(() => {
@@ -72,8 +72,11 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
   const submitScore = async () => {
     if (!userCourseData) return;
 
+    const payloadData = { ...userCourseData };
+
+    payloadData.username = username;
     await userRecordApi
-      .submitCourse(userCourseData)
+      .submitCourse(payloadData)
       .then(() => {
         navigate(`/${publicEventRoutes.base}/${event.id}?submitted=true`);
       })
