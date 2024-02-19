@@ -98,6 +98,7 @@ export const Column = styled(Box)<{ align?: 'left' | 'center' | 'right' }>(({ al
   flexDirection: 'column',
   alignItems: align || 'center',
   width: '100%',
+  overflow: 'auto',
 }));
 
 export const EditIcon = styled(MuiEditIcon)(({}) => ({

@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, Card } from '@mui/material';
 import QRCodeStyling, {
   DrawType,
   TypeNumber,
@@ -21,8 +21,8 @@ interface QrCodeProps {
 
 export const QrCode: FC<QrCodeProps> = ({ url, qrName }) => {
   const options = {
-    width: 300,
-    height: 300,
+    width: getViewWidth(),
+    height: getViewWidth(),
     type: 'svg' as DrawType,
     data: url,
     image: siteLogo,
@@ -79,12 +79,16 @@ export const QrCode: FC<QrCodeProps> = ({ url, qrName }) => {
   };
 
   return (
-    <div>
+    <Card sx={{ width: '40vw' }}>
       <div ref={ref} />
       <Styled.SpreadRow>
         <Button onClick={onDownloadClick}>Download</Button>
         <Button onClick={previewQrCode}>Preview</Button>
       </Styled.SpreadRow>
-    </div>
+    </Card>
   );
 };
+
+function getViewWidth(): number {
+  return window.innerWidth / 4.5;
+}
