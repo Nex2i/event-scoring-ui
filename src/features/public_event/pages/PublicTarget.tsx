@@ -5,6 +5,7 @@ import { EventModel } from '@/types/models/event/event.model';
 import { useTargetTypeHook } from '@/hooks/target/useTargetType.hook';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { TargetModel } from '@/types/models/target/target.model';
+import * as Styled from '../publicEvent.styles';
 import {
   publicEventSelector,
   recordScore,
@@ -58,7 +59,7 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
   if (isFetching) return <LoadingComponent />;
   if (!target) return <p>Could Not Find Target</p>;
   return (
-    <div style={{ border: 'solid black 1px' }}>
+    <Styled.PublicTargetsContainer>
       {!bullseye || !bullseye.rings.length ? (
         <p>Target Not Found</p>
       ) : (
@@ -68,7 +69,7 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
       <p>Current Score: {totalScore}</p>
       <TargetShots target={target} rings={bullseye?.rings} />
       <NextTargetButton event={event} />
-    </div>
+    </Styled.PublicTargetsContainer>
   );
 };
 

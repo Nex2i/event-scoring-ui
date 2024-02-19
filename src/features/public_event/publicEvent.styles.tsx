@@ -15,3 +15,24 @@ export const ScoreCell = styled(Box)<{ active?: string }>(({ theme, active }) =>
   msUserSelect: 'none',
   userSelect: 'none',
 }));
+
+export const PublicEventContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+  width: '95vw',
+  height: '95vh',
+  gap: theme.spacing(8),
+  padding: `0 2.5vw`,
+}));
+
+export const PublicTargetsContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  width: '100%',
+  height: '90%',
+  gap: theme.spacing(2),
+}));

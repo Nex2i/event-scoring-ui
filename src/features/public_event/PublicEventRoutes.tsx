@@ -12,12 +12,10 @@ interface PublicEventRoutesProps {}
 
 export const PublicEventRoutes: FC<PublicEventRoutesProps> = ({}) => {
   return (
-    <Styled.CoreLayoutOutlet>
-      <Routes>
-        <Route path="/:id/*" element={<PublicEventRoutesWrapper />} />
-        <Route path={'*'} element={<Navigate to={'/' + publicEventRoutes.base} />} />
-      </Routes>
-    </Styled.CoreLayoutOutlet>
+    <Routes>
+      <Route path="/:id/*" element={<PublicEventRoutesWrapper />} />
+      <Route path={'*'} element={<Navigate to={'/' + publicEventRoutes.base} />} />
+    </Routes>
   );
 };
 
@@ -33,9 +31,11 @@ export const PublicEventRoutesWrapper: FC = ({}) => {
     return <div>Event not found</div>;
   }
   return (
-    <Routes>
-      <Route path="/" element={<PublicEventHome event={event} />} />
-      <Route path="/:courseId/:targetId" element={<PublicTarget event={event} />} />
-    </Routes>
+    <Styled.PublicEventContainer>
+      <Routes>
+        <Route path="/" element={<PublicEventHome event={event} />} />
+        <Route path="/:courseId/:targetId" element={<PublicTarget event={event} />} />
+      </Routes>
+    </Styled.PublicEventContainer>
   );
 };

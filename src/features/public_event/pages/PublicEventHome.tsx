@@ -7,6 +7,7 @@ import { formatDate } from '@/shared/formatDate';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import { useQuery } from '@/libs/routing/useQuery.hook';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
+import * as Styled from '../publicEvent.styles';
 import { useDispatch } from 'react-redux';
 import { publicEventSelector, setUsername } from '@/stores/slices/PublicEvent.slice';
 
@@ -50,17 +51,16 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   }, [debouncedChangeHandler]);
 
   return (
-    <div>
+    <div id="event-home-container">
       <Typography variant="h4">{event.name}</Typography>
-      <Typography variant="h6">Start Date: {formatDate(event.startDate)}</Typography>
-      <Typography variant="h6">End Date: {formatDate(event.endDate)}</Typography>
-      <Typography variant="body1">Total Targets: {totalTargets}</Typography>
-      <Typography variant="body1">AVG Shots per Target: {averageShotsPerTarget}</Typography>
-      <br />
-      <br />
-      <br />
-      <br />
       <BasicFilledInput initialValue="Username" onValueChange={updateUsername} value={username} />
+      <Styled.Row>
+        <Typography variant="h6">Start Date: {formatDate(event.startDate)}</Typography>
+        <Typography variant="h6">End Date: {formatDate(event.endDate)}</Typography>
+      </Styled.Row>
+      <br />
+      <Typography variant="subtitle1">Total Targets: {totalTargets}</Typography>
+      <Typography variant="subtitle1">Avg Shots per Target: {averageShotsPerTarget}</Typography>
       <br />
       {isSubmitted === 'true' ? (
         <>
