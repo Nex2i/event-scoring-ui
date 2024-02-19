@@ -14,6 +14,7 @@ import {
 import { useAppDispatch } from '@/stores/store.hooks';
 import { NextTargetButton } from '../components/NextTargetButton';
 import { TargetShots } from '../components/TargetShots';
+import { Typography } from '@mui/material';
 
 interface PublicTargetProps {
   event: EventModel;
@@ -24,7 +25,7 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
   const { isFetching, bullseye } = useTargetTypeHook({ targetId });
   const dispatch = useAppDispatch();
   const target = getTargetFromEvent(event, courseId, targetId);
-  const { userCourseData, activeShotId } = publicEventSelector();
+  const { userCourseData, activeShotId, username } = publicEventSelector();
   const { totalScore } = userCourseData ?? { totalScore: 0 };
 
   useEffect(() => {
@@ -60,13 +61,18 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
   if (!target) return <p>Could Not Find Target</p>;
   return (
     <Styled.PublicTargetsContainer>
+      <Styled.AroundRow width="100%">
+        {username}
+        <p>Total Score: {totalScore}</p>
+      </Styled.AroundRow>
       {!bullseye || !bullseye.rings.length ? (
         <p>Target Not Found</p>
       ) : (
         <Bullseye onClick={bullseyeClick} activeTargetId={targetId} rings={bullseye?.rings} />
       )}
-      <p>Distance: {target.distance}</p>
-      <p>Current Score: {totalScore}</p>
+      <Styled.StartRow width="100%">
+        <Typography>Target Distance: {target.distance}</Typography>
+      </Styled.StartRow>
       <TargetShots target={target} rings={bullseye?.rings} />
       <NextTargetButton event={event} />
     </Styled.PublicTargetsContainer>

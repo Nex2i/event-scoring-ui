@@ -10,6 +10,7 @@ import {
 } from '@/stores/slices/PublicEvent.slice';
 import { UserCourseDataModel } from '@/types/models/userInteraction/userCourseData.model';
 import * as Styled from '../publicEvent.styles';
+import { Typography } from '@mui/material';
 
 interface TargetShotsProps {
   target: TargetModel;
@@ -45,17 +46,21 @@ export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
 
   return target.Shots.map((shot, shotIndex) => {
     return (
-      <Styled.ScoreCell
-        key={shotIndex}
-        style={{ cursor: 'pointer' }}
-        active={(activeShotId === shot.id).toString()}
-      >
-        <BasicFilledSelect
-          value={getUserValue(target.id, shot.id, userCourseData)}
-          onValueChange={(updatedValue: string) => recordShot(shot.id, updatedValue)}
-          options={scoreCellOptions}
-        />
-      </Styled.ScoreCell>
+      <Styled.AroundRow width="100%" key={shotIndex}>
+        <Styled.ScoreCell>
+          <Typography>Shot {shotIndex + 1}</Typography>
+        </Styled.ScoreCell>
+        <Styled.ScoreCell
+          style={{ cursor: 'pointer' }}
+          active={(activeShotId === shot.id).toString()}
+        >
+          <BasicFilledSelect
+            value={getUserValue(target.id, shot.id, userCourseData)}
+            onValueChange={(updatedValue: string) => recordShot(shot.id, updatedValue)}
+            options={scoreCellOptions}
+          />
+        </Styled.ScoreCell>
+      </Styled.AroundRow>
     );
   });
 };

@@ -66,25 +66,31 @@ export const Link = styled('a')(({}) => ({
   cursor: 'pointer',
 }));
 
-export const Row = styled(Box)<{ align?: string }>(({ theme, align }) => ({
+interface RowProps {
+  align?: string;
+  width?: string;
+}
+
+export const Row = styled(Box)<RowProps>(({ theme, align, width }) => ({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
   maxWidth: '100%',
+  width: width || 'auto',
   justifyContent: align ? align : 'auto',
   gap: theme.spacing(2),
 }));
 
-export const StartRow = styled(Row)(({}) => ({
+export const StartRow = styled(Row)<RowProps>(({}) => ({
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
 }));
 
-export const SpreadRow = styled(Row)(({}) => ({
+export const SpreadRow = styled(Row)<RowProps>(({}) => ({
   justifyContent: 'space-between',
 }));
 
-export const AroundRow = styled(Row)(({}) => ({
+export const AroundRow = styled(Row)<RowProps>(({}) => ({
   justifyContent: 'space-around',
 }));
 
