@@ -27,5 +27,5 @@ export const authRoutes = {
 };
 
 export const homeRoute = '/' + eventBase;
-export const noAuthHomeRoute = '/' + publicMenuRoutes.base;
+export const noAuthHomeRoute = '/' + authRoutes.base;
 export const desktopNoAuthHomeRoute = '/' + authRoutes.base;
