@@ -25,6 +25,9 @@ export const PublicEventContainer = styled(Box)(({ theme }) => ({
   height: '95vh',
   gap: theme.spacing(8),
   padding: `0 2.5vw`,
+  '@media (min-width:600px)': {
+    maxWidth: '600px',
+  },
 }));
 
 export const PublicTargetsContainer = styled(Box)(({ theme }) => ({
