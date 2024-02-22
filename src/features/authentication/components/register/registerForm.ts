@@ -21,7 +21,11 @@ class registerFormMapping extends BaseFormSchema {
   password: FormFieldMapping = {
     name: 'password',
     label: 'Password',
-    validationSchema: z.string().min(1),
+    validationSchema: z
+      .string()
+      .min(1)
+      .regex(/(?=.*[A-Z])/, 'Password must contain at least one uppercase letter')
+      .regex(/(.*[0-9].*[0-9].*)/, 'Password must contain at least two numbers'),
   };
 
   confirmPassword: FormFieldMapping = {
@@ -109,7 +113,7 @@ const schema = getSchemaFromClass(registerFormFields).refine(
   (data) => data.password === data.confirmPassword,
   {
     path: ['confirmPassword'],
-    message: 'Passwords does not match',
+    message: 'Passwords do not match',
   }
 );
 
