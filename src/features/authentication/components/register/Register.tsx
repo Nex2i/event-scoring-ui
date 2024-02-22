@@ -18,7 +18,6 @@ interface RegisterComponentProps {}
 
 export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [formValues, setFormValues] = useState<RegisterUserPayload>(new RegisterUserPayload());
 
@@ -27,13 +26,7 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
     password: '',
   });
 
-  const [_, isAuthorizing, isAuthorized] = useRegister(formValues);
-
-  useEffect(() => {
-    if (isAuthorized || isAuthenticated) {
-      navigate(homeRoute);
-    }
-  }, [isAuthorized, isAuthenticated]);
+  const [_, isAuthorizing] = useRegister(formValues);
 
   const handleValidForm = (formData: FieldValues) => {
     const formInfo = registerFormFields.createEditSaveRequest(formData);
