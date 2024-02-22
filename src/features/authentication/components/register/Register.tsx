@@ -70,11 +70,10 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
           <LoadingComponent animateOnly={true} />
         ) : (
           <Styled.AroundRow>
-            <Button onClick={onSubmitForm}>Register Company</Button>
-
             <Button color="secondary" onClick={redirectToLogin}>
               Back To Login
             </Button>
+            <Button onClick={onSubmitForm}>Register Company</Button>
           </Styled.AroundRow>
         )}
       </Styled.BaseForm>
