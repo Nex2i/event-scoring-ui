@@ -9,98 +9,84 @@ class registerFormMapping extends BaseFormSchema {
   username: FormFieldMapping = {
     name: 'username',
     label: 'Username',
-    tooltip: 'Insert Username please',
     validationSchema: z.string(),
   };
 
   companyName: FormFieldMapping = {
     name: 'companyName',
     label: 'Company Name',
-    tooltip: 'Insert Company Name please',
     validationSchema: z.string().min(1),
   };
 
   password: FormFieldMapping = {
     name: 'password',
     label: 'Password',
-    tooltip: 'Password',
     validationSchema: z.string().min(1),
   };
 
   confirmPassword: FormFieldMapping = {
     name: 'confirmPassword',
     label: 'Confirm Password',
-    tooltip: 'Confirm Password',
     validationSchema: z.string().min(1),
   };
 
   firstName: FormFieldMapping = {
     name: 'firstName',
     label: 'First Name',
-    tooltip: 'First Name',
     validationSchema: z.string().min(1),
   };
 
   lastName: FormFieldMapping = {
     name: 'lastName',
     label: 'Last Name',
-    tooltip: 'Last Name',
     validationSchema: z.string().min(1),
   };
 
   email: FormFieldMapping = {
     name: 'email',
     label: 'Email',
-    tooltip: 'Email',
-    validationSchema: z.string().min(1),
+    validationSchema: z.string().email().min(1),
   };
 
   picture: FormFieldMapping = {
     name: 'picture',
     label: 'Picture',
-    tooltip: 'Picture',
     validationSchema: z.string().default(''),
   };
 
   phoneNumber: FormFieldMapping = {
     name: 'phoneNumber',
     label: 'Phone Number',
-    tooltip: 'Phone Number',
     validationSchema: z.string().min(1),
   };
 
   streetAddress1: FormFieldMapping = {
     name: 'streetAddress1',
     label: 'Street Address 1',
-    tooltip: 'Street Address 1',
     validationSchema: z.string().min(1),
   };
 
   streetAddress2: FormFieldMapping = {
     name: 'streetAddress2',
     label: 'Street Address 2',
-    tooltip: 'Street Address 2',
     validationSchema: z.string().default(''),
   };
 
   city: FormFieldMapping = {
     name: 'city',
     label: 'City',
-    tooltip: 'City',
     validationSchema: z.string().min(1),
   };
 
   state: FormFieldMapping = {
     name: 'state',
     label: 'State',
-    tooltip: 'State',
     validationSchema: z.string().min(1),
   };
 
   zipCode: FormFieldMapping = {
     name: 'zipCode',
     label: 'Zip Code',
-    tooltip: 'Zip Code',
     validationSchema: z.string().min(1),
   };
 
