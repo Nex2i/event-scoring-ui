@@ -48,12 +48,6 @@ class registerFormMapping extends BaseFormSchema {
     validationSchema: z.string().email().min(1),
   };
 
-  picture: FormFieldMapping = {
-    name: 'picture',
-    label: 'Picture',
-    validationSchema: z.string().default(''),
-  };
-
   phoneNumber: FormFieldMapping = {
     name: 'phoneNumber',
     label: 'Phone Number',

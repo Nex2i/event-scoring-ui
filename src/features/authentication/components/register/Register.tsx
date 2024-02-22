@@ -53,7 +53,7 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
     <div>
       <Styled.BaseForm onSubmit={onSubmitForm}>
         <Styled.FormTitle>Register</Styled.FormTitle>
-        {currentPage === 0 && (
+        <Styled.Row>
           <>
             <FormFilledInput fieldMapping={registerFormFields.email} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.phoneNumber} control={control} />
@@ -62,8 +62,7 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
             <FormFilledInput fieldMapping={registerFormFields.firstName} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.lastName} control={control} />
           </>
-        )}
-        {currentPage === 1 && (
+
           <>
             <FormFilledInput fieldMapping={registerFormFields.companyName} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.streetAddress1} control={control} />
@@ -76,27 +75,15 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
             />
             <FormFilledInput fieldMapping={registerFormFields.zipCode} control={control} />
           </>
-        )}
+        </Styled.Row>
         {isAuthorizing ? <LoadingComponent animateOnly={true} /> : null}
-        {currentPage === 1 && (
-          <Button onClick={onSubmitForm} data-cy="login-btn">
-            Register Company
-          </Button>
-        )}
-        {currentPage !== 1 && (
-          <Button onClick={nextPage} data-cy="login-btn">
-            Next
-          </Button>
-        )}
-        {currentPage !== 0 ? (
-          <Button color="secondary" onClick={previousPage} data-cy="register-btn">
-            Back
-          </Button>
-        ) : (
-          <Button color="secondary" onClick={redirectToLogin} data-cy="register-btn">
-            Back To Login
-          </Button>
-        )}
+        <Button onClick={onSubmitForm} data-cy="login-btn">
+          Register Company
+        </Button>
+
+        <Button color="secondary" onClick={redirectToLogin} data-cy="register-btn">
+          Back To Login
+        </Button>
       </Styled.BaseForm>
     </div>
   );
