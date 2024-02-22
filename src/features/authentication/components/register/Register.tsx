@@ -33,9 +33,7 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
     setFormValues(formInfo);
   };
 
-  const handleInvalidForm = (formData: FieldValues) => {
-    console.log('invalid form', formData);
-  };
+  const handleInvalidForm = (_formData: FieldValues) => {};
 
   const onSubmitForm = handleSubmit(handleValidForm, handleInvalidForm);
 

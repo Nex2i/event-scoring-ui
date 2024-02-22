@@ -46,9 +46,7 @@ export const PokemonFormDialog: FC<PokemonFormDialogProps> = ({ isOpen, handleCl
     setSubmitRequest(saveRequest);
   };
 
-  const handleInvalidForm = (formData: FieldValues) => {
-    console.log('invalid form', formData);
-  };
+  const handleInvalidForm = (_formData: FieldValues) => {};
 
   const onSubmitForm = handleSubmit(handleValidForm, handleInvalidForm);
 

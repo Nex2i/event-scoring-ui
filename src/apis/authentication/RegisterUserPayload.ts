@@ -52,8 +52,6 @@ export class RegisterUserPayload {
       errors.push('Phone number is invalid.');
     }
 
-    console.log('err', errors);
-
     return errors;
   }
 }

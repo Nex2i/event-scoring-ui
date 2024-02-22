@@ -37,10 +37,7 @@ export const NewEventDialog: FC<NewEventDialogProps> = ({ isOpen, handleClose })
     setFormValues(formInfo);
   };
 
-  const handleInvalidForm = (formData: FieldValues) => {
-    const formInfo = newEventFormFields.createEditSaveRequest(formData);
-    console.log('invalid form', formData, newEventFormFields, control, formInfo);
-  };
+  const handleInvalidForm = (_formData: FieldValues) => {};
 
   const onSubmitForm = handleSubmit(handleValidForm, handleInvalidForm);
 
