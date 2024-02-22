@@ -6,9 +6,11 @@ import { CourseApi } from './course/course.api';
 import { TargetApi } from './target/target.api';
 import { UserRecordApi } from './userRecord/userRecord.api';
 import { LeaderboardApi } from './leaderboard/leaderboard.api';
+import { BillingApi } from './billing/billing.api';
 
 interface Apis {
   pokemon: PokemonApi;
+  billingApi: BillingApi;
   authentication: AuthenticationApi;
   event: EventApi;
   userRecordApi: UserRecordApi;
@@ -22,6 +24,7 @@ const { VITE_ENV } = import.meta.env;
 
 export const initializedApis: Apis = {
   pokemon: new PokemonApi(),
+  billingApi: new BillingApi(),
   leaderboardApi: new LeaderboardApi(),
   authentication: new AuthenticationApi(),
   userRecordApi: new UserRecordApi(),

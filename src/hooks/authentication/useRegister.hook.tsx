@@ -56,6 +56,8 @@ export function useRegister(userPayload: RegisterUserPayload): hookResponse {
             severity: 'success',
           })
         );
+
+        location.href = user.checkoutUrl;
       })
       .catch(async (err) => {
         if (!isMounted) return;

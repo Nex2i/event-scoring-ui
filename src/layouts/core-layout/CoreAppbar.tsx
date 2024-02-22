@@ -12,17 +12,18 @@ import {
 } from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 
-import { FC, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { homeRoute } from '@/routes/RouteConstants';
 import { useAuth } from '@/hooks/authentication/useAuth.hook';
 import * as Styled from './Styles';
-
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { ApiContext } from '@/apis/api.context';
 
 interface coreNavbarProps {}
 
 export const CoreAppbar: FC<coreNavbarProps> = ({}) => {
+  const { billingApi } = useContext(ApiContext);
+  const { companyId } = useAuth().user;
   const { logout } = useAuth();
   const navigate = useNavigate();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -38,6 +39,11 @@ export const CoreAppbar: FC<coreNavbarProps> = ({}) => {
   const handleLogout = () => {
     logout();
     handleCloseUserMenu();
+  };
+
+  const gotoBilling = async () => {
+    const billingUrl = await billingApi.getBillingUrl(companyId);
+    location.href = billingUrl;
   };
 
   const navigateToHome = () => {
@@ -89,11 +95,12 @@ export const CoreAppbar: FC<coreNavbarProps> = ({}) => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleLogout}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
+                <MenuItem key="billing" onClick={gotoBilling}>
+                  <Typography textAlign="center">Manage Billing</Typography>
+                </MenuItem>
+                <MenuItem key="billing" onClick={handleLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
               </Menu>
             </Box>
           </Toolbar>
