@@ -1,12 +1,11 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues } from 'react-hook-form';
-import { authRoutes, homeRoute } from '@/routes/RouteConstants';
+import { authRoutes } from '@/routes/RouteConstants';
 import { FormFilledInput, FormFilledSelect } from '@/libs/forms/formFilledComponents';
 import { useRegister } from '@/hooks/authentication/useRegister.hook';
 import { getStateValueMap } from '@/types/location/States';
-import { useAuth } from '@/hooks/authentication/useAuth.hook';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { RegisterUserPayload } from '@/apis/authentication/RegisterUserPayload';
 import * as Styled from '../auth.styles';
@@ -18,7 +17,6 @@ interface RegisterComponentProps {}
 
 export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState<number>(0);
   const [formValues, setFormValues] = useState<RegisterUserPayload>(new RegisterUserPayload());
 
   const { handleSubmit, control } = useRegisterForm({
@@ -41,29 +39,21 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
     navigate(authRoutes.login);
   };
 
-  function nextPage() {
-    setCurrentPage(currentPage + 1);
-  }
-
-  function previousPage() {
-    setCurrentPage(currentPage - 1);
-  }
-
   return (
     <div>
       <Styled.BaseForm onSubmit={onSubmitForm}>
         <Styled.FormTitle>Register</Styled.FormTitle>
         <Styled.Row>
-          <>
+          <Styled.Column>
             <FormFilledInput fieldMapping={registerFormFields.email} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.phoneNumber} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.password} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.confirmPassword} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.firstName} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.lastName} control={control} />
-          </>
+          </Styled.Column>
 
-          <>
+          <Styled.Column>
             <FormFilledInput fieldMapping={registerFormFields.companyName} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.streetAddress1} control={control} />
             <FormFilledInput fieldMapping={registerFormFields.streetAddress2} control={control} />
@@ -74,16 +64,19 @@ export const RegisterComponent: FC<RegisterComponentProps> = ({}) => {
               control={control}
             />
             <FormFilledInput fieldMapping={registerFormFields.zipCode} control={control} />
-          </>
+          </Styled.Column>
         </Styled.Row>
-        {isAuthorizing ? <LoadingComponent animateOnly={true} /> : null}
-        <Button onClick={onSubmitForm} data-cy="login-btn">
-          Register Company
-        </Button>
+        {isAuthorizing ? (
+          <LoadingComponent animateOnly={true} />
+        ) : (
+          <Styled.AroundRow>
+            <Button onClick={onSubmitForm}>Register Company</Button>
 
-        <Button color="secondary" onClick={redirectToLogin} data-cy="register-btn">
-          Back To Login
-        </Button>
+            <Button color="secondary" onClick={redirectToLogin}>
+              Back To Login
+            </Button>
+          </Styled.AroundRow>
+        )}
       </Styled.BaseForm>
     </div>
   );
