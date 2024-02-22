@@ -125,7 +125,7 @@ export function useRegisterForm(defaultValues: RegisterFormSchema) {
   const registerForm = useForm<RegisterFormSchema>({
     resolver: zodResolver(schema),
     defaultValues,
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
   return registerForm;
