@@ -5,8 +5,8 @@ import { EventModel } from '@/types/models/event/event.model';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import { clearAll } from '@/utils/localStorage';
 import { publicEventSelector } from '@/stores/slices/PublicEvent.slice';
-import * as Styled from '../publicEvent.styles';
 import { ApiContext } from '@/apis/api.context';
+import * as Styled from '../publicEvent.styles';
 
 interface NextTargetButtonProps {
   event: EventModel;

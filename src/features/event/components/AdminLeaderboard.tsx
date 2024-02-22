@@ -1,7 +1,7 @@
-import { LoadingComponent } from '@/components/loading/Loading.Component';
-import { useAdminLeaderboard } from '@/hooks/leaderboard/useAdminLeaderboard.hook';
 import { Card } from '@mui/material';
 import { FC } from 'react';
+import { LoadingComponent } from '@/components/loading/Loading.Component';
+import { useAdminLeaderboard } from '@/hooks/leaderboard/useAdminLeaderboard.hook';
 import * as Styled from '../event.styles';
 
 interface AdminLeaderboardProps {

@@ -1,9 +1,9 @@
+import { useContext, useEffect, useState } from 'react';
 import { ApiContext } from '@/apis/api.context';
 import {
   LeaderboardAverageUserShot,
   LeaderboardCourseRecord,
 } from '@/types/models/leaderboard/leaderboard.type';
-import { useContext, useEffect, useState } from 'react';
 
 interface hookResponse {
   isFetching: boolean;

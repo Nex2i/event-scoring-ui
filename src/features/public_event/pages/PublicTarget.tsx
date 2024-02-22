@@ -1,20 +1,20 @@
 import { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Typography } from '@mui/material';
 import { Bullseye } from '@/features/tracking/components/bullseye';
 import { EventModel } from '@/types/models/event/event.model';
 import { useTargetTypeHook } from '@/hooks/target/useTargetType.hook';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { TargetModel } from '@/types/models/target/target.model';
-import * as Styled from '../publicEvent.styles';
 import {
   publicEventSelector,
   recordScore,
   setActiveShotId,
 } from '@/stores/slices/PublicEvent.slice';
 import { useAppDispatch } from '@/stores/store.hooks';
+import * as Styled from '../publicEvent.styles';
 import { NextTargetButton } from '../components/NextTargetButton';
 import { TargetShots } from '../components/TargetShots';
-import { Typography } from '@mui/material';
 
 interface PublicTargetProps {
   event: EventModel;

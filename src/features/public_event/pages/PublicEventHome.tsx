@@ -1,15 +1,15 @@
 import { Button, Typography } from '@mui/material';
 import { debounce } from 'lodash';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { EventModel } from '@/types/models/event/event.model';
 import { formatDate } from '@/shared/formatDate';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import { useQuery } from '@/libs/routing/useQuery.hook';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
-import * as Styled from '../publicEvent.styles';
-import { useDispatch } from 'react-redux';
 import { publicEventSelector, setUsername } from '@/stores/slices/PublicEvent.slice';
+import * as Styled from '../publicEvent.styles';
 
 interface PublicEventHomeProps {
   event: EventModel;

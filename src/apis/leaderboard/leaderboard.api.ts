@@ -1,9 +1,9 @@
 import HttpClient from '@/libs/http/http.client';
-import { BaseRepository } from '../base.repository';
 import {
   LeaderboardAverageUserShot,
   LeaderboardCourseRecord,
 } from '@/types/models/leaderboard/leaderboard.type';
+import { BaseRepository } from '../base.repository';
 
 interface AdminResponse {
   courseRecords: LeaderboardCourseRecord[];

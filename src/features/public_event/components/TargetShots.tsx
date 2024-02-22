@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Typography } from '@mui/material';
 import { TargetModel } from '@/types/models/target/target.model';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
 import { BullseyeRing } from '@/types/models/tracker/tracker.type';
@@ -10,7 +11,6 @@ import {
 } from '@/stores/slices/PublicEvent.slice';
 import { UserCourseDataModel } from '@/types/models/userInteraction/userCourseData.model';
 import * as Styled from '../publicEvent.styles';
-import { Typography } from '@mui/material';
 
 interface TargetShotsProps {
   target: TargetModel;
