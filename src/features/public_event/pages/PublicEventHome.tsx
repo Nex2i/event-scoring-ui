@@ -50,6 +50,8 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
     };
   }, [debouncedChangeHandler]);
 
+  const disabeldStart = username.length > 0;
+
   return (
     <div id="event-home-container">
       <Typography variant="h4">{event.name}</Typography>
@@ -65,10 +67,14 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
       {isSubmitted === 'true' ? (
         <>
           <Typography variant="h6">You have already submitted your scores</Typography>
-          <Button onClick={startCourse}>Go Again</Button>
+          <Button onClick={startCourse} disabled={disabeldStart}>
+            Go Again
+          </Button>
         </>
       ) : (
-        <Button onClick={startCourse}>START</Button>
+        <Button onClick={startCourse} disabled={disabeldStart}>
+          START
+        </Button>
       )}
     </div>
   );
