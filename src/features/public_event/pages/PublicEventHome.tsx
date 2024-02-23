@@ -50,7 +50,7 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
     };
   }, [debouncedChangeHandler]);
 
-  const disabeldStart = username.length > 0;
+  const disabeldStart = username.length <= 0;
 
   return (
     <div id="event-home-container">
