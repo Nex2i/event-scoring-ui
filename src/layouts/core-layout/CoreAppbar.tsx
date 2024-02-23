@@ -98,7 +98,7 @@ export const CoreAppbar: FC<coreNavbarProps> = ({}) => {
                 <MenuItem key="billing" onClick={gotoBilling}>
                   <Typography textAlign="center">Manage Billing</Typography>
                 </MenuItem>
-                <MenuItem key="billing" onClick={handleLogout}>
+                <MenuItem key="logout" onClick={handleLogout}>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
               </Menu>

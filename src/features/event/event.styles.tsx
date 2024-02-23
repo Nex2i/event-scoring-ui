@@ -20,7 +20,7 @@ export const EventCube = styled(BaseEventCard)(({}) => ({}));
 export const NewEventCube = styled(BaseEventCard)(({}) => ({
   justifyContent: 'center',
   alignItems: 'center',
-  marginLeft: '0',
+  // marginLeft: '0',
 }));
 
 export const NewEventIcon = styled(AddIcon)(({ theme }) => ({
@@ -36,6 +36,6 @@ export const EventsContainer = styled(Box)(({}) => ({
   flexWrap: 'wrap',
   justifyContent: 'flex-start',
   gap: '1rem',
-  //   padding: '1rem',
   width: '100%',
+  marginLeft: '0',
 }));
