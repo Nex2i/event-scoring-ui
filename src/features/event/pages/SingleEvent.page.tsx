@@ -49,8 +49,8 @@ export const SingleEventPage: FC<SingleEventPageProps> = ({}) => {
           </div>
         </Card>
         <QrCode url={qrCodeUrl} qrName={qrCodeName} />
-        <AdminLeaderboard eventId={id} />
       </Styled.StartRow>
+      <AdminLeaderboard eventId={id} />
     </Styled.ScrollableContainer>
   );
 };

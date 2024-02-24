@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { useAdminLeaderboard } from '@/hooks/leaderboard/useAdminLeaderboard.hook';
 import * as Styled from '../event.styles';
+import { CourseStats } from './CourseStats';
 
 interface AdminLeaderboardProps {
   eventId: string;
@@ -17,16 +18,8 @@ export const AdminLeaderboard: FC<AdminLeaderboardProps> = ({ eventId }) => {
 
   if (isLeaderboardFetching) return <LoadingComponent />;
   return (
-    <Styled.Column>
-      <Card>
-        TargetAverages:
-        {targetAverages?.map((average) => (
-          <div key={average.targetId}>
-            <p>{average.targetName}</p>
-            <p>{average.averageScore}</p>
-          </div>
-        ))}
-      </Card>
+    <Styled.Row>
+      {targetAverages && <CourseStats averages={targetAverages} />}
       <Card>
         UserLeaderboard:
         {userLeaderboard?.map((record) => (
@@ -36,6 +29,6 @@ export const AdminLeaderboard: FC<AdminLeaderboardProps> = ({ eventId }) => {
           </div>
         ))}
       </Card>
-    </Styled.Column>
+    </Styled.Row>
   );
 };
