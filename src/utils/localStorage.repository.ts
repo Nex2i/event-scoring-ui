@@ -1,8 +1,8 @@
 import { Round } from '@/types/models/tracker/tracker.type';
 import { EventModel } from '@/types/models/event/event.model';
 import { UserCourseDataModel } from '@/types/models/userInteraction/userCourseData.model';
-import { getLocal, LocalKeys, removeLocal, setLocal } from './localStorage';
 import { IGuestAuthentication } from '@/stores/sliceTypes/Authentication.type';
+import { getLocal, LocalKeys, removeLocal, setLocal } from './localStorage';
 
 class LocalStorageRepository {
   public getUserToken(): string | null {

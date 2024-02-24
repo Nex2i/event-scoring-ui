@@ -1,12 +1,12 @@
+import { Table, TableBody, TableCell, TableRow } from '@mui/material';
+import { FC } from 'react';
 import { LeaderboardHeader } from '@/components/leaderboard/leaderboardHeader';
 import { mapLeaderboardToTableData } from '@/components/leaderboard/mappers';
 import { LeaderboardTableData, leaderboardColumns } from '@/components/leaderboard/types';
 import { useGuestLeaderboard } from '@/hooks/leaderboard/useGuestLeaderboard.hook';
 import { authenticationSelector } from '@/stores/slices/Authentication.slice';
-import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { FC } from 'react';
-import * as Styled from '../publicEvent.styles';
 import { getOrdinal } from '@/utils/ordinal';
+import * as Styled from '../publicEvent.styles';
 
 interface PublicLeaderboardProps {
   eventId: string;

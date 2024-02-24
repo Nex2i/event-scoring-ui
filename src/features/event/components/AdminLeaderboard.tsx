@@ -1,11 +1,11 @@
-import { Card, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import { Card, Table, TableBody, TableCell, TableRow } from '@mui/material';
 import { FC } from 'react';
 import { LeaderboardCourseRecord } from '@/types/models/leaderboard/leaderboard.type';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
-import * as Styled from '../event.styles';
 import { LeaderboardHeader } from '@/components/leaderboard/leaderboardHeader';
 import { leaderboardColumns } from '@/components/leaderboard/types';
 import { mapLeaderboardToTableData } from '@/components/leaderboard/mappers';
+import * as Styled from '../event.styles';
 
 interface AdminLeaderboardProps {
   leaderBoard: LeaderboardCourseRecord[] | null;
