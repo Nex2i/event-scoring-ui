@@ -2,9 +2,10 @@ import { FC } from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { LeaderboardAverageUserShot } from '@/types/models/leaderboard/leaderboard.type';
 import { Card } from '@mui/material';
+import { LoadingComponent } from '@/components/loading/Loading.Component';
 
 interface CourseStatsProps {
-  averages: LeaderboardAverageUserShot[];
+  averages: LeaderboardAverageUserShot[] | null;
 }
 
 const chartSetting = {
@@ -22,6 +23,14 @@ function getViewWidth(): number {
 }
 
 export const CourseStats: FC<CourseStatsProps> = ({ averages }) => {
+  if (averages === null) return <LoadingComponent />;
+  if (averages[0].averageScore === null)
+    return (
+      <Card>
+        <p>No data available</p>
+      </Card>
+    );
+
   const dataSet = formatAverages(averages);
   const valueFormatter = (value: number) => `${value} points`;
 

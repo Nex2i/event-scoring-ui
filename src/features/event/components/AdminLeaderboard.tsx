@@ -19,7 +19,7 @@ export const AdminLeaderboard: FC<AdminLeaderboardProps> = ({ eventId }) => {
   if (isLeaderboardFetching) return <LoadingComponent />;
   return (
     <Styled.Row>
-      {targetAverages && <CourseStats averages={targetAverages} />}
+      <CourseStats averages={targetAverages} />
       <Card>
         UserLeaderboard:
         {userLeaderboard?.map((record) => (
