@@ -56,7 +56,7 @@ export const AdminLeaderboard: FC<AdminLeaderboardProps> = ({ leaderBoard }) => 
   const dataSet = mapLeaderboardToTableData(leaderBoard);
 
   return (
-    <Styled.CourseResultCell>
+    <Styled.CourseResultCellCard>
       <Styled.LeaderboardTableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -90,7 +90,7 @@ export const AdminLeaderboard: FC<AdminLeaderboardProps> = ({ leaderBoard }) => 
           </TableBody>
         </Table>
       </Styled.LeaderboardTableContainer>
-    </Styled.CourseResultCell>
+    </Styled.CourseResultCellCard>
   );
 };
 

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { Card } from '@mui/material';
 import { LeaderboardAverageUserShot } from '@/types/models/leaderboard/leaderboard.type';
@@ -15,13 +15,8 @@ const chartSetting = {
       label: 'Average Score',
     },
   ],
-  width: getViewWidth(),
   height: 300,
 };
-
-function getViewWidth(): number {
-  return window.innerWidth / 2;
-}
 
 export const CourseStats: FC<CourseStatsProps> = ({ averages }) => {
   if (averages === null) return <LoadingComponent />;
@@ -31,19 +26,39 @@ export const CourseStats: FC<CourseStatsProps> = ({ averages }) => {
         <p>No data available</p>
       </Card>
     );
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const [graphWidth, setGraphWidth] = useState<number>(0); // Step 3
+
+  useEffect(() => {
+    const updateWidth = () => {
+      const parentWidth = containerRef.current?.offsetWidth;
+      if (parentWidth) {
+        setGraphWidth(parentWidth * 0.9);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
   const dataSet = formatAverages(averages);
   const valueFormatter = (value: number) => `${value} points`;
 
+  console.log('containerRef', graphWidth);
+
   return (
-    <Styled.CourseResultCell>
+    <Styled.CourseResultCellCard ref={containerRef}>
       <BarChart
         dataset={dataSet}
         xAxis={[{ scaleType: 'band', dataKey: 'targetName' }]}
         series={[{ dataKey: 'averageScore', label: 'Average Score Per Target', valueFormatter }]}
         {...chartSetting}
+        width={graphWidth}
       />
-    </Styled.CourseResultCell>
+    </Styled.CourseResultCellCard>
   );
 };
 

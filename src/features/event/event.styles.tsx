@@ -41,11 +41,14 @@ export const EventsContainer = styled(Box)(({}) => ({
 }));
 
 export const LeaderboardTableContainer = styled(TableContainer)(({ theme }) => ({
-  maxHeight: '30vh',
-  width: '30vw',
+  maxHeight: '100%',
+  width: '100%',
   border: `2px solid ${theme.palette.grey[300]}`,
 }));
 
-export const CourseResultCell = styled(Card)(({}) => ({
-  maxWidth: '50%',
+export const CourseResultCellCard = styled(Card)(({}) => ({
+  width: '45%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
 }));

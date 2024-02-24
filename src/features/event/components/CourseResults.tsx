@@ -18,9 +18,9 @@ export const CourseResults: FC<CourseResultsProps> = ({ eventId }) => {
 
   if (isLeaderboardFetching) return <LoadingComponent />;
   return (
-    <Styled.Row>
+    <Styled.SpreadRow width="100%">
       <CourseStats averages={targetAverages} />
       <AdminLeaderboard leaderBoard={userLeaderboard} />
-    </Styled.Row>
+    </Styled.SpreadRow>
   );
 };
