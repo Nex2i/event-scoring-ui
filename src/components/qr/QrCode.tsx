@@ -1,4 +1,4 @@
-import { Button, Card } from '@mui/material';
+import { Button } from '@mui/material';
 import QRCodeStyling, {
   DrawType,
   TypeNumber,
@@ -10,23 +10,30 @@ import QRCodeStyling, {
   Options,
 } from 'qr-code-styling-new';
 import { FC, useEffect, useRef, useState } from 'react';
-import * as Styled from '@/common/style';
-
 import siteLogo from '@/assets/event-score.png';
+import * as Styled from './styles';
 
 interface QrCodeProps {
   url: string;
   qrName?: string;
 }
 
+const containerSize = '20vw';
+
+function containerToPixels(): number {
+  const numericValue = parseFloat(containerSize);
+  return (numericValue / 100) * window.innerWidth;
+}
+
 export const QrCode: FC<QrCodeProps> = ({ url, qrName }) => {
+  const qrRef = useRef<HTMLDivElement>(null);
+
   const options = {
-    width: getViewWidth(),
-    height: getViewWidth(),
     type: 'svg' as DrawType,
     data: url,
     image: siteLogo,
     margin: 10,
+    width: containerToPixels(),
     qrOptions: {
       typeNumber: 0 as TypeNumber,
       mode: 'Byte' as Mode,
@@ -52,14 +59,13 @@ export const QrCode: FC<QrCodeProps> = ({ url, qrName }) => {
     },
   } as Options;
 
-  const [qrCode] = useState<QRCodeStyling>(new QRCodeStyling(options));
-  const ref = useRef<HTMLDivElement>(null);
+  const [qrCode, setQrCode] = useState<QRCodeStyling>(new QRCodeStyling(options));
 
   useEffect(() => {
-    if (ref.current) {
-      qrCode.append(ref.current);
+    if (qrRef.current) {
+      qrCode.append(qrRef.current);
     }
-  }, [qrCode, ref]);
+  }, [qrCode, qrRef]);
 
   useEffect(() => {
     if (!qrCode) return;
@@ -68,10 +74,13 @@ export const QrCode: FC<QrCodeProps> = ({ url, qrName }) => {
 
   const onDownloadClick = () => {
     if (!qrCode) return;
+
+    qrCode.update({ width: 2160, height: 2160 });
     qrCode.download({
       extension: 'png',
       name: qrName,
     });
+    setQrCode(new QRCodeStyling(options));
   };
 
   const previewQrCode = () => {
@@ -79,16 +88,12 @@ export const QrCode: FC<QrCodeProps> = ({ url, qrName }) => {
   };
 
   return (
-    <Card sx={{ width: '40vw' }}>
-      <div ref={ref} />
-      <Styled.SpreadRow>
+    <Styled.QrContainer sx={{ width: containerSize }}>
+      <div ref={qrRef} />
+      <Styled.SpreadRow width="100%">
         <Button onClick={onDownloadClick}>Download</Button>
         <Button onClick={previewQrCode}>Preview</Button>
       </Styled.SpreadRow>
-    </Card>
+    </Styled.QrContainer>
   );
 };
-
-function getViewWidth(): number {
-  return window.innerWidth / 4.5;
-}
