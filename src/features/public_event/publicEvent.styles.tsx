@@ -1,4 +1,4 @@
-import { styled, Box } from '@mui/material';
+import { styled, Box, TableContainer, Card } from '@mui/material';
 
 export * from '@/common/style';
 
@@ -38,4 +38,16 @@ export const PublicTargetsContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '90%',
   gap: theme.spacing(2),
+}));
+
+export const LeaderboardTableContainer = styled(TableContainer)(({ theme }) => ({
+  maxHeight: '100%',
+  width: '100%',
+  border: `2px solid ${theme.palette.grey[300]}`,
+}));
+
+export const LeaderboardContainer = styled(Card)(({}) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
 }));

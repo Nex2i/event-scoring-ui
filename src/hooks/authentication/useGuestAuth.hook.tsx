@@ -1,38 +1,46 @@
 import { useContext, useEffect, useState } from 'react';
 import { ApiContext } from '@/apis/api.context';
-import { setAuthentication } from '@/stores/slices/Authentication.slice';
+import {
+  authenticationSelector,
+  setGuestAuthentication,
+} from '@/stores/slices/Authentication.slice';
 import { useAppDispatch } from '@/stores/store.hooks';
 import localStorageRepository from '@/utils/localStorage.repository';
 
 interface hookResponse {
   isFetching: boolean;
+  userId: string;
 }
 
 export const useGuestAuth = (eventId: string): hookResponse => {
   const apis = useContext(ApiContext);
   const dispatch = useAppDispatch();
+  const { userId } = authenticationSelector();
   const [isFetching, setIsFetching] = useState(false);
-
-  const persistedToken = localStorageRepository.getUserToken();
 
   useEffect(() => {
     let isMounted = true;
 
-    if (!eventId || persistedToken) return;
+    if (!eventId) return;
 
     setIsFetching(true);
+
+    const cachedGuestUser = localStorageRepository.getGuestPayload();
+    if (cachedGuestUser) {
+      dispatch(setGuestAuthentication(cachedGuestUser));
+      setIsFetching(false);
+      return;
+    }
 
     apis.authentication
       .createGuestUser(eventId)
       .then((res) => {
         const { user } = res;
         dispatch(
-          setAuthentication({
+          setGuestAuthentication({
             userId: user.userId,
             companyId: user.companyId,
             token: user.token,
-            phoneNumber: user.phoneNumber,
-            email: user.email,
             userType: user.userType,
           })
         );
@@ -48,5 +56,5 @@ export const useGuestAuth = (eventId: string): hookResponse => {
     };
   }, [eventId]);
 
-  return { isFetching };
+  return { isFetching, userId };
 };

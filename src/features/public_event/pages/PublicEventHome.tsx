@@ -10,6 +10,7 @@ import { useQuery } from '@/libs/routing/useQuery.hook';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
 import { publicEventSelector, setUsername } from '@/stores/slices/PublicEvent.slice';
 import * as Styled from '../publicEvent.styles';
+import { PublicLeaderboard } from '../components/PublicLeaderboard';
 
 interface PublicEventHomeProps {
   event: EventModel;
@@ -40,7 +41,6 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   );
 
   const updateUsername = (usernameValue: string) => {
-    // Call the debounced function with the latest value
     debouncedChangeHandler(usernameValue);
   };
 
@@ -76,6 +76,7 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
           START
         </Button>
       )}
+      {isSubmitted && <PublicLeaderboard eventId={event.id} />}
     </div>
   );
 };

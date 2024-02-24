@@ -11,6 +11,7 @@ export interface IGuestAuthentication {
   token: string;
   companyId: string;
   userType: USER_TYPE;
+  userId: string;
 }
 
 export enum USER_TYPE {
