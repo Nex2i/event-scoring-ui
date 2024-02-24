@@ -1,5 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
-import { Box, Card, styled } from '@mui/material';
+import { Box, Card, TableContainer, styled } from '@mui/material';
 
 export * from '@/common/style';
 
@@ -38,4 +38,14 @@ export const EventsContainer = styled(Box)(({}) => ({
   gap: '1rem',
   width: '100%',
   marginLeft: '0',
+}));
+
+export const LeaderboardTableContainer = styled(TableContainer)(({ theme }) => ({
+  maxHeight: '30vh',
+  width: '30vw',
+  border: `2px solid ${theme.palette.grey[300]}`,
+}));
+
+export const CourseResultCell = styled(Card)(({}) => ({
+  maxWidth: '50%',
 }));

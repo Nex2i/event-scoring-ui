@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
-import { LeaderboardAverageUserShot } from '@/types/models/leaderboard/leaderboard.type';
 import { Card } from '@mui/material';
+import { LeaderboardAverageUserShot } from '@/types/models/leaderboard/leaderboard.type';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
+import * as Styled from '../event.styles';
 
 interface CourseStatsProps {
   averages: LeaderboardAverageUserShot[] | null;
@@ -35,14 +36,14 @@ export const CourseStats: FC<CourseStatsProps> = ({ averages }) => {
   const valueFormatter = (value: number) => `${value} points`;
 
   return (
-    <Card>
+    <Styled.CourseResultCell>
       <BarChart
         dataset={dataSet}
         xAxis={[{ scaleType: 'band', dataKey: 'targetName' }]}
         series={[{ dataKey: 'averageScore', label: 'Average Score Per Target', valueFormatter }]}
         {...chartSetting}
       />
-    </Card>
+    </Styled.CourseResultCell>
   );
 };
 

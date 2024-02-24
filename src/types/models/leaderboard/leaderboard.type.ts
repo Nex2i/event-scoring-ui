@@ -2,6 +2,7 @@ export interface LeaderboardCourseRecord {
   id: string;
   userId: string;
   courseId: string;
+  username: string;
   totalScore: number;
   dateCreated: string;
   dateUpdated: string;

@@ -1,11 +1,11 @@
-import { formatDate } from '@/shared/formatDate';
-import { EventModel } from '@/types/models/event/event.model';
 import { Card } from '@mui/material';
 import { FC, useContext } from 'react';
-import * as Styled from '../event.styles';
+import { useParams } from 'react-router-dom';
+import { formatDate } from '@/shared/formatDate';
+import { EventModel } from '@/types/models/event/event.model';
 import { QrCode } from '@/components/qr/QrCode';
 import { ApiContext } from '@/apis/api.context';
-import { useParams } from 'react-router-dom';
+import * as Styled from '../event.styles';
 
 interface EventDetailsProps {
   event: EventModel;
