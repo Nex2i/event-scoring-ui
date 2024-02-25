@@ -46,8 +46,14 @@ export const LeaderboardTableContainer = styled(TableContainer)(({ theme }) => (
   border: `2px solid ${theme.palette.grey[300]}`,
 }));
 
-export const LeaderboardContainer = styled(Card)(({}) => ({
+export const LeaderboardContainer = styled(Card)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'flex-start',
+  padding: theme.spacing(1),
+  margin: theme.spacing(1),
+}));
+
+export const PublicEventHomeInfoContainer = styled(Card)(({ theme }) => ({
+  margin: theme.spacing(1),
 }));

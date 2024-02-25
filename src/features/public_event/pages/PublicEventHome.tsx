@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Card, Typography } from '@mui/material';
 import { debounce } from 'lodash';
 import { FC, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -53,30 +53,38 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   const disabeldStart = username.length <= 0;
 
   return (
-    <div id="event-home-container">
-      <Typography variant="h4">{event.name}</Typography>
-      <BasicFilledInput initialValue="Username" onValueChange={updateUsername} value={username} />
-      <Styled.Row>
-        <Typography variant="h6">Start Date: {formatDate(event.startDate)}</Typography>
-        <Typography variant="h6">End Date: {formatDate(event.endDate)}</Typography>
-      </Styled.Row>
-      <br />
-      <Typography variant="subtitle1">Total Targets: {totalTargets}</Typography>
-      <Typography variant="subtitle1">Avg Shots per Target: {averageShotsPerTarget}</Typography>
-      <br />
-      {isSubmitted === 'true' ? (
-        <>
-          <Typography variant="h6">You have already submitted your scores</Typography>
-          <Button onClick={startCourse} disabled={disabeldStart}>
-            Go Again
-          </Button>
-        </>
-      ) : (
-        <Button onClick={startCourse} disabled={disabeldStart}>
-          START
-        </Button>
-      )}
+    <div id="event-home-container" style={{ width: '100%' }}>
+      <Styled.PublicEventHomeInfoContainer>
+        <Typography variant="h4">{event.name}</Typography>
+        <BasicFilledInput
+          disabled={!!isSubmitted}
+          initialValue="Username"
+          onValueChange={updateUsername}
+          value={username}
+        />
+        <Styled.Row>
+          <Typography variant="h6">Start Date: {formatDate(event.startDate)}</Typography>
+          <Typography variant="h6">End Date: {formatDate(event.endDate)}</Typography>
+        </Styled.Row>
+      </Styled.PublicEventHomeInfoContainer>
       {isSubmitted && <PublicLeaderboard eventId={event.id} />}
+      <Styled.PublicEventHomeInfoContainer>
+        <Typography variant="subtitle1">Total Targets: {totalTargets}</Typography>
+        <Typography variant="subtitle1">Avg Shots per Target: {averageShotsPerTarget}</Typography>
+        <br />
+        {isSubmitted === 'true' ? (
+          <>
+            <Typography variant="h6">{username} has already submitted a score</Typography>
+            <Button onClick={startCourse} disabled={disabeldStart}>
+              Go Again
+            </Button>
+          </>
+        ) : (
+          <Button onClick={startCourse} disabled={disabeldStart}>
+            START
+          </Button>
+        )}
+      </Styled.PublicEventHomeInfoContainer>
     </div>
   );
 };

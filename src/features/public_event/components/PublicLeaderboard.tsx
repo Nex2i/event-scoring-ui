@@ -1,4 +1,4 @@
-import { Table, TableBody, TableCell, TableRow } from '@mui/material';
+import { Table, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import { FC } from 'react';
 import { LeaderboardHeader } from '@/components/leaderboard/leaderboardHeader';
 import { mapLeaderboardToTableData } from '@/components/leaderboard/mappers';
@@ -22,7 +22,7 @@ export const PublicLeaderboard: FC<PublicLeaderboardProps> = ({ eventId }) => {
   const userRank = findUserRank(dataSet, userId);
   return (
     <Styled.LeaderboardContainer>
-      <p>YOUR RANK: {userRank}</p>
+      <Typography variant="h6">Your Rank: {userRank}</Typography>
       <Styled.LeaderboardTableContainer>
         <Table stickyHeader aria-label="sticky table">
           <LeaderboardHeader />
