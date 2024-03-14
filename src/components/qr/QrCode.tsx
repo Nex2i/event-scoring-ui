@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, Link } from '@mui/material';
 import QRCodeStyling, {
   DrawType,
   TypeNumber,
@@ -83,16 +83,16 @@ export const QrCode: FC<QrCodeProps> = ({ url, qrName }) => {
     setQrCode(new QRCodeStyling(options));
   };
 
-  const previewQrCode = () => {
-    window.open(url, '_blank');
-  };
-
   return (
     <Styled.QrContainer sx={{ width: containerSize }}>
       <div ref={qrRef} />
       <Styled.SpreadRow width="100%">
         <Button onClick={onDownloadClick}>Download</Button>
-        <Button onClick={previewQrCode}>Preview</Button>
+        <Button>
+          <Link href={url} target="_blank">
+            Preview
+          </Link>
+        </Button>
       </Styled.SpreadRow>
     </Styled.QrContainer>
   );
