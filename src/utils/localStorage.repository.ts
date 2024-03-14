@@ -1,6 +1,7 @@
 import { Round } from '@/types/models/tracker/tracker.type';
 import { EventModel } from '@/types/models/event/event.model';
 import { UserCourseDataModel } from '@/types/models/userInteraction/userCourseData.model';
+import { IGuestAuthentication } from '@/stores/sliceTypes/Authentication.type';
 import { getLocal, LocalKeys, removeLocal, setLocal } from './localStorage';
 
 class LocalStorageRepository {
@@ -12,6 +13,16 @@ class LocalStorageRepository {
 
   public setUserToken(userToken: string): void {
     setLocal(LocalKeys.USER_TOKEN, userToken);
+  }
+
+  public setGuestPayload(payload: IGuestAuthentication): void {
+    setLocal(LocalKeys.GUEST_PAYLOAD, JSON.stringify(payload));
+  }
+
+  public getGuestPayload(): IGuestAuthentication | null {
+    const guestPayload = getLocal(LocalKeys.GUEST_PAYLOAD);
+    if (guestPayload) return JSON.parse(guestPayload) as IGuestAuthentication;
+    return null;
   }
 
   public deleteUserToken(): void {

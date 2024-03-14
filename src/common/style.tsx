@@ -154,11 +154,14 @@ export const CenterTypography = styled(Typography)(({}) => ({
   textDecoration: 'underline',
 }));
 
-export const ScrollableContainer = styled(Box)<{ maxHeight?: string }>(({ maxHeight }) => ({
-  overflow: 'auto',
-  height: '100%',
-  maxHeight: maxHeight || '50vh',
-}));
+export const ScrollableContainer = styled(Box)<{ maxHeight?: string; width?: string }>(
+  ({ maxHeight, width }) => ({
+    overflow: 'auto',
+    height: '100%',
+    maxHeight: maxHeight || '50vh',
+    width: width ? width : 'auto',
+  })
+);
 
 export const CoreLayoutOutlet = styled(Box)(({ theme }) => ({
   display: 'flex',

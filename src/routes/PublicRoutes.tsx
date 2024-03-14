@@ -1,9 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import { lazyImport } from '@/utils/lazyImport';
-import { TrackingRoutes } from '@/features/tracking/TrackingRoutes';
-import { PublicMenuRoutes } from '@/features/publicMenu/PublicMenuRoutes';
-import { PublicEventRoutes } from '@/features/public_event/PublicEventRoutes';
-import { authRoutes, publicEventRoutes, publicMenuRoutes, trackingRoutes } from './RouteConstants';
+
+import { authRoutes, publicEventRoutes, publicMenuRoutes } from './RouteConstants';
 import { Redirect } from './redirect';
 
 const { AuthenticationRoutes } = lazyImport(
@@ -11,14 +9,20 @@ const { AuthenticationRoutes } = lazyImport(
   'AuthenticationRoutes'
 );
 
+const { PublicEventRoutes } = lazyImport(
+  () => import('@/features/public_event/PublicEventRoutes'),
+  'PublicEventRoutes'
+);
+
+const { PublicMenuRoutes } = lazyImport(
+  () => import('@/features/publicMenu/PublicMenuRoutes'),
+  'PublicMenuRoutes'
+);
+
 export const PublicRoutes: RouteObject[] = [
   {
     path: `/${authRoutes.base}/*`,
     element: <AuthenticationRoutes />,
-  },
-  {
-    path: `/${trackingRoutes.base}/*`,
-    element: <TrackingRoutes />,
   },
   {
     path: `/${publicEventRoutes.base}/*`,

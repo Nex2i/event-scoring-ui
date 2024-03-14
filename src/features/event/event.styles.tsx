@@ -1,5 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
-import { Box, Card, styled } from '@mui/material';
+import { Box, Card, TableContainer, styled } from '@mui/material';
 
 export * from '@/common/style';
 
@@ -20,7 +20,7 @@ export const EventCube = styled(BaseEventCard)(({}) => ({}));
 export const NewEventCube = styled(BaseEventCard)(({}) => ({
   justifyContent: 'center',
   alignItems: 'center',
-  marginLeft: '0',
+  // marginLeft: '0',
 }));
 
 export const NewEventIcon = styled(AddIcon)(({ theme }) => ({
@@ -36,6 +36,19 @@ export const EventsContainer = styled(Box)(({}) => ({
   flexWrap: 'wrap',
   justifyContent: 'flex-start',
   gap: '1rem',
-  //   padding: '1rem',
   width: '100%',
+  marginLeft: '0',
+}));
+
+export const LeaderboardTableContainer = styled(TableContainer)(({ theme }) => ({
+  maxHeight: '100%',
+  width: '100%',
+  border: `2px solid ${theme.palette.grey[300]}`,
+}));
+
+export const CourseResultCellCard = styled(Card)(({}) => ({
+  width: '45%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
 }));

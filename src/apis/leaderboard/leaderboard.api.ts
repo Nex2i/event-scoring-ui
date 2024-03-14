@@ -15,6 +15,9 @@ export class LeaderboardApi extends BaseRepository {
     return HttpClient.get(`${this.apiUrl}/api/leaderboard/admin?eventId=${eventId}`);
   };
   getGuestLeaderboard = async (eventId: string): Promise<LeaderboardCourseRecord[]> => {
-    return HttpClient.get(`${this.apiUrl}/api/leaderboard/guest?eventId=${eventId}`);
+    const courseRecords = await HttpClient.get<{ courseRecords: LeaderboardCourseRecord[] }>(
+      `${this.apiUrl}/api/leaderboard/guest?eventId=${eventId}`
+    );
+    return courseRecords?.courseRecords;
   };
 }

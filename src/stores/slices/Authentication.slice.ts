@@ -26,6 +26,7 @@ export const authenticationSlice = createSlice({
     },
     setGuestAuthentication: (state, action: PayloadAction<IGuestAuthentication>) => {
       localStorageRepository.setUserToken(action.payload.token);
+      localStorageRepository.setGuestPayload(action.payload);
       Object.assign(state, action.payload);
     },
     removeAuthentication: (state) => {
@@ -37,6 +38,7 @@ export const authenticationSlice = createSlice({
 
 export const authenticationSelector = () => useAppSelector((store) => store.authentication);
 
-export const { setAuthentication, removeAuthentication } = authenticationSlice.actions;
+export const { setGuestAuthentication, setAuthentication, removeAuthentication } =
+  authenticationSlice.actions;
 
 export default authenticationSlice.reducer;
