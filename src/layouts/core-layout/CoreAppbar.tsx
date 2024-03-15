@@ -70,7 +70,7 @@ export const CoreAppbar: FC<coreNavbarProps> = ({}) => {
                   textDecoration: 'none',
                 }}
               >
-                LOGO
+                Home
               </Typography>
             </Styled.Row>
             <Box sx={{ flexGrow: 0 }}>
