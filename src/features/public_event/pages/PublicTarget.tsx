@@ -59,12 +59,14 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
 
   if (isFetching) return <LoadingComponent />;
   if (!target) return <p>Could Not Find Target</p>;
+
   return (
     <Styled.PublicTargetsContainer>
-      <Styled.AroundRow width="100%">
-        {username}
+      <Styled.StartRow width="100%">{username}</Styled.StartRow>
+      <Styled.SpreadRow width="100%">
         <p>Total Score: {totalScore}</p>
-      </Styled.AroundRow>
+        <p>Target #: {target.orderIndex + 1}</p>
+      </Styled.SpreadRow>
       {!bullseye || !bullseye.rings.length ? (
         <p>Target Not Found</p>
       ) : (

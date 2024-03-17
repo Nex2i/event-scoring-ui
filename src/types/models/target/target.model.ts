@@ -8,6 +8,7 @@ export interface TargetModel extends IBaseModel {
   distance: number;
   targetTypeId: string;
   Shots: ShotModel[];
+  orderIndex: number;
 }
 
 export interface TargetModelCreate {
