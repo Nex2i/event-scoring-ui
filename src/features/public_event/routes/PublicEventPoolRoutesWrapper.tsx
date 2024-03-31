@@ -1,12 +1,17 @@
 import { FC } from 'react';
-import * as Styled from '../publicEvent.styles';
 import { Route, Routes, useParams } from 'react-router-dom';
-import { PublicEventPoolSetup } from '../pages/PublicEventPoolSetup';
 import { usePublicEventHook } from '@/hooks/event/usePublicEvent.hook';
+import * as Styled from '../publicEvent.styles';
+import { PublicEventPoolSetup } from '../pages/PublicEventPoolSetup';
 
 export const PublicEventPoolRoutesWrapper: FC = ({}) => {
   const { id } = useParams() as { id: string };
-  const { isFetching, event } = usePublicEventHook(id);
+  const { isFetching } = usePublicEventHook(id);
+
+  if (isFetching) {
+    return <div>Fetching...</div>;
+  }
+
   return (
     <Styled.PublicEventContainer>
       <Routes>

@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { PublicLeaderboard } from './PublicLeaderboard';
-import * as Styled from '../publicEvent.styles';
 import { Button, Typography } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@/libs/routing/useQuery.hook';
 import { publicEventRoutes } from '@/routes/RouteConstants';
 import { EventModel } from '@/types/models/event/event.model';
-import { useNavigate, useParams } from 'react-router-dom';
+import * as Styled from '../publicEvent.styles';
+import { PublicLeaderboard } from './PublicLeaderboard';
 
 interface EventInfoAndStartContainerProps {
   event: EventModel;

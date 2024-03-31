@@ -1,8 +1,8 @@
+import { FC } from 'react';
+import { useParams, Routes, Route } from 'react-router-dom';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { useIndividualGuestAuth } from '@/hooks/authentication/useIndividualGuestAuth.hook';
 import { usePublicEventHook } from '@/hooks/event/usePublicEvent.hook';
-import { FC } from 'react';
-import { useParams, Routes, Route } from 'react-router-dom';
 import { PublicEventHome } from '../pages/PublicEventHome';
 import { PublicTarget } from '../pages/PublicTarget';
 import * as Styled from '../publicEvent.styles';

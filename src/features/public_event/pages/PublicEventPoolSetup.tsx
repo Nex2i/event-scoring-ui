@@ -1,7 +1,5 @@
 import { Button, Input, Link, Typography } from '@mui/material';
 import { FC, useState } from 'react';
-import * as Styled from '../publicEvent.styles';
-import { FormFilledInput } from '@/libs/forms/formFilledComponents';
 import { generateCharGUID } from '@/utils/guidGenerator';
 
 interface PublicEventPoolSetupProps {}
@@ -42,8 +40,8 @@ export const PublicEventPoolSetup: FC<PublicEventPoolSetupProps> = ({}) => {
       />
       <Button onClick={addContestant}>Add Contestant</Button>
       <ul>
-        {contestants.map((contestant) => (
-          <li>{contestant}</li>
+        {contestants.map((contestant, i) => (
+          <li key={i}>{contestant}</li>
         ))}
       </ul>
     </div>
