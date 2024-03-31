@@ -35,7 +35,7 @@ class LocalStorageRepository {
     if (guestPayload) {
       const oneDayAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
       const cachePayload = JSON.parse(guestPayload) as IGuestAuthentication;
-      if (cachePayload.localCacheSetDate <= oneDayAgo || !cachePayload.localCacheSetDate) {
+      if (!cachePayload.localCacheSetDate || cachePayload.localCacheSetDate <= oneDayAgo) {
         removeLocal(LocalKeys.GUEST_PAYLOAD);
         return null;
       }
