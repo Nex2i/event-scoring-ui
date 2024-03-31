@@ -14,7 +14,11 @@ interface NextTargetButtonProps {
 
 export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
   const navigate = useNavigate();
-  const { targetId, courseId } = useParams() as { targetId: string; courseId: string };
+  const { targetId, courseId, recordingType } = useParams() as {
+    targetId: string;
+    courseId: string;
+    recordingType: string;
+  };
   const [isLastTarget, setIsLastTarget] = useState(false);
   const [isFirstTarget, setIsFirstTarget] = useState(true);
   const { userCourseData, username } = publicEventSelector();
@@ -63,7 +67,9 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
 
     const nextTargetId = event.Courses[currentCourseIndex].Targets[currentTargetIndex + 1]?.id;
     if (nextTargetId) {
-      navigate(`/${publicEventRoutes.base}/${event.id}/${courseId}/${nextTargetId}`);
+      navigate(
+        `/${publicEventRoutes.base}/${event.id}/${recordingType}/${courseId}/${nextTargetId}`
+      );
     } else {
       console.error('No next target found');
     }
