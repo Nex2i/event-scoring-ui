@@ -5,29 +5,49 @@ import { IGuestAuthentication } from '@/stores/sliceTypes/Authentication.type';
 import { getLocal, LocalKeys, removeLocal, setLocal } from './localStorage';
 
 class LocalStorageRepository {
-  public getUserToken(): string | null {
-    const userToken = getLocal(LocalKeys.USER_TOKEN);
+  public getAdminUserToken(): string | null {
+    const userToken = getLocal(LocalKeys.ADMIN_USER_TOKEN);
+    if (userToken) return userToken;
+    return null;
+  }
+
+  public getGuestUserToken(): string | null {
+    const userToken = getLocal(LocalKeys.GUEST_USER_TOKEN);
     if (userToken) return userToken;
     return null;
   }
 
   public setUserToken(userToken: string): void {
-    setLocal(LocalKeys.USER_TOKEN, userToken);
+    setLocal(LocalKeys.ADMIN_USER_TOKEN, userToken);
+  }
+
+  public setGuestUserToken(userToken: string): void {
+    setLocal(LocalKeys.GUEST_USER_TOKEN, userToken);
   }
 
   public setGuestPayload(payload: IGuestAuthentication): void {
+    payload.localCacheSetDate = new Date();
     setLocal(LocalKeys.GUEST_PAYLOAD, JSON.stringify(payload));
   }
 
   public getGuestPayload(): IGuestAuthentication | null {
     const guestPayload = getLocal(LocalKeys.GUEST_PAYLOAD);
-    if (guestPayload) return JSON.parse(guestPayload) as IGuestAuthentication;
+    if (guestPayload) {
+      const oneDayAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+      const cachePayload = JSON.parse(guestPayload) as IGuestAuthentication;
+      if (cachePayload.localCacheSetDate <= oneDayAgo || !cachePayload.localCacheSetDate) {
+        removeLocal(LocalKeys.GUEST_PAYLOAD);
+        return null;
+      }
+
+      return cachePayload;
+    }
     return null;
   }
 
   public deleteUserToken(): void {
     removeLocal(LocalKeys.ACTIVE_LOCATION);
-    removeLocal(LocalKeys.USER_TOKEN);
+    removeLocal(LocalKeys.ADMIN_USER_TOKEN);
   }
 
   public getActiveRound(): Round | null {

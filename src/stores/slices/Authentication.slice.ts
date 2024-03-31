@@ -25,7 +25,7 @@ export const authenticationSlice = createSlice({
       Object.assign(state, action.payload);
     },
     setGuestAuthentication: (state, action: PayloadAction<IGuestAuthentication>) => {
-      localStorageRepository.setUserToken(action.payload.token);
+      localStorageRepository.setGuestUserToken(action.payload.token);
       localStorageRepository.setGuestPayload(action.payload);
       Object.assign(state, action.payload);
     },

@@ -12,6 +12,7 @@ export interface IGuestAuthentication {
   companyId: string;
   userType: USER_TYPE;
   userId: string;
+  localCacheSetDate: Date;
 }
 
 export enum USER_TYPE {

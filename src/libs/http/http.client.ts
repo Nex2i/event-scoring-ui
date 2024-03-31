@@ -67,7 +67,7 @@ const createConfig = (config?: HttpConfig): AxiosRequestConfig => {
 };
 
 const getAuthConfig = (): object => {
-  const userToken = LocalStorageRepository.getUserToken();
+  const userToken = LocalStorageRepository.getAdminUserToken();
   return { headers: { authorization: `Bearer ${userToken}` } };
 };
 
