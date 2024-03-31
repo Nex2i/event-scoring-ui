@@ -12,7 +12,7 @@ interface hookResponse {
   userId: string;
 }
 
-export const useGuestAuth = (eventId: string): hookResponse => {
+export const useIndividualGuestAuth = (eventId: string): hookResponse => {
   const apis = useContext(ApiContext);
   const dispatch = useAppDispatch();
   const { userId } = authenticationSelector();

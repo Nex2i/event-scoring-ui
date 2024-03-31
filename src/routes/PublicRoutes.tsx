@@ -10,7 +10,7 @@ const { AuthenticationRoutes } = lazyImport(
 );
 
 const { PublicEventRoutes } = lazyImport(
-  () => import('@/features/public_event/PublicEventRoutes'),
+  () => import('@/features/public_event/routes/PublicEventRoutes'),
   'PublicEventRoutes'
 );
 
