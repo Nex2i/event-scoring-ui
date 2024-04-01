@@ -10,7 +10,7 @@ import { useAppSelector } from '../store.hooks';
 import { PublicEventState, RecordShotPayload } from '../sliceTypes/PublicEventState.type';
 
 export const initialPublicEventState = {
-  username: localStorageRepository.getPublicEventUsername() || '',
+  activeUsername: localStorageRepository.getPublicEventUsername() || '',
 } as PublicEventState;
 
 export const publicEventSliceName = 'publicEventSlice';
@@ -23,24 +23,43 @@ export const publicEventSlice = createSlice({
     initializeEvent: (state, action: PayloadAction<EventModel>) => {
       state.activeEvent = action.payload;
       localStorageRepository.setActivePublicEvent(action.payload);
-
-      const firstCourseId = action.payload.Courses?.[0].id;
-      state.userCourseData = createInitialCourse(firstCourseId);
+    },
+    initializeCourse: (state) => {
+      state.userCourseData = createInitialCourse(
+        state.activeUsername,
+        state.activeEvent?.Courses![0].id
+      );
     },
     setActiveShotId: (state, action: PayloadAction<string>) => {
       state.activeShotId = action.payload;
     },
     setUsername: (state, action: PayloadAction<string>) => {
-      state.username = action.payload;
+      state.activeUsername = action.payload;
       localStorageRepository.setPublicEventUsername(action.payload);
+    },
+    setPoolNames: (state, action: PayloadAction<string[]>) => {
+      state.poolNames = action.payload;
     },
   },
 });
 
 export const publicEventSelector = () => useAppSelector((store) => store.publicEvent);
+export const getActiveTotals = (): number => {
+  const { userCourseData, activeUsername } = publicEventSelector();
+  if (!userCourseData || !activeUsername) {
+    return 0;
+  }
+  return userCourseData[activeUsername].totalScore ?? 0;
+};
 
-export const { recordScore, initializeEvent, setActiveShotId, setUsername } =
-  publicEventSlice.actions;
+export const {
+  recordScore,
+  initializeEvent,
+  setActiveShotId,
+  setUsername,
+  initializeCourse,
+  setPoolNames,
+} = publicEventSlice.actions;
 
 export default publicEventSlice.reducer;
 
@@ -52,9 +71,16 @@ function calculateShotsTotalScore(targets: UserShotDataModel[]) {
   return targets.reduce((acc, target) => acc + target.score, 0);
 }
 
-function createInitialCourse(courseId?: string): UserCourseDataModel {
+function createInitialCourse(
+  activeUsername?: string,
+  courseId?: string
+): Record<string, UserCourseDataModel> {
   if (!courseId) {
     throw new Error('No courseId');
+  }
+
+  if (!activeUsername) {
+    throw new Error('No activeUsername');
   }
 
   const cachedUserCourseData = localStorageRepository.getUserCourseData(courseId);
@@ -62,20 +88,25 @@ function createInitialCourse(courseId?: string): UserCourseDataModel {
     return cachedUserCourseData;
   }
 
-  const userCourseData: UserCourseDataModel = {
+  const userCourseData: Record<string, UserCourseDataModel> = {};
+
+  userCourseData[activeUsername] = {
     courseId: courseId,
     totalScore: 0,
     username: '',
     targets: [],
   };
 
-  localStorageRepository.setUserCourseData(userCourseData);
+  console.log('Creating initial course', userCourseData);
+
+  localStorageRepository.setUserCourseData(courseId, userCourseData);
 
   return userCourseData;
 }
 
 function recordUserScore(state: PublicEventState, action: PayloadAction<RecordShotPayload>) {
   const { courseId, targetId, shotId, score } = action.payload;
+  const { activeUsername } = state;
 
   if (state.activeEvent === undefined) {
     console.error('No active event');
@@ -83,42 +114,59 @@ function recordUserScore(state: PublicEventState, action: PayloadAction<RecordSh
   }
 
   if (!state.userCourseData) {
-    state.userCourseData = createInitialCourse(courseId);
+    state.userCourseData = createInitialCourse(activeUsername, courseId);
   }
 
-  const targetIndex = state.userCourseData.targets.findIndex(
+  if (!state.userCourseData[activeUsername]) {
+    state.userCourseData[activeUsername] = {
+      courseId: courseId,
+      totalScore: 0,
+      username: activeUsername,
+      targets: [],
+    };
+  }
+
+  const targetIndex = state.userCourseData[activeUsername]!.targets.findIndex(
     (target) => target.targetId === targetId
   );
 
   if (targetIndex === -1) {
-    state.userCourseData.targets.push({
+    state.userCourseData[activeUsername]!.targets.push({
       targetId,
       totalScore: score,
       shots: [{ shotId, score, time: new Date() }],
     });
-    state.userCourseData.totalScore = calculateTotalScore(state.userCourseData.targets);
+    state.userCourseData[activeUsername]!.totalScore = calculateTotalScore(
+      state.userCourseData[activeUsername]!.targets
+    );
 
     return;
   }
 
-  const shotIndex = state.userCourseData.targets[targetIndex].shots.findIndex(
+  const shotIndex = state.userCourseData[activeUsername]!.targets[targetIndex].shots.findIndex(
     (shot) => shot.shotId === shotId
   );
 
   if (shotIndex === -1) {
-    state.userCourseData.targets[targetIndex].shots.push({ shotId, score, time: new Date() });
+    state.userCourseData[activeUsername]!.targets[targetIndex].shots.push({
+      shotId,
+      score,
+      time: new Date(),
+    });
   } else {
-    state.userCourseData.targets[targetIndex].shots[shotIndex] = {
+    state.userCourseData[activeUsername]!.targets[targetIndex].shots[shotIndex] = {
       shotId,
       score,
       time: new Date(),
     };
   }
 
-  state.userCourseData.targets[targetIndex].totalScore = calculateShotsTotalScore(
-    state.userCourseData.targets[targetIndex].shots
+  state.userCourseData[activeUsername]!.targets[targetIndex].totalScore = calculateShotsTotalScore(
+    state.userCourseData[activeUsername]!.targets[targetIndex].shots
   );
-  state.userCourseData.totalScore = calculateTotalScore(state.userCourseData.targets);
+  state.userCourseData[activeUsername]!.totalScore = calculateTotalScore(
+    state.userCourseData[activeUsername]!.targets
+  );
 
-  localStorageRepository.setUserCourseData(state.userCourseData);
+  localStorageRepository.setUserCourseData(courseId, state.userCourseData);
 }

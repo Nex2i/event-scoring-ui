@@ -1,4 +1,4 @@
-import { Button, Input, Link, Typography } from '@mui/material';
+import { Button, Input, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { generateCharGUID } from '@/utils/guidGenerator';
 
@@ -24,9 +24,7 @@ export const PublicEventPoolSetup: FC<PublicEventPoolSetupProps> = ({}) => {
       <Typography variant="h3">Pool Setup</Typography>
       <Typography variant="h6">Contestants</Typography>
 
-      <Link>
-        <Button>Start Pool</Button>
-      </Link>
+      <Button>Start Pool</Button>
 
       <Input
         placeholder="Enter Contestant Name"

@@ -16,7 +16,7 @@ interface PublicEventHomeProps {
 
 export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   const dispatch = useDispatch();
-  const { username } = publicEventSelector();
+  const { activeUsername: username } = publicEventSelector();
 
   const [isSubmitted] = useQuery(['submitted']);
 

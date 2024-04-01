@@ -5,6 +5,13 @@ import { IGuestAuthentication } from '@/stores/sliceTypes/Authentication.type';
 import { getLocal, LocalKeys, removeLocal, setLocal } from './localStorage';
 
 class LocalStorageRepository {
+  public getUserToken(): string | null {
+    const adminToken = this.getAdminUserToken();
+    const guestToken = this.getGuestUserToken();
+    if (adminToken) return adminToken;
+    if (guestToken) return guestToken;
+    return null;
+  }
   public getAdminUserToken(): string | null {
     const userToken = getLocal(LocalKeys.ADMIN_USER_TOKEN);
     if (userToken) return userToken;
@@ -68,8 +75,11 @@ class LocalStorageRepository {
     setLocal(LocalKeys.PUBLIC_EVENT_USERNAME, username);
   }
 
-  public setUserCourseData(userCourseData: UserCourseDataModel): void {
-    setLocal(userCourseData.courseId, JSON.stringify(userCourseData));
+  public setUserCourseData(
+    courseId: string,
+    userCourseData: Record<string, UserCourseDataModel>
+  ): void {
+    setLocal(courseId, JSON.stringify(userCourseData));
   }
 
   public getPublicEventUsername(): string | null {
@@ -78,9 +88,9 @@ class LocalStorageRepository {
     return null;
   }
 
-  public getUserCourseData(courseId: string): UserCourseDataModel | null {
+  public getUserCourseData(courseId: string): Record<string, UserCourseDataModel> | null {
     const courseData = getLocal(courseId);
-    if (courseData) return JSON.parse(courseData) as UserCourseDataModel;
+    if (courseData) return JSON.parse(courseData) as Record<string, UserCourseDataModel>;
     return null;
   }
 

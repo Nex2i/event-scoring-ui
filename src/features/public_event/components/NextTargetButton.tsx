@@ -21,7 +21,7 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
   };
   const [isLastTarget, setIsLastTarget] = useState(false);
   const [isFirstTarget, setIsFirstTarget] = useState(true);
-  const { userCourseData, username } = publicEventSelector();
+  const { userCourseData } = publicEventSelector();
   const { userRecordApi } = useContext(ApiContext);
 
   useEffect(() => {
@@ -80,7 +80,6 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
 
     const payloadData = { ...userCourseData };
 
-    payloadData.username = username;
     await userRecordApi
       .submitCourse(payloadData)
       .then(() => {

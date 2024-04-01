@@ -7,6 +7,7 @@ import { useTargetTypeHook } from '@/hooks/target/useTargetType.hook';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { TargetModel } from '@/types/models/target/target.model';
 import {
+  getActiveTotals,
   publicEventSelector,
   recordScore,
   setActiveShotId,
@@ -25,8 +26,8 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
   const { isFetching, bullseye } = useTargetTypeHook({ targetId });
   const dispatch = useAppDispatch();
   const target = getTargetFromEvent(event, courseId, targetId);
-  const { userCourseData, activeShotId, username } = publicEventSelector();
-  const { totalScore } = userCourseData ?? { totalScore: 0 };
+  const { activeShotId, activeUsername: username } = publicEventSelector();
+  const totalScore = getActiveTotals();
 
   useEffect(() => {
     if (target) {

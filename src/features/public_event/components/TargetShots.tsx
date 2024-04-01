@@ -1,10 +1,11 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Typography } from '@mui/material';
 import { TargetModel } from '@/types/models/target/target.model';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
 import { BullseyeRing } from '@/types/models/tracker/tracker.type';
 import { useAppDispatch } from '@/stores/store.hooks';
 import {
+  initializeCourse,
   publicEventSelector,
   recordScore,
   setActiveShotId,
@@ -19,9 +20,15 @@ interface TargetShotsProps {
 
 export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
   const dispatch = useAppDispatch();
-  const { userCourseData, activeShotId } = publicEventSelector();
+  const { userCourseData, activeShotId, activeUsername } = publicEventSelector();
 
   const scoreCellOptions = shotValueOptions(rings);
+
+  useEffect(() => {
+    if (!userCourseData || userCourseData[activeUsername] === undefined) {
+      dispatch(initializeCourse());
+    }
+  }, []);
 
   const recordShot = (shotId: string, newValue: string) => {
     const currentShotIndex = target.Shots.findIndex((shot) => shot.id === shotId);
@@ -57,7 +64,7 @@ export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
               active={(activeShotId === shot.id).toString()}
             >
               <BasicFilledSelect
-                value={getUserValue(target.id, shot.id, userCourseData)}
+                value={getUserValue(target.id, shot.id, userCourseData, activeUsername)}
                 onValueChange={(updatedValue: string) => recordShot(shot.id, updatedValue)}
                 options={scoreCellOptions}
               />
@@ -72,13 +79,19 @@ export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
 function getUserValue(
   targetId: string,
   shotId: string,
-  userCourseData?: UserCourseDataModel
+  userCourseData?: Record<string, UserCourseDataModel>,
+  activeUsername?: string
 ): string | null {
-  if (!userCourseData) return null;
-  const target = userCourseData.targets.find((target) => target.targetId === targetId) ?? 0;
+  if (!activeUsername || !userCourseData || userCourseData[activeUsername] === undefined)
+    return null;
+
+  const target =
+    userCourseData[activeUsername].targets.find((target) => target.targetId === targetId) ?? 0;
+
   if (!target) return null;
 
   const shot = target.shots.find((shot) => shot.shotId === shotId);
+
   return shot?.score.toString() ?? null;
 }
 
