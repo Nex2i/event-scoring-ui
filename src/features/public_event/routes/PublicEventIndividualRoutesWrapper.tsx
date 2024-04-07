@@ -6,6 +6,7 @@ import { usePublicEventHook } from '@/hooks/event/usePublicEvent.hook';
 import { PublicEventHome } from '../pages/PublicEventHome';
 import { PublicTarget } from '../pages/PublicTarget';
 import * as Styled from '../publicEvent.styles';
+import { EventNotFound } from '../components/EventNotFound';
 
 export const PublicEventIndividualRoutesWrapper: FC = ({}) => {
   const { id } = useParams() as { id: string };
@@ -16,7 +17,7 @@ export const PublicEventIndividualRoutesWrapper: FC = ({}) => {
     return <LoadingComponent />;
   }
   if (!event) {
-    return <div>Event not found</div>;
+    return <EventNotFound />;
   }
   return (
     <Styled.PublicEventContainer>

@@ -1,6 +1,5 @@
 import { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
 import { Bullseye } from '@/features/tracking/components/bullseye';
 import { EventModel } from '@/types/models/event/event.model';
 import { useTargetTypeHook } from '@/hooks/target/useTargetType.hook';
@@ -74,7 +73,7 @@ export const PublicTarget: FC<PublicTargetProps> = ({ event }) => {
         <Bullseye onClick={bullseyeClick} activeTargetId={targetId} rings={bullseye?.rings} />
       )}
       <Styled.StartRow width="100%">
-        <Typography>Target Distance: {target.distance}</Typography>
+        {/* <Typography>Target Distance: {target.distance}</Typography> */}
         {/* <Typography>Shots: {target.Shots.length}</Typography> */}
       </Styled.StartRow>
       <TargetShots target={target} rings={bullseye?.rings} />

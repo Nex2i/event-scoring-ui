@@ -5,7 +5,7 @@ export class PublicEventState {
   activeEvent?: EventModel;
   activeShotId?: string;
   userCourseData?: Record<string, UserCourseDataModel>;
-  poolNames: string[] = [];
+  poolUsernames: string[] = [];
   totalTargetScore: number = 0;
   activeUsername: string = '';
 }

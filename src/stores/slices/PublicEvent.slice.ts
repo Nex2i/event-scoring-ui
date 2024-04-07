@@ -9,9 +9,11 @@ import localStorageRepository from '@/utils/localStorage.repository';
 import { useAppSelector } from '../store.hooks';
 import { PublicEventState, RecordShotPayload } from '../sliceTypes/PublicEventState.type';
 
-export const initialPublicEventState = {
+const initialPublicEventState = {
   activeUsername: localStorageRepository.getPublicEventUsername() || '',
 } as PublicEventState;
+
+initialPublicEventState.poolUsernames = [];
 
 export const publicEventSliceName = 'publicEventSlice';
 
@@ -37,8 +39,11 @@ export const publicEventSlice = createSlice({
       state.activeUsername = action.payload;
       localStorageRepository.setPublicEventUsername(action.payload);
     },
-    setPoolNames: (state, action: PayloadAction<string[]>) => {
-      state.poolNames = action.payload;
+    addPoolUsername: (state, action: PayloadAction<string>) => {
+      if (state.poolUsernames.length === 0) {
+        state.activeUsername = action.payload;
+      }
+      state.poolUsernames.push(action.payload);
     },
   },
 });
@@ -58,7 +63,7 @@ export const {
   setActiveShotId,
   setUsername,
   initializeCourse,
-  setPoolNames,
+  addPoolUsername,
 } = publicEventSlice.actions;
 
 export default publicEventSlice.reducer;
