@@ -9,6 +9,7 @@ import { setActiveUsername } from '@/stores/slices/PublicEvent.slice';
 import * as Styled from '../publicEvent.styles';
 import { EventInfoAndStartContainer } from '../components/EventInfoAndStartContainer';
 import { generateCharGUID } from '@/utils/guidGenerator';
+import localStorageRepository from '@/utils/localStorage.repository';
 
 interface PublicEventHomeProps {
   event: EventModel;
@@ -16,7 +17,9 @@ interface PublicEventHomeProps {
 
 export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   const dispatch = useDispatch();
-  const [localUsername, setLocalUsername] = useState('');
+  const [localUsername, setLocalUsername] = useState(
+    () => localStorageRepository.getPublicEventUsername()?.split('-')[0] ?? ''
+  );
 
   const [isSubmitted] = useQuery(['submitted']);
 
