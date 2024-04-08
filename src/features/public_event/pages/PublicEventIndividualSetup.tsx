@@ -1,12 +1,11 @@
 import { Typography } from '@mui/material';
-import { debounce } from 'lodash';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { EventModel } from '@/types/models/event/event.model';
 import { formatDate } from '@/shared/formatDate';
 import { useQuery } from '@/libs/routing/useQuery.hook';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
-import { publicEventSelector, setActiveUsername } from '@/stores/slices/PublicEvent.slice';
+import { setActiveUsername } from '@/stores/slices/PublicEvent.slice';
 import * as Styled from '../publicEvent.styles';
 import { EventInfoAndStartContainer } from '../components/EventInfoAndStartContainer';
 
