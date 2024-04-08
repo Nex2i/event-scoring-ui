@@ -2,7 +2,7 @@ import { Button, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Styled from '../publicEvent.styles';
-import { clearAll } from '@/utils/localStorage';
+import { clearButKeepAdminToken } from '@/utils/localStorage';
 
 interface PublicEventRouterProps {}
 
@@ -17,7 +17,7 @@ export const PublicEventRouter: FC<PublicEventRouterProps> = ({}) => {
   const navigate = useNavigate();
 
   const navigateToTargets = (location: navigationLocation) => {
-    clearAll();
+    clearButKeepAdminToken();
 
     if (location === navigationLocation.INDIVIDUAL) {
       navigate(`/open/event/${id}/individual`);

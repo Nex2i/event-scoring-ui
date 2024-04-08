@@ -3,7 +3,7 @@ import { FC, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { EventModel } from '@/types/models/event/event.model';
 import { publicEventRoutes } from '@/routes/RouteConstants';
-import { clearAll } from '@/utils/localStorage';
+import { clearButKeepAdminToken } from '@/utils/localStorage';
 import { publicEventSelector } from '@/stores/slices/PublicEvent.slice';
 import { ApiContext } from '@/apis/api.context';
 import * as Styled from '../publicEvent.styles';
@@ -108,6 +108,6 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
 };
 
 function clearCache(eventId: string) {
-  clearAll();
+  clearButKeepAdminToken();
   location.href = `/${publicEventRoutes.base}/${eventId}`;
 }

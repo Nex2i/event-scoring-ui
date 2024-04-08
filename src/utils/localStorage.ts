@@ -22,8 +22,14 @@ const clearAll = () => {
   localStorage.clear();
 };
 
+const clearButKeepAdminToken = () => {
+  const adminToken = getLocal(LocalKeys.ADMIN_USER_TOKEN);
+  localStorage.clear();
+  setLocal(LocalKeys.ADMIN_USER_TOKEN, adminToken!);
+};
+
 const getLocal = (key: LocalKeys | string) => {
   return localStorage.getItem(key);
 };
 
-export { LocalKeys, setLocal, removeLocal, getLocal, clearAll };
+export { LocalKeys, setLocal, removeLocal, getLocal, clearAll, clearButKeepAdminToken };
