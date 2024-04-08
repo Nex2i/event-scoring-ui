@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Route, Routes, useParams } from 'react-router-dom';
 import { usePublicEventHook } from '@/hooks/event/usePublicEvent.hook';
 import * as Styled from '../publicEvent.styles';
-import { PublicEventPoolSetup } from '../pages/PublicEventPoolSetup';
+import { PublicEventPoolSetup } from '../components/PublicEventPoolSetup';
 import { PoolTarget } from '../pages/PoolTarget';
 import { EventNotFound } from '../components/EventNotFound';
 

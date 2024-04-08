@@ -46,7 +46,9 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
 
     const previousTargetId = event.Courses[currentCourseIndex].Targets[currentTargetIndex - 1]?.id;
     if (previousTargetId) {
-      navigate(`/${publicEventRoutes.base}/${event.id}/${courseId}/${previousTargetId}`);
+      navigate(
+        `/${publicEventRoutes.base}/${event.id}/${recordingType}/${courseId}/${previousTargetId}`
+      );
     } else {
       console.error('No previous target found');
     }
@@ -92,7 +94,7 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
   return (
     <Styled.AroundRow>
       {isFirstTarget ? (
-        <Button onClick={clearCache}>Reset</Button>
+        <Button onClick={() => clearCache(event.id)}>Reset</Button>
       ) : (
         <Button onClick={goToPreviousTarget}>Back</Button>
       )}
@@ -105,7 +107,7 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
   );
 };
 
-function clearCache() {
+function clearCache(eventId: string) {
   clearAll();
-  location.reload();
+  location.href = `/${publicEventRoutes.base}/${eventId}`;
 }

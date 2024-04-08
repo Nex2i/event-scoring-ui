@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import { EventModel } from '@/types/models/event/event.model';
+import { PublicTarget } from './PublicTarget';
 
 interface IndividualTargetProps {
   event: EventModel;
 }
 
-export const IndividualTarget: FC<IndividualTargetProps> = ({}) => {
-  return <div>IndividualTarget</div>;
+export const IndividualTarget: FC<IndividualTargetProps> = ({ event }) => {
+  return <PublicTarget event={event} />;
 };

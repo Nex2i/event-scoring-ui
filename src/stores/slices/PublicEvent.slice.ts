@@ -9,11 +9,21 @@ import localStorageRepository from '@/utils/localStorage.repository';
 import { useAppSelector } from '../store.hooks';
 import { PublicEventState, RecordShotPayload } from '../sliceTypes/PublicEventState.type';
 
-const initialPublicEventState = {
-  activeUsername: localStorageRepository.getPublicEventUsername() || '',
-} as PublicEventState;
+const localCacheActiveUsername = localStorageRepository.getPublicEventUsername();
+const localCachePoolUsernames = localStorageRepository.getPublicEventPoolUsernames();
 
-initialPublicEventState.poolUsernames = [];
+function getActiveUsername() {
+  if (localCacheActiveUsername) return localCacheActiveUsername;
+
+  if (localCachePoolUsernames?.length) return localCachePoolUsernames[0];
+
+  return '';
+}
+
+const initialPublicEventState = {
+  activeUsername: getActiveUsername(),
+  poolUsernames: localStorageRepository.getPublicEventPoolUsernames() || [],
+} as PublicEventState;
 
 export const publicEventSliceName = 'publicEventSlice';
 
@@ -35,15 +45,13 @@ export const publicEventSlice = createSlice({
     setActiveShotId: (state, action: PayloadAction<string>) => {
       state.activeShotId = action.payload;
     },
-    setUsername: (state, action: PayloadAction<string>) => {
-      state.activeUsername = action.payload;
-      localStorageRepository.setPublicEventUsername(action.payload);
-    },
+    setActiveUsername: setActiveUsernameFunc,
     addPoolUsername: (state, action: PayloadAction<string>) => {
       if (state.poolUsernames.length === 0) {
         state.activeUsername = action.payload;
       }
       state.poolUsernames.push(action.payload);
+      localStorageRepository.setPublicEventPoolUsernames(state.poolUsernames);
     },
   },
 });
@@ -51,7 +59,7 @@ export const publicEventSlice = createSlice({
 export const publicEventSelector = () => useAppSelector((store) => store.publicEvent);
 export const getActiveTotals = (): number => {
   const { userCourseData, activeUsername } = publicEventSelector();
-  if (!userCourseData || !activeUsername) {
+  if (!userCourseData || !activeUsername || !userCourseData[activeUsername]) {
     return 0;
   }
   return userCourseData[activeUsername].totalScore ?? 0;
@@ -61,7 +69,7 @@ export const {
   recordScore,
   initializeEvent,
   setActiveShotId,
-  setUsername,
+  setActiveUsername,
   initializeCourse,
   addPoolUsername,
 } = publicEventSlice.actions;
@@ -102,11 +110,31 @@ function createInitialCourse(
     targets: [],
   };
 
-  console.log('Creating initial course', userCourseData);
-
   localStorageRepository.setUserCourseData(courseId, userCourseData);
 
   return userCourseData;
+}
+
+function setActiveUsernameFunc(state: PublicEventState, action: PayloadAction<string>) {
+  state.activeUsername = action.payload;
+  localStorageRepository.setPublicEventUsername(action.payload);
+
+  if (!state.userCourseData) {
+    state.userCourseData = createInitialCourse(action.payload, state.activeEvent?.Courses![0].id);
+  }
+
+  if (!state.userCourseData[action.payload]) {
+    state.userCourseData[action.payload] = {
+      courseId: state.activeEvent!.Courses![0].id,
+      totalScore: 0,
+      username: action.payload,
+      targets: [],
+    };
+    localStorageRepository.setUserCourseData(
+      state.activeEvent!.Courses![0].id,
+      state.userCourseData
+    );
+  }
 }
 
 function recordUserScore(state: PublicEventState, action: PayloadAction<RecordShotPayload>) {

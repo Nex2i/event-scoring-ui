@@ -6,7 +6,7 @@ import { EventModel } from '@/types/models/event/event.model';
 import { formatDate } from '@/shared/formatDate';
 import { useQuery } from '@/libs/routing/useQuery.hook';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
-import { publicEventSelector, setUsername } from '@/stores/slices/PublicEvent.slice';
+import { publicEventSelector, setActiveUsername } from '@/stores/slices/PublicEvent.slice';
 import * as Styled from '../publicEvent.styles';
 import { EventInfoAndStartContainer } from '../components/EventInfoAndStartContainer';
 
@@ -25,7 +25,7 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
       if (nextValue.length >= 15) {
         return;
       }
-      return dispatch(setUsername(nextValue));
+      return dispatch(setActiveUsername(nextValue));
     }, 50),
     []
   );

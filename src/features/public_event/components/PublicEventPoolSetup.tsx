@@ -5,7 +5,7 @@ import { generateCharGUID } from '@/utils/guidGenerator';
 import { EventModel } from '@/types/models/event/event.model';
 import { addPoolUsername, publicEventSelector } from '@/stores/slices/PublicEvent.slice';
 import * as Styled from '../publicEvent.styles';
-import { EventInfoAndStartContainer } from '../components/EventInfoAndStartContainer';
+import { EventInfoAndStartContainer } from './EventInfoAndStartContainer';
 
 interface PublicEventPoolSetupProps {
   event: EventModel;
@@ -22,7 +22,7 @@ export const PublicEventPoolSetup: FC<PublicEventPoolSetupProps> = ({ event }) =
 
   const addContestant = () => {
     if (!currentContestant) return;
-    const uniqueContestant = currentContestant + '-' + generateCharGUID(4);
+    const uniqueContestant = currentContestant.trim() + '-' + generateCharGUID(4);
     dispatch(addPoolUsername(uniqueContestant));
     setCurrentContestant('');
   };

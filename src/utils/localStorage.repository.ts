@@ -75,6 +75,10 @@ class LocalStorageRepository {
     setLocal(LocalKeys.PUBLIC_EVENT_USERNAME, username);
   }
 
+  public setPublicEventPoolUsernames(poolUsernames: string[]): void {
+    setLocal(LocalKeys.PUBLIC_EVENT_POOL_USERNAMES, JSON.stringify(poolUsernames));
+  }
+
   public setUserCourseData(
     courseId: string,
     userCourseData: Record<string, UserCourseDataModel>
@@ -85,6 +89,12 @@ class LocalStorageRepository {
   public getPublicEventUsername(): string | null {
     const username = getLocal(LocalKeys.PUBLIC_EVENT_USERNAME);
     if (username) return username;
+    return null;
+  }
+
+  public getPublicEventPoolUsernames(): string[] | null {
+    const poolUsernames = getLocal(LocalKeys.PUBLIC_EVENT_POOL_USERNAMES);
+    if (poolUsernames) return JSON.parse(poolUsernames) as string[];
     return null;
   }
 
