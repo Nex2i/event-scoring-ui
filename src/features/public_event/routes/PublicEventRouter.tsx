@@ -1,8 +1,8 @@
 import { Button, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import * as Styled from '../publicEvent.styles';
 import { clearButKeepAdminToken } from '@/utils/localStorage';
+import * as Styled from '../publicEvent.styles';
 
 interface PublicEventRouterProps {}
 

@@ -6,6 +6,7 @@ import {
   UserTargetDataModel,
 } from '@/types/models/userInteraction/userCourseData.model';
 import localStorageRepository from '@/utils/localStorage.repository';
+import { removeLocal } from '@/utils/localStorage';
 import { useAppSelector } from '../store.hooks';
 import { PublicEventState, RecordShotPayload } from '../sliceTypes/PublicEventState.type';
 
@@ -35,6 +36,12 @@ export const publicEventSlice = createSlice({
     initializeEvent: (state, action: PayloadAction<EventModel>) => {
       state.activeEvent = action.payload;
       localStorageRepository.setActivePublicEvent(action.payload);
+    },
+    resetCourse: (state) => {
+      if (state.activeEvent?.Courses![0].id) {
+        state.userCourseData = undefined;
+        removeLocal(state.activeEvent?.Courses![0].id);
+      }
     },
     initializeCourse: (state) => {
       state.userCourseData = createInitialCourse(
@@ -72,6 +79,7 @@ export const {
   setActiveUsername,
   initializeCourse,
   addPoolUsername,
+  resetCourse,
 } = publicEventSlice.actions;
 
 export default publicEventSlice.reducer;

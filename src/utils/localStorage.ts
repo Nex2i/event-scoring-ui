@@ -14,7 +14,7 @@ const setLocal = (key: LocalKeys | string, value: string) => {
   localStorage.setItem(key, value);
 };
 
-const removeLocal = (key: LocalKeys) => {
+const removeLocal = (key: LocalKeys | string) => {
   localStorage.removeItem(key);
 };
 

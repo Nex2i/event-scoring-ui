@@ -5,11 +5,11 @@ import { EventModel } from '@/types/models/event/event.model';
 import { formatDate } from '@/shared/formatDate';
 import { useQuery } from '@/libs/routing/useQuery.hook';
 import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
-import { setActiveUsername } from '@/stores/slices/PublicEvent.slice';
-import * as Styled from '../publicEvent.styles';
-import { EventInfoAndStartContainer } from '../components/EventInfoAndStartContainer';
+import { resetCourse, setActiveUsername } from '@/stores/slices/PublicEvent.slice';
 import { generateCharGUID } from '@/utils/guidGenerator';
 import localStorageRepository from '@/utils/localStorage.repository';
+import * as Styled from '../publicEvent.styles';
+import { EventInfoAndStartContainer } from '../components/EventInfoAndStartContainer';
 
 interface PublicEventHomeProps {
   event: EventModel;
@@ -24,6 +24,7 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   const [isSubmitted] = useQuery(['submitted']);
 
   const preStart = () => {
+    dispatch(resetCourse());
     dispatch(setActiveUsername(localUsername + '-' + generateCharGUID(4)));
   };
 

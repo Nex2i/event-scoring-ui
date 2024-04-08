@@ -7,9 +7,11 @@ import { getLocal, LocalKeys, removeLocal, setLocal } from './localStorage';
 class LocalStorageRepository {
   public getUserToken(): string | null {
     const adminToken = this.getAdminUserToken();
-    const guestToken = this.getGuestUserToken();
     if (adminToken) return adminToken;
+
+    const guestToken = this.getGuestUserToken();
     if (guestToken) return guestToken;
+
     return null;
   }
   public getAdminUserToken(): string | null {
