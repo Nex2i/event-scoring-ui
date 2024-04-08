@@ -8,6 +8,7 @@ import { BasicFilledInput } from '@/libs/ui/form/BasicFilledInput';
 import { setActiveUsername } from '@/stores/slices/PublicEvent.slice';
 import * as Styled from '../publicEvent.styles';
 import { EventInfoAndStartContainer } from '../components/EventInfoAndStartContainer';
+import { generateCharGUID } from '@/utils/guidGenerator';
 
 interface PublicEventHomeProps {
   event: EventModel;
@@ -20,7 +21,7 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   const [isSubmitted] = useQuery(['submitted']);
 
   const preStart = () => {
-    dispatch(setActiveUsername(localUsername));
+    dispatch(setActiveUsername(localUsername + '-' + generateCharGUID(4)));
   };
 
   const updateUsername = (value: string) => {
