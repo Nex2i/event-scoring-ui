@@ -32,7 +32,6 @@ export const PublicEventPoolSetup: FC<PublicEventPoolSetupProps> = ({ event }) =
       <Styled.PublicEventHomeInfoContainer>
         <Typography variant="h3">Pool Setup</Typography>
         <Typography variant="h6">Contestants</Typography>
-
         <Input
           placeholder="Enter Contestant Name"
           value={currentContestant}
@@ -43,6 +42,7 @@ export const PublicEventPoolSetup: FC<PublicEventPoolSetupProps> = ({ event }) =
             }
           }}
         />
+        <br />
         <Button onClick={addContestant}>Add Contestant</Button>
         <ul>
           {poolUsernames.map((contestant, i) => (

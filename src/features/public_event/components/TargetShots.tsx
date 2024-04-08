@@ -51,12 +51,16 @@ export const TargetShots: FC<TargetShotsProps> = ({ target, rings }) => {
     dispatch(setActiveShotId(nextShotId));
   };
 
+  const updateActiveShot = (shotId: string) => {
+    dispatch(setActiveShotId(shotId));
+  };
+
   return (
     <Styled.ScrollableContainer>
       {target.Shots.map((shot, shotIndex) => {
         return (
           <Styled.AroundRow width="100%" key={shotIndex}>
-            <Styled.ScoreCell>
+            <Styled.ScoreCell onClick={() => updateActiveShot(shot.id)}>
               <Typography>Shot {shotIndex + 1}</Typography>
             </Styled.ScoreCell>
             <Styled.ScoreCell
