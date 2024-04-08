@@ -12,11 +12,13 @@ import { PublicLeaderboard } from './PublicLeaderboard';
 interface EventInfoAndStartContainerProps {
   event: EventModel;
   disableStart: boolean;
+  preStartCallback?: () => void;
 }
 
 export const EventInfoAndStartContainer: FC<EventInfoAndStartContainerProps> = ({
   event,
   disableStart,
+  preStartCallback,
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -28,6 +30,7 @@ export const EventInfoAndStartContainer: FC<EventInfoAndStartContainerProps> = (
   const startCourse = () => {
     const firstCourseId = event.Courses?.[0].id;
     const firstTargetId = event.Courses?.[0].Targets[0].id;
+    preStartCallback && preStartCallback();
     dispatch(initializeCourse());
     navigate(
       `/${publicEventRoutes.base}/${event.id}/${recordingType}/${firstCourseId}/${firstTargetId}`

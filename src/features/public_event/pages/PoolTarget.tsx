@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { EventModel } from '@/types/models/event/event.model';
 import * as Styled from '../publicEvent.styles';
-import { PublicTarget } from './PublicTarget';
+import { PublicTarget } from '../components/PublicTarget';
 import { BasicFilledSelect } from '@/libs/ui/form/BasicFilledSelect';
 import { publicEventSelector, setActiveUsername } from '@/stores/slices/PublicEvent.slice';
 import { useDispatch } from 'react-redux';

@@ -13,8 +13,8 @@ import {
 } from '@/stores/slices/PublicEvent.slice';
 import { useAppDispatch } from '@/stores/store.hooks';
 import * as Styled from '../publicEvent.styles';
-import { NextTargetButton } from '../components/NextTargetButton';
-import { TargetShots } from '../components/TargetShots';
+import { NextTargetButton } from './NextTargetButton';
+import { TargetShots } from './TargetShots';
 
 interface PublicTargetProps {
   event: EventModel;

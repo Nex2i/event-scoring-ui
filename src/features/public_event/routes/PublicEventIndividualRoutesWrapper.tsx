@@ -3,7 +3,7 @@ import { useParams, Routes, Route } from 'react-router-dom';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
 import { useIndividualGuestAuth } from '@/hooks/authentication/useIndividualGuestAuth.hook';
 import { usePublicEventHook } from '@/hooks/event/usePublicEvent.hook';
-import { PublicEventHome } from '../pages/PublicEventHome';
+import { PublicEventHome } from '../pages/PublicEventIndividualSetup';
 import * as Styled from '../publicEvent.styles';
 import { EventNotFound } from '../components/EventNotFound';
 import { IndividualTarget } from '../pages/IndividualTarget';

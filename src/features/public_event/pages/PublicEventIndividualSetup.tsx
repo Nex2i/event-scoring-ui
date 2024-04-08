@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { debounce } from 'lodash';
-import { FC, useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { EventModel } from '@/types/models/event/event.model';
 import { formatDate } from '@/shared/formatDate';
@@ -16,31 +16,20 @@ interface PublicEventHomeProps {
 
 export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
   const dispatch = useDispatch();
-  const { activeUsername: username } = publicEventSelector();
+  const [localUsername, setLocalUsername] = useState('');
 
   const [isSubmitted] = useQuery(['submitted']);
 
-  const debouncedChangeHandler = useCallback(
-    debounce((nextValue: string) => {
-      if (nextValue.length >= 15) {
-        return;
-      }
-      return dispatch(setActiveUsername(nextValue));
-    }, 50),
-    []
-  );
-
-  const updateUsername = (usernameValue: string) => {
-    debouncedChangeHandler(usernameValue);
+  const preStart = () => {
+    dispatch(setActiveUsername(localUsername));
   };
 
-  useEffect(() => {
-    return () => {
-      debouncedChangeHandler.cancel();
-    };
-  }, [debouncedChangeHandler]);
+  const updateUsername = (value: string) => {
+    if (value.length > 15) return;
+    setLocalUsername(value);
+  };
 
-  const disabeldStart = username.length <= 0;
+  const disabeldStart = localUsername.length <= 0;
 
   return (
     <div id="event-home-container" style={{ width: '100%' }}>
@@ -50,14 +39,18 @@ export const PublicEventHome: FC<PublicEventHomeProps> = ({ event }) => {
           disabled={!!isSubmitted}
           initialValue="Username"
           onValueChange={updateUsername}
-          value={username}
+          value={localUsername}
         />
         <Styled.Row>
           <Typography variant="h6">Start Date: {formatDate(event.startDate)}</Typography>
           <Typography variant="h6">End Date: {formatDate(event.endDate)}</Typography>
         </Styled.Row>
       </Styled.PublicEventHomeInfoContainer>
-      <EventInfoAndStartContainer event={event} disableStart={disabeldStart} />
+      <EventInfoAndStartContainer
+        event={event}
+        disableStart={disabeldStart}
+        preStartCallback={preStart}
+      />
     </div>
   );
 };

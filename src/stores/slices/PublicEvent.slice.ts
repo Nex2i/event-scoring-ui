@@ -106,7 +106,7 @@ function createInitialCourse(
   userCourseData[activeUsername] = {
     courseId: courseId,
     totalScore: 0,
-    username: '',
+    username: activeUsername,
     targets: [],
   };
 
