@@ -6,7 +6,7 @@ import { AuthenticatedRoutes } from './AuthenticatedRoutes';
 import { PublicRoutes } from './PublicRoutes';
 
 export const MainRouter = () => {
-  console.log('ENV VAR: ', process.env);
+  console.log('ENV VAR: ', import.meta.env);
   const snackbarProps = snackBarSelector();
 
   const element = useRoutes([...AuthenticatedRoutes, ...PublicRoutes]);
