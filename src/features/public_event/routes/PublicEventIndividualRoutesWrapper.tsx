@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useParams, Routes, Route } from 'react-router-dom';
 import { LoadingComponent } from '@/components/loading/Loading.Component';
-import { useIndividualGuestAuth } from '@/hooks/authentication/useIndividualGuestAuth.hook';
+// import { useIndividualGuestAuth } from '@/hooks/authentication/useIndividualGuestAuth.hook';
 import { usePublicEventHook } from '@/hooks/event/usePublicEvent.hook';
 import { PublicEventHome } from '../pages/PublicEventIndividualSetup';
 import * as Styled from '../publicEvent.styles';
@@ -10,10 +10,10 @@ import { IndividualTarget } from '../pages/IndividualTarget';
 
 export const PublicEventIndividualRoutesWrapper: FC = ({}) => {
   const { id } = useParams() as { id: string };
-  const { isFetching: isAuthFetching } = useIndividualGuestAuth(id);
+  // const { isFetching: isAuthFetching } = useIndividualGuestAuth(id);
   const { isFetching, event } = usePublicEventHook(id);
 
-  if (isFetching || isAuthFetching) {
+  if (isFetching) {
     return <LoadingComponent />;
   }
   if (!event) {

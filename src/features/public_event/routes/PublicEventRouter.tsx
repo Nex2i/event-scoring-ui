@@ -1,6 +1,6 @@
 import { Button, Typography } from '@mui/material';
 import { FC } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { clearButKeepAdminToken } from '@/utils/localStorage';
 import * as Styled from '../publicEvent.styles';
 
@@ -13,6 +13,8 @@ enum navigationLocation {
 
 export const PublicEventRouter: FC<PublicEventRouterProps> = ({}) => {
   const { id } = useParams() as { id: string };
+  const [searchParams] = useSearchParams();
+  const submitted = searchParams.get('submitted') == 'true' ?? false;
 
   const navigate = useNavigate();
 
@@ -29,7 +31,14 @@ export const PublicEventRouter: FC<PublicEventRouterProps> = ({}) => {
   return (
     <Styled.PublicEventContainer>
       <Styled.PublicEventHomeInfoContainer>
-        <Typography variant="h5">Are you recording for yourself or an group?</Typography>
+        {submitted ? (
+          <>
+            <Typography variant="h5">Your score has been submitted!</Typography>
+            <Typography variant="h6">Select an option below to go again</Typography>
+          </>
+        ) : (
+          <Typography variant="h5">Are you recording for yourself or an group?</Typography>
+        )}
         <br />
         <Styled.SpreadRow>
           <Button onClick={() => navigateToTargets(navigationLocation.INDIVIDUAL)}>

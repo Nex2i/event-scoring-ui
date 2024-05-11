@@ -83,7 +83,7 @@ export const NextTargetButton: FC<NextTargetButtonProps> = ({ event }) => {
     const payloadData = { ...userCourseData };
 
     await userRecordApi
-      .submitCourse(payloadData)
+      .submitCourse(payloadData, event.id)
       .then(() => {
         navigate(`/${publicEventRoutes.base}/${event.id}?submitted=true`);
       })
