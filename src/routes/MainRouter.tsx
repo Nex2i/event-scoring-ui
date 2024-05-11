@@ -17,6 +17,7 @@ export const MainRouter = () => {
   return (
     <>
       {element}
+      <code style={{ fontSize: '8px' }}>DEV Build: {import.meta.env.VITE_COMMIT_HASH}</code>
       <SnackBarComponent
         open={snackbarProps.open}
         message={snackbarProps.message}
