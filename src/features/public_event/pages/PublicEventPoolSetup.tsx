@@ -22,7 +22,7 @@ export const PublicEventPoolSetup: FC<PublicEventPoolSetupProps> = ({ event }) =
 
   const addContestant = () => {
     if (!currentContestant) return;
-    const uniqueContestant = currentContestant.trim() + '-' + generateCharGUID(4);
+    const uniqueContestant = currentContestant.trim().replace(/-/g, '') + '-' + generateCharGUID(4);
     dispatch(addPoolUsername(uniqueContestant));
     setCurrentContestant('');
   };
@@ -46,7 +46,10 @@ export const PublicEventPoolSetup: FC<PublicEventPoolSetupProps> = ({ event }) =
         <Button onClick={addContestant}>Add Contestant</Button>
         <ul>
           {poolUsernames.map((contestant, i) => (
-            <li key={i}>{contestant}</li>
+            <li key={i}>
+              {contestant.split('-')[0]}
+              <code style={{ fontSize: '8px' }}>_{contestant.split('-')[1]}</code>
+            </li>
           ))}
         </ul>
       </Styled.PublicEventHomeInfoContainer>
