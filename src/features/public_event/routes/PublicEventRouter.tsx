@@ -14,7 +14,7 @@ enum navigationLocation {
 export const PublicEventRouter: FC<PublicEventRouterProps> = ({}) => {
   const { id } = useParams() as { id: string };
   const [searchParams] = useSearchParams();
-  const submitted = searchParams.get('submitted') == 'true' ?? false;
+  const submitted = searchParams.get('submitted') == 'true';
 
   const navigate = useNavigate();
 

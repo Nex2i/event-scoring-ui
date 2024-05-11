@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "build-env": "node set-build-env.js",
     "dev": "npm install && vite --host --force",
-    "build": "tsc && vite build",
-    "build:prod": "eslint src --ext ts,tsx --report-unused-disable-directives && tsc && vite build",
+    "build": "npm run build-env && tsc && vite build",
+    "build:prod": "eslint src --ext ts,tsx --report-unused-disable-directives && npm run build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives",
     "lint:fix": "npm run lint -- --fix",
     "preview": "vite preview",
